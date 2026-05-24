@@ -772,8 +772,18 @@ Assistir Masterclass Estratégica
     <button onclick="closeCase()" class="absolute top-5 right-5 z-10 flex items-center justify-center w-8 h-8 rounded-full bg-white/5 hover:bg-white/10 text-gray-400 hover:text-white transition-colors text-base leading-none select-none">✕</button>
     <div id="caseModalContent"></div>
     <div class="sticky bottom-0 bg-gradient-to-t from-[#0C0C14] via-[#0C0C14] to-transparent px-8 pb-8 pt-14">
-      <button onclick="closeCase()" class="w-full flex items-center justify-center gap-2 py-3.5 border border-white/10 rounded-xl text-sm text-gray-400 hover:text-white hover:border-white/20 transition-colors">
-        ← Voltar para Casos
+      <button onclick="closeCase()" class="group inline-flex overflow-hidden transition-all duration-300 hover:scale-[1.01] hover:shadow-[0_0_40px_-10px_rgba(249,115,22,0.5)] w-full h-[52px] rounded-full relative items-center justify-center" style="position:relative;">
+        <div class="absolute inset-0 -z-20 rounded-full overflow-hidden p-[1px]">
+          <div class="absolute inset-[-100%] bg-[conic-gradient(from_0deg,transparent_0_300deg,#f97316_360deg)]" style="animation:beam-spin 3s linear infinite;"></div>
+          <div class="absolute inset-[1px] rounded-full bg-[#050505]"></div>
+        </div>
+        <div class="overflow-hidden bg-[#0A0A0A] rounded-full absolute top-[2px] right-[2px] bottom-[2px] left-[2px]">
+          <div class="bg-gradient-to-b from-amber-900/20 to-transparent absolute top-0 right-0 bottom-0 left-0"></div>
+          <div class="opacity-[0.07] mix-blend-plus-lighter absolute top-0 right-0 bottom-0 left-0" style="background-image:repeating-linear-gradient(90deg,#fff,#fff 1px,transparent 1px,transparent 8px);background-size:24px 100%;animation:lines-slide 1.5s linear infinite;"></div>
+          <div class="absolute bottom-0 left-1/2 -translate-x-1/2 w-2/3 h-1/2 bg-orange-500/20 blur-2xl rounded-full pointer-events-none transition-colors duration-500 group-hover:bg-orange-500/40"></div>
+        </div>
+        <i data-lucide="arrow-left" class="relative z-10 mr-2 w-4 h-4 transition-transform duration-300 group-hover:-translate-x-1"></i>
+        <span class="transition-colors group-hover:text-white font-semibold text-white/90 tracking-tight z-10 relative">Voltar para Casos</span>
       </button>
     </div>
   </div>
