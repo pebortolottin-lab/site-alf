@@ -11,7 +11,7 @@
   border: 1.5px solid rgba(45,212,191,0.85);
   box-shadow: 0 0 0 2px rgba(13,148,136,0.15), 0 0 30px rgba(20,184,166,0.25);
   transform: translate(-50%,-50%);
-  z-index: 9998;
+  z-index: 999998;
   opacity: 0;
   transition: width .2s, height .2s, border-color .2s, box-shadow .2s, opacity .3s;
   will-change: left, top;
@@ -24,7 +24,7 @@
   border-radius: 9999px;
   background: rgba(45,212,191,0.95);
   transform: translate(-50%,-50%);
-  z-index: 9999;
+  z-index: 999999;
   opacity: 0;
   transition: opacity .3s;
   will-change: left, top;
