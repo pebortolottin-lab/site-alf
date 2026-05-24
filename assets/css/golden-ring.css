@@ -1,0 +1,42 @@
+/* Hide system cursor on desktop — only the golden ring is visible */
+@media (pointer: fine) {
+  *, *::before, *::after { cursor: none !important; }
+}
+/* Golden ring: large glowing circle that follows mouse with parallax — hero section */
+#golden-ring {
+  pointer-events: none;
+  position: fixed;
+  width: 280px;
+  height: 280px;
+  border-radius: 9999px;
+  border: 1px solid rgba(251,191,36,0.35);
+  box-shadow:
+    0 0 0 1px rgba(245,158,11,0.08),
+    0 0 50px 10px rgba(251,191,36,0.18),
+    0 0 120px 30px rgba(251,191,36,0.08),
+    inset 0 0 60px 10px rgba(251,191,36,0.04);
+  background: radial-gradient(circle, rgba(251,191,36,0.07) 0%, rgba(251,191,36,0.02) 40%, transparent 70%);
+  transform: translate(-50%, -50%);
+  z-index: 6;
+  opacity: 0;
+  transition: opacity 0.6s ease;
+  will-change: left, top;
+}
+#golden-ring::before {
+  content: "";
+  position: absolute;
+  inset: 18px;
+  border-radius: 9999px;
+  border: 1px solid rgba(251,191,36,0.15);
+}
+#golden-ring::after {
+  content: "";
+  position: absolute;
+  inset: 50%;
+  width: 8px;
+  height: 8px;
+  margin: -4px;
+  border-radius: 9999px;
+  background: rgba(251,191,36,0.7);
+  box-shadow: 0 0 12px 4px rgba(251,191,36,0.5), 0 0 30px 10px rgba(251,191,36,0.2);
+}

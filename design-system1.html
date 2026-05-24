@@ -1,0 +1,708 @@
+<!DOCTYPE html>
+<html class="dark" lang="pt-BR">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>ALF — Arquitetura de Liberdade Familiar</title>
+<!-- fonts: Oswald (headings) + Inter (body) via Google Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin=""/>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<!-- css -->
+<!-- scrollbar hiding and visibility helpers — site-wide -->
+<link rel="stylesheet" href="assets/css/base.css"/>
+<!-- Oswald/Inter font-family utility classes used in headings throughout -->
+<link rel="stylesheet" href="assets/css/fonts.css"/>
+<!-- scroll-reveal fadeInUp/blurIn, beam-spin, score bar animations -->
+<link rel="stylesheet" href="assets/css/animations.css"/>
+<!-- gradient border helper (hero CTA) + accordion panel transitions -->
+<link rel="stylesheet" href="assets/css/components.css"/>
+<!-- golden parallax ring that follows the mouse — hero section -->
+<link rel="stylesheet" href="assets/css/golden-ring.css"/>
+<!-- head-only js -->
+<!-- Tailwind utility runtime — must stay in head to apply utility classes -->
+<script src="assets/resource_3fa48481346f.es"></script>
+<!-- Lucide icon runtime — provides lucide.createIcons() for <i data-lucide> -->
+<script src="assets/lucide_latest_2eebd0ebe8c2.es"></script>
+</head>
+<body class="antialiased overflow-x-hidden selection:bg-orange-500 selection:text-white text-white bg-[#000000] font-sans" style="font-family:'Inter',sans-serif;">
+<!-- golden-ring: large glowing golden circle that follows mouse with parallax -->
+<div id="golden-ring"></div>
+<!-- background-effect: golden rays rising + mouse interaction (UnicornStudio project AhqzKk9mZE0EnlENMQDi from ai-social-automation) — shifted 25% left so visual center sits at first quarter of screen -->
+<div class="aura-background-component -z-10 w-full top-0 absolute h-[900px] saturate-150 brightness-110" data-alpha-mask="50" style="mask-image:linear-gradient(transparent,black 0%,black 55%,transparent);transform:translateX(-25%);">
+<div class="aura-background-component top-0 w-full -z-10 absolute h-full">
+<div class="absolute w-full h-full left-0 top-0 -z-10" data-us-project="AhqzKk9mZE0EnlENMQDi"></div>
+</div>
+</div>
+<!-- nav -->
+<nav class="flex z-50 fixed w-full pt-6 pr-4 pl-4 top-0 right-0 left-0 items-center justify-center">
+<div class="flex scroll-item scroll-fade-up bg-black/90 w-full max-w-5xl border-white/10 border rounded-full pt-1 pr-2 pb-1 pl-5 relative shadow-2xl backdrop-blur-md items-center justify-between">
+<a class="text-xl font-semibold tracking-tight text-white font-oswald" href="#">ALF</a>
+<div class="hidden md:flex -translate-x-1/2 absolute left-1/2 gap-x-6 items-center">
+<a class="text-[14px] hover:text-gray-300 transition-colors font-medium text-white/80 tracking-wide" href="#ial-score-section">IAL Score</a>
+<a class="text-[14px] hover:text-gray-300 transition-colors font-medium text-white/80 tracking-wide" href="#masterclass">Masterclass</a>
+<a class="text-[14px] hover:text-gray-300 transition-colors font-medium text-white/80 tracking-wide" href="#casos">Casos</a>
+<a class="text-[14px] hover:text-gray-300 transition-colors font-medium text-white/80 tracking-wide" href="#quem">Quem Somos</a>
+</div>
+<div class="flex gap-x-3 items-center">
+<button class="md:hidden p-2 text-white"><i data-lucide="menu" class="w-6 h-6"></i></button>
+<a class="hidden md:flex group transition-all duration-300 hover:bg-orange-500/10 hover:border-orange-400 hover:shadow-[0_0_35px_rgba(249,115,22,0.6),inset_0_0_20px_rgba(249,115,22,0.4)] hover:scale-[1.02] items-center justify-center bg-black/60 border-orange-500border rounded-full pt-2.5 pr-6 pb-2.5 pl-6 shadow-[0_0_20px_rgba(249,115,22,0.5),inset_0_0_10px_rgba(249,115,22,0.2)]" href="#ial-score-section">
+<span class="uppercase text-[13px] font-semibold text-white/90 tracking-tight z-10 relative">FAZER SCORE</span>
+</a>
+</div>
+</div>
+</nav>
+<!-- hero -->
+<main class="flex flex-col z-10 pt-40 pr-6 pl-6 relative items-center justify-center">
+<div class="inline-flex hover:bg-white/10 transition-colors cursor-pointer group scroll-item scroll-fade-up bg-white/5 border-white/10 border rounded-full mb-8 pt-1.5 pr-3 pb-1.5 pl-3 backdrop-blur-sm items-center">
+<span class="bg-orange-500/20 text-orange-400 rounded px-1.5 py-0.5 text-[10px] font-medium tracking-wide">IAL SCORE</span>
+<span class="text-xs text-gray-300 font-medium group-hover:text-white transition-colors pr-1">&nbsp;Diagnóstico gratuito disponível</span>
+<i data-lucide="arrow-right" class="w-3 h-3 text-gray-500 group-hover:text-white transition-colors"></i>
+</div>
+<h1 class="text-center text-[3.15rem] md:text-[4.75rem] leading-[1.1] max-w-4xl mx-auto font-oswald font-light tracking-tight scroll-item scroll-blur-in delay-100">
+Arquitetura de<br/>
+<span class="font-light text-orange-500 tracking-tight font-oswald">Liberdade Familiar™</span>
+</h1>
+<p class="text-center text-[1.575rem] text-gray-300 mt-6 font-light scroll-item scroll-fade-up delay-200">Alta renda não significa liberdade.</p>
+<p class="text-center text-[1.18rem] text-gray-500 mt-4 max-w-xl mx-auto leading-relaxed font-light scroll-item scroll-fade-up delay-300">
+O diagnóstico que revela onde a liberdade patrimonial está vazando.
+</p>
+<div class="flex flex-col sm:flex-row gap-4 scroll-item scroll-fade-up delay-500 mt-10 gap-x-4 items-center">
+<button class="group inline-flex overflow-hidden transition-all duration-300 hover:scale-[1.02] hover:shadow-[0_0_40px_-10px_rgba(249,115,22,0.5)] sm:w-auto text-sm font-medium text-white w-full h-[54px] rounded-full pt-4 pr-8 pb-4 pl-8 relative items-center justify-center" style="position:relative;--border-gradient:linear-gradient(135deg,rgba(255,255,255,0.2),rgba(255,255,255,0),rgba(255,255,255,0.2));--border-radius-before:9999px">
+<div class="absolute inset-0 -z-20 rounded-full overflow-hidden p-[1px]">
+<div class="absolute inset-[-100%] bg-[conic-gradient(from_0deg,transparent_0_300deg,#f97316_360deg)]" style="animation:beam-spin 3s linear infinite;"></div>
+<div class="absolute inset-[1px] rounded-full bg-[#050505]"></div>
+</div>
+<div class="overflow-hidden bg-[#0A0A0A] rounded-full absolute top-[2px] right-[2px] bottom-[2px] left-[2px]">
+<div class="bg-gradient-to-b from-amber-900/20 to-transparent absolute top-0 right-0 bottom-0 left-0"></div>
+<div class="opacity-[0.07] mix-blend-plus-lighter absolute top-0 right-0 bottom-0 left-0" style="background-image:repeating-linear-gradient(90deg,#fff,#fff 1px,transparent 1px,transparent 8px);background-size:24px 100%;animation:lines-slide 1.5s linear infinite;"></div>
+<div class="absolute bottom-0 left-1/2 -translate-x-1/2 w-2/3 h-1/2 bg-orange-500/20 blur-2xl rounded-full pointer-events-none transition-colors duration-500 group-hover:bg-orange-500/40"></div>
+</div>
+<span class="transition-colors group-hover:text-white uppercase font-semibold text-white/90 tracking-tight z-10 relative">FAZER IAL SCORE GRATUITO</span>
+<i data-lucide="arrow-right" class="relative z-10 ml-2 w-4 h-4 transition-transform duration-300 group-hover:translate-x-1"></i>
+</button>
+<button class="sm:w-auto hover:bg-orange-500/10 hover:border-orange-400 hover:shadow-[0_0_35px_rgba(249,115,22,0.6),inset_0_0_20px_rgba(249,115,22,0.4)] hover:scale-[1.02] transition-all duration-300 flex group text-base font-medium text-white bg-black/60 w-full border-orange-500border rounded-full pt-3.5 pr-8 pb-3.5 pl-8 shadow-[0_0_20px_rgba(249,115,22,0.5),inset_0_0_10px_rgba(249,115,22,0.2)] gap-x-2 items-center justify-center" onclick="document.getElementById('masterclass').scrollIntoView({behavior:'smooth'})">
+<i data-lucide="play-circle" class="w-4 h-4 text-orange-400 group-hover:text-orange-300 transition-colors"></i>
+Masterclass Estratégica Gratuita
+</button>
+</div>
+<p class="text-center text-sm text-gray-600 mt-4 scroll-item scroll-fade-up delay-500">3 minutos &nbsp;•&nbsp; 10 pilares &nbsp;•&nbsp; 0–100 pontos</p>
+</main>
+<!-- bloco-ferida -->
+<section class="z-10 w-full max-w-6xl mt-56 mr-auto ml-auto px-6">
+<div class="flex flex-col lg:flex-row bg-[#0A0A0C] border border-white/10 rounded-3xl p-10 lg:p-16 gap-12 lg:gap-20 scroll-item scroll-blur-in">
+<div class="flex flex-col gap-8 lg:w-1/2">
+<div class="flex gap-3 items-center scroll-item scroll-fade-up">
+<span class="flex items-center justify-center w-7 h-7 rounded-lg bg-orange-500/10 text-[11px] font-mono font-medium text-orange-400 border border-orange-500/20 shadow-[0_0_10px_rgba(249,115,22,0.2)]">01</span>
+<span class="text-sm font-medium tracking-widest uppercase text-gray-500">A Realidade</span>
+</div>
+<h2 class="text-4xl md:text-5xl font-oswald font-light tracking-tight text-white leading-[1.1] scroll-item scroll-fade-up delay-100">Talvez você esteja<br/><span class="text-orange-500">vivendo isso:</span></h2>
+<ul class="space-y-4 scroll-item scroll-fade-up delay-200">
+<li class="flex items-start gap-3"><i data-lucide="check" class="w-5 h-5 text-orange-400 mt-0.5 shrink-0"></i><span class="text-gray-300 text-lg font-light">Ganha bem, mas não consegue parar</span></li>
+<li class="flex items-start gap-3"><i data-lucide="check" class="w-5 h-5 text-orange-400 mt-0.5 shrink-0"></i><span class="text-gray-300 text-lg font-light">Se reduzir agenda, a renda cai</span></li>
+<li class="flex items-start gap-3"><i data-lucide="check" class="w-5 h-5 text-orange-400 mt-0.5 shrink-0"></i><span class="text-gray-300 text-lg font-light">Patrimônio concentrado no Brasil</span></li>
+<li class="flex items-start gap-3"><i data-lucide="check" class="w-5 h-5 text-orange-400 mt-0.5 shrink-0"></i><span class="text-gray-300 text-lg font-light">Tem empresa, mas continua preso</span></li>
+<li class="flex items-start gap-3"><i data-lucide="check" class="w-5 h-5 text-orange-400 mt-0.5 shrink-0"></i><span class="text-gray-300 text-lg font-light">Trabalha muito e ainda sente insegurança</span></li>
+<li class="flex items-start gap-3"><i data-lucide="check" class="w-5 h-5 text-orange-400 mt-0.5 shrink-0"></i><span class="text-gray-300 text-lg font-light">Não sabe se está construindo liberdade ou apenas uma esteira mais cara</span></li>
+</ul>
+</div>
+<div class="lg:w-1/2 flex items-center scroll-item scroll-fade-up delay-300">
+<div class="relative w-full rounded-2xl border border-white/10 bg-[#050508] p-10">
+<div class="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-amber-900/10 via-transparent to-transparent rounded-2xl"></div>
+<div class="absolute top-6 left-8 text-orange-500/30"><svg fill="currentColor" height="48" viewBox="0 0 24 24" width="48"><path d="M14.017 21L14.017 18C14.017 16.9 14.9 16 16.017 16H19.017C19.57 16 20.017 15.55 20.017 15V9C20.017 8.45 19.57 8 19.017 8H15.017C14.47 8 14.017 8.45 14.017 9V11C14.017 11.55 13.57 12 13.017 12H12.017V5H22.017V15C22.017 18.31 19.33 21 16.017 21H14.017ZM5.017 21L5.017 18C5.017 16.9 5.9 16 7.017 16H10.017C10.57 16 11.017 15.55 11.017 15V9C11.017 8.45 10.57 8 10.017 8H6.017C5.47 8 5.017 8.45 5.017 9V11C5.017 11.55 4.57 12 4.017 12H3.017V5H13.017V15C13.017 18.31 10.33 21 7.017 21H5.017Z"/></svg></div>
+<blockquote class="text-2xl md:text-3xl font-oswald font-light text-white leading-snug mt-8 relative z-10">
+"Alta renda sem arquitetura pode gerar apenas uma prisão mais sofisticada."
+</blockquote>
+</div>
+</div>
+</div>
+</section>
+<!-- bloco-mentiras -->
+<section class="z-10 w-full max-w-6xl mt-24 mr-auto ml-auto px-6">
+<div class="flex flex-col bg-[#0A0A0C] border border-white/10 rounded-3xl p-10 lg:p-16 gap-12">
+<div class="flex flex-col md:flex-row md:items-end justify-between gap-8">
+<div class="flex flex-col gap-6 max-w-2xl">
+<div class="flex gap-3 items-center scroll-item scroll-fade-up">
+<span class="flex items-center justify-center w-7 h-7 rounded-lg bg-orange-500/10 text-[11px] font-mono font-medium text-orange-400 border border-orange-500/20 shadow-[0_0_10px_rgba(249,115,22,0.2)]">02</span>
+<span class="text-sm font-medium tracking-widest uppercase text-gray-500">Desconstruindo Mitos</span>
+</div>
+<h2 class="text-4xl md:text-5xl lg:text-6xl font-oswald font-light tracking-tight text-white leading-[1.1] scroll-item scroll-fade-up delay-100">As quatro mentiras que quase todo profissional de <span class="text-gray-500">alta renda ouviu</span></h2>
+</div>
+<button class="group flex items-center gap-2 pl-6 pr-5 py-3 bg-white text-black rounded-full text-sm font-medium hover:bg-gray-200 transition-all duration-200 whitespace-nowrap scroll-item scroll-fade-up delay-300">
+<span>Descobrir meu Score</span>
+<i data-lucide="arrow-right" class="w-4 h-4 transition-transform group-hover:translate-x-1"></i>
+</button>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+<div class="relative rounded-[2rem] bg-[#050508] border border-white/10 p-8 overflow-hidden flex flex-col gap-4 group hover:border-white/20 transition-colors scroll-item scroll-fade-up delay-100">
+<div class="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-[#1a1a2e] via-transparent to-transparent rounded-[2rem]"></div>
+<div class="pointer-events-none absolute inset-0 opacity-10" style="background-image:radial-gradient(white 1px,transparent 1px);background-size:40px 40px;"></div>
+<div class="relative z-10 flex items-center gap-4">
+<span class="text-4xl font-oswald font-light text-white/10">01</span>
+<span class="text-xs font-medium text-red-400 uppercase tracking-widest bg-red-500/10 border border-red-500/20 px-3 py-1 rounded-full">Mentira</span>
+</div>
+<h3 class="text-3xl font-oswald font-light text-white relative z-10">Ganhar mais resolve.</h3>
+<p class="text-gray-500 text-[15px] font-light leading-relaxed relative z-10">Mais renda sem estrutura apenas amplifica a vulnerabilidade. O problema não é o quanto entra — é como está organizado.</p>
+</div>
+<div class="relative rounded-[2rem] bg-[#050508] border border-white/10 p-8 overflow-hidden flex flex-col gap-4 group hover:border-white/20 transition-colors scroll-item scroll-fade-up delay-200">
+<div class="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-[#1a1a2e] via-transparent to-transparent rounded-[2rem]"></div>
+<div class="pointer-events-none absolute inset-0 opacity-10" style="background-image:radial-gradient(white 1px,transparent 1px);background-size:40px 40px;"></div>
+<div class="relative z-10 flex items-center gap-4">
+<span class="text-4xl font-oswald font-light text-white/10">02</span>
+<span class="text-xs font-medium text-red-400 uppercase tracking-widest bg-red-500/10 border border-red-500/20 px-3 py-1 rounded-full">Mentira</span>
+</div>
+<h3 class="text-3xl font-oswald font-light text-white relative z-10">Imóvel sempre protege.</h3>
+<p class="text-gray-500 text-[15px] font-light leading-relaxed relative z-10">Imóvel concentrado, ilíquido e em única jurisdição não é proteção. É exposição em forma de tijolo.</p>
+</div>
+<div class="relative rounded-[2rem] bg-[#050508] border border-white/10 p-8 overflow-hidden flex flex-col gap-4 group hover:border-white/20 transition-colors scroll-item scroll-fade-up delay-300">
+<div class="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-[#1a1a2e] via-transparent to-transparent rounded-[2rem]"></div>
+<div class="pointer-events-none absolute inset-0 opacity-10" style="background-image:radial-gradient(white 1px,transparent 1px);background-size:40px 40px;"></div>
+<div class="relative z-10 flex items-center gap-4">
+<span class="text-4xl font-oswald font-light text-white/10">03</span>
+<span class="text-xs font-medium text-red-400 uppercase tracking-widest bg-red-500/10 border border-red-500/20 px-3 py-1 rounded-full">Mentira</span>
+</div>
+<h3 class="text-3xl font-oswald font-light text-white relative z-10">Empresa gera liberdade.</h3>
+<p class="text-gray-500 text-[15px] font-light leading-relaxed relative z-10">Empresa sem estrutura é apenas um emprego mais caro — com mais responsabilidade e menos férias.</p>
+</div>
+<div class="relative rounded-[2rem] bg-[#050508] border border-white/10 p-8 overflow-hidden flex flex-col gap-4 group hover:border-white/20 transition-colors scroll-item scroll-fade-up delay-500">
+<div class="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-[#1a1a2e] via-transparent to-transparent rounded-[2rem]"></div>
+<div class="pointer-events-none absolute inset-0 opacity-10" style="background-image:radial-gradient(white 1px,transparent 1px);background-size:40px 40px;"></div>
+<div class="relative z-10 flex items-center gap-4">
+<span class="text-4xl font-oswald font-light text-white/10">04</span>
+<span class="text-xs font-medium text-red-400 uppercase tracking-widest bg-red-500/10 border border-red-500/20 px-3 py-1 rounded-full">Mentira</span>
+</div>
+<h3 class="text-3xl font-oswald font-light text-white relative z-10">Patrimônio alto significa segurança.</h3>
+<p class="text-gray-500 text-[15px] font-light leading-relaxed relative z-10">Patrimônio sem arquitetura é apenas um número. Segurança real vem da estrutura que o protege e faz crescer.</p>
+</div>
+</div>
+</div>
+</section>
+<!-- bloco-ial-score -->
+<section id="ial-score-section" class="z-10 w-full max-w-6xl mt-24 mr-auto ml-auto px-6">
+<div class="flex flex-col bg-[#0A0A0C] border border-white/10 rounded-3xl p-10 lg:p-16 gap-12">
+<div class="flex flex-col md:flex-row md:items-end justify-between gap-8">
+<div class="flex flex-col gap-6 max-w-2xl">
+<div class="flex gap-3 items-center scroll-item scroll-fade-up">
+<span class="flex items-center justify-center w-7 h-7 rounded-lg bg-orange-500/10 text-[11px] font-mono font-medium text-orange-400 border border-orange-500/20 shadow-[0_0_10px_rgba(249,115,22,0.2)]">03</span>
+<span class="text-sm font-medium tracking-widest uppercase text-gray-500">IAL Score</span>
+</div>
+<h2 class="text-4xl md:text-5xl lg:text-6xl font-oswald font-light tracking-tight text-white leading-[1.1] scroll-item scroll-fade-up delay-100">Quanto de liberdade sua família <span class="text-gray-500">realmente possui?</span></h2>
+<div class="flex gap-6 scroll-item scroll-fade-up delay-200">
+<div class="text-center"><p class="text-3xl font-oswald font-light text-white">10</p><p class="text-sm text-gray-500 mt-1">pilares</p></div>
+<div class="w-px bg-white/10"></div>
+<div class="text-center"><p class="text-3xl font-oswald font-light text-white">0–100</p><p class="text-sm text-gray-500 mt-1">pontos</p></div>
+<div class="w-px bg-white/10"></div>
+<div class="text-center"><p class="text-3xl font-oswald font-light text-white">3</p><p class="text-sm text-gray-500 mt-1">minutos</p></div>
+</div>
+</div>
+<button class="group flex items-center gap-2 pl-6 pr-5 py-3 bg-white text-black rounded-full text-sm font-medium hover:bg-gray-200 transition-all duration-200 whitespace-nowrap scroll-item scroll-fade-up delay-300">
+<span>Quero descobrir meu IAL</span>
+<i data-lucide="arrow-right" class="w-4 h-4 transition-transform group-hover:translate-x-1"></i>
+</button>
+</div>
+<!-- score ranges -->
+<div class="space-y-4 scroll-item scroll-fade-up delay-200">
+<div class="flex items-center gap-4 group">
+<div class="w-24 shrink-0 text-right"><span class="text-sm font-medium text-gray-400">0–45</span></div>
+<div class="flex-1 h-10 rounded-xl bg-white/5 overflow-hidden relative">
+<div class="score-bar h-full rounded-xl bg-gradient-to-r from-red-700 to-red-500 flex items-center px-4" style="--fill-w:45%;width:0%;">
+<span class="text-xs font-semibold text-white/90 whitespace-nowrap">🔴 Altamente Perigoso — Dependência elevada do próprio trabalho</span>
+</div>
+</div>
+</div>
+<div class="flex items-center gap-4 group">
+<div class="w-24 shrink-0 text-right"><span class="text-sm font-medium text-gray-400">46–59</span></div>
+<div class="flex-1 h-10 rounded-xl bg-white/5 overflow-hidden relative">
+<div class="score-bar h-full rounded-xl bg-gradient-to-r from-orange-700 to-orange-500 flex items-center px-4" style="--fill-w:59%;width:0%;">
+<span class="text-xs font-semibold text-white/90 whitespace-nowrap">🚨 Alerta Vermelho — Alta renda. Baixa arquitetura.</span>
+</div>
+</div>
+</div>
+<div class="flex items-center gap-4 group">
+<div class="w-24 shrink-0 text-right"><span class="text-sm font-medium text-gray-400">60–70</span></div>
+<div class="flex-1 h-10 rounded-xl bg-white/5 overflow-hidden relative">
+<div class="score-bar h-full rounded-xl bg-gradient-to-r from-yellow-700 to-yellow-500 flex items-center px-4" style="--fill-w:70%;width:0%;">
+<span class="text-xs font-semibold text-white/90 whitespace-nowrap">🟡 Construção — Primeiras estruturas de proteção e previsibilidade</span>
+</div>
+</div>
+</div>
+<div class="flex items-center gap-4 group">
+<div class="w-24 shrink-0 text-right"><span class="text-sm font-medium text-gray-400">71–85</span></div>
+<div class="flex-1 h-10 rounded-xl bg-white/5 overflow-hidden relative">
+<div class="score-bar h-full rounded-xl bg-gradient-to-r from-emerald-700 to-emerald-500 flex items-center px-4" style="--fill-w:85%;width:0%;">
+<span class="text-xs font-semibold text-white/90 whitespace-nowrap">🟢 Estruturado — Direção, proteção e expansão presentes</span>
+</div>
+</div>
+</div>
+<div class="flex items-center gap-4 group">
+<div class="w-24 shrink-0 text-right"><span class="text-sm font-medium text-gray-400">86–100</span></div>
+<div class="flex-1 h-10 rounded-xl bg-white/5 overflow-hidden relative">
+<div class="score-bar h-full rounded-xl bg-gradient-to-r from-blue-700 to-blue-400 flex items-center px-4" style="--fill-w:100%;width:0%;">
+<span class="text-xs font-semibold text-white/90 whitespace-nowrap">🔵 Arquitetura Avançada — Patrimônio, família e liberdade alinhados</span>
+</div>
+</div>
+</div>
+</div>
+<!-- pilares -->
+<div class="border-t border-white/5 pt-8 scroll-item scroll-fade-up delay-300">
+<p class="text-sm text-gray-500 uppercase tracking-widest mb-5">O diagnóstico analisa:</p>
+<div class="flex flex-wrap gap-3">
+<span class="flex items-center gap-2 bg-orange-500/10 border border-orange-500/20 text-orange-300 text-sm px-4 py-2 rounded-full font-medium"><i data-lucide="check-circle" class="w-4 h-4"></i>Dependência do braço</span>
+<span class="flex items-center gap-2 bg-orange-500/10 border border-orange-500/20 text-orange-300 text-sm px-4 py-2 rounded-full font-medium"><i data-lucide="check-circle" class="w-4 h-4"></i>Mobilidade familiar</span>
+<span class="flex items-center gap-2 bg-orange-500/10 border border-orange-500/20 text-orange-300 text-sm px-4 py-2 rounded-full font-medium"><i data-lucide="check-circle" class="w-4 h-4"></i>Estrutura patrimonial</span>
+<span class="flex items-center gap-2 bg-orange-500/10 border border-orange-500/20 text-orange-300 text-sm px-4 py-2 rounded-full font-medium"><i data-lucide="check-circle" class="w-4 h-4"></i>Reserva internacional</span>
+<span class="flex items-center gap-2 bg-orange-500/10 border border-orange-500/20 text-orange-300 text-sm px-4 py-2 rounded-full font-medium"><i data-lucide="check-circle" class="w-4 h-4"></i>Clareza estratégica</span>
+<span class="flex items-center gap-2 bg-orange-500/10 border border-orange-500/20 text-orange-300 text-sm px-4 py-2 rounded-full font-medium"><i data-lucide="check-circle" class="w-4 h-4"></i>Vulnerabilidade estrutural</span>
+</div>
+</div>
+</div>
+</section>
+<!-- bloco-casos -->
+<section id="casos" class="z-10 w-full max-w-6xl mt-24 mr-auto ml-auto px-6">
+<div class="flex flex-col bg-[#0A0A0C] border border-white/10 rounded-3xl p-10 lg:p-16 gap-12">
+<div class="flex flex-col md:flex-row md:items-end justify-between gap-8">
+<div class="flex flex-col gap-6 max-w-2xl">
+<div class="flex gap-3 items-center scroll-item scroll-fade-up">
+<span class="flex items-center justify-center w-7 h-7 rounded-lg bg-orange-500/10 text-[11px] font-mono font-medium text-orange-400 border border-orange-500/20 shadow-[0_0_10px_rgba(249,115,22,0.2)]">04</span>
+<span class="text-sm font-medium tracking-widest uppercase text-gray-500">Casos ALF</span>
+</div>
+<h2 class="text-4xl md:text-5xl lg:text-6xl font-oswald font-light tracking-tight text-white leading-[1.1] scroll-item scroll-fade-up delay-100">Transformações <span class="text-gray-500">reais.</span></h2>
+</div>
+<button class="group flex items-center gap-2 pl-6 pr-5 py-3 bg-white text-black rounded-full text-sm font-medium hover:bg-gray-200 transition-all duration-200 whitespace-nowrap scroll-item scroll-fade-up delay-300">
+<span>Quero fazer meu Score IAL grátis</span>
+<i data-lucide="arrow-right" class="w-4 h-4 transition-transform group-hover:translate-x-1"></i>
+</button>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+<!-- caso: Christian M. -->
+<div class="relative rounded-2xl bg-[#050508] border border-white/10 overflow-hidden group hover:border-white/20 transition-colors scroll-item scroll-fade-up delay-100">
+<div class="p-6">
+<div class="flex items-start justify-between mb-4">
+<div>
+<h3 class="text-xl font-semibold text-white">Christian M.</h3>
+<p class="text-sm text-gray-500 mt-0.5">Engenheiro | Diretor Multinacional</p>
+<p class="text-xs text-gray-600 mt-0.5">45 anos • Casado • Filho por vir</p>
+</div>
+<span class="text-[10px] font-bold bg-amber-500/10 text-amber-400 border border-amber-500/20 px-2 py-1 rounded-full whitespace-nowrap shrink-0">Nível 2</span>
+</div>
+<div class="flex items-center gap-3 mb-4">
+<div class="flex items-center gap-1.5"><div class="w-2.5 h-2.5 rounded-full bg-red-500"></div><span class="text-2xl font-oswald font-light text-white">43</span></div>
+<i data-lucide="arrow-right" class="w-4 h-4 text-gray-600"></i>
+<div class="flex items-center gap-1.5"><div class="w-2.5 h-2.5 rounded-full bg-emerald-500"></div><span class="text-2xl font-oswald font-light text-white">72</span></div>
+<span class="text-sm font-semibold text-emerald-400 ml-auto">+29 pts</span>
+</div>
+<div class="flex gap-2 mb-2">
+<span class="text-xs text-gray-500 bg-white/5 px-2 py-1 rounded">R$35k/mês inicial</span>
+<span class="text-xs text-gray-500 bg-white/5 px-2 py-1 rounded">R$2M patrimônio</span>
+</div>
+<p class="text-sm text-gray-500 italic">Alta renda. Baixa arquitetura.</p>
+</div>
+<button class="w-full flex items-center justify-between px-6 py-4 border-t border-white/5 text-sm text-orange-400 hover:text-orange-300 transition-colors group/btn" data-accordion-trigger="christian">
+<span>Ver caso completo</span>
+<i data-lucide="plus" class="w-4 h-4 transition-transform duration-300" data-accordion-icon style="transition:transform .3s;"></i>
+</button>
+<div id="panel-christian" class="accordion-panel" data-open="false">
+<div class="px-6 pb-6 space-y-2">
+<div class="text-sm text-gray-400 leading-relaxed">Muito patrimônio concentrado em bancos e consumo. Hoje possui estrutura mais previsível, diversificação gradual e novas opções familiares.</div>
+<div class="flex flex-wrap gap-2 mt-3">
+<span class="text-xs bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 px-2 py-1 rounded-full">✔ Organização patrimonial</span>
+<span class="text-xs bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 px-2 py-1 rounded-full">✔ Reservas estratégicas</span>
+<span class="text-xs bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 px-2 py-1 rounded-full">✔ Mobilidade familiar</span>
+</div>
+</div>
+</div>
+</div>
+<!-- caso: Dr. Alan E. -->
+<div class="relative rounded-2xl bg-[#050508] border border-white/10 overflow-hidden group hover:border-white/20 transition-colors scroll-item scroll-fade-up delay-200">
+<div class="p-6">
+<div class="flex items-start justify-between mb-4">
+<div>
+<h3 class="text-xl font-semibold text-white">Dr. Alan E.</h3>
+<p class="text-sm text-gray-500 mt-0.5">Dermatologista</p>
+<p class="text-xs text-gray-600 mt-0.5">46 anos • Casado • 2 filhas</p>
+</div>
+<span class="text-[10px] font-bold bg-amber-500/10 text-amber-400 border border-amber-500/20 px-2 py-1 rounded-full whitespace-nowrap shrink-0">Nível 3</span>
+</div>
+<div class="flex items-center gap-3 mb-4">
+<div class="flex items-center gap-1.5"><div class="w-2.5 h-2.5 rounded-full bg-red-500"></div><span class="text-2xl font-oswald font-light text-white">51</span></div>
+<i data-lucide="arrow-right" class="w-4 h-4 text-gray-600"></i>
+<div class="flex items-center gap-1.5"><div class="w-2.5 h-2.5 rounded-full bg-emerald-500"></div><span class="text-2xl font-oswald font-light text-white">80</span></div>
+<span class="text-sm font-semibold text-emerald-400 ml-auto">+29 pts</span>
+</div>
+<div class="flex gap-2 mb-2">
+<span class="text-xs text-gray-500 bg-white/5 px-2 py-1 rounded">R$90k/mês inicial</span>
+<span class="text-xs text-gray-500 bg-white/5 px-2 py-1 rounded">R$5,4M patrimônio</span>
+</div>
+<p class="text-sm text-gray-500 italic">Dependência extrema da agenda.</p>
+</div>
+<button class="w-full flex items-center justify-between px-6 py-4 border-t border-white/5 text-sm text-orange-400 hover:text-orange-300 transition-colors" data-accordion-trigger="alan">
+<span>Ver caso completo</span>
+<i data-lucide="plus" class="w-4 h-4" data-accordion-icon style="transition:transform .3s;"></i>
+</button>
+<div id="panel-alan" class="accordion-panel" data-open="false">
+<div class="px-6 pb-6 space-y-2">
+<div class="text-sm text-gray-400 leading-relaxed">Hoje segue em evolução dentro do Nível 3 ALF.</div>
+<div class="flex flex-wrap gap-2 mt-3">
+<span class="text-xs bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 px-2 py-1 rounded-full">✔ Clínica mais independente</span>
+<span class="text-xs bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 px-2 py-1 rounded-full">✔ Proteção patrimonial</span>
+<span class="text-xs bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 px-2 py-1 rounded-full">✔ Diversificação estrutural</span>
+</div>
+</div>
+</div>
+</div>
+<!-- caso: Dra Paula L. -->
+<div class="relative rounded-2xl bg-[#050508] border border-white/10 overflow-hidden group hover:border-white/20 transition-colors scroll-item scroll-fade-up delay-300">
+<div class="p-6">
+<div class="flex items-start justify-between mb-4">
+<div>
+<h3 class="text-xl font-semibold text-white">Dra. Paula L.</h3>
+<p class="text-sm text-gray-500 mt-0.5">Endocrinologista</p>
+<p class="text-xs text-gray-600 mt-0.5">37 anos • Casada • 1 filha</p>
+</div>
+<span class="text-[10px] font-bold bg-amber-500/10 text-amber-400 border border-amber-500/20 px-2 py-1 rounded-full">Nível 3</span>
+</div>
+<div class="flex items-center gap-3 mb-4">
+<div class="flex items-center gap-1.5"><div class="w-2.5 h-2.5 rounded-full bg-red-500"></div><span class="text-2xl font-oswald font-light text-white">42</span></div>
+<i data-lucide="arrow-right" class="w-4 h-4 text-gray-600"></i>
+<div class="flex items-center gap-1.5"><div class="w-2.5 h-2.5 rounded-full bg-emerald-500"></div><span class="text-2xl font-oswald font-light text-white">84</span></div>
+<span class="text-sm font-semibold text-emerald-400 ml-auto">+42 pts</span>
+</div>
+<div class="flex gap-2 mb-2">
+<span class="text-xs text-gray-500 bg-white/5 px-2 py-1 rounded">R$54k/mês inicial</span>
+<span class="text-xs text-gray-500 bg-white/5 px-2 py-1 rounded">R$1,6M patrimônio</span>
+</div>
+<p class="text-sm text-gray-500 italic">Dependência de uma única fonte de renda.</p>
+</div>
+<button class="w-full flex items-center justify-between px-6 py-4 border-t border-white/5 text-sm text-orange-400 hover:text-orange-300 transition-colors" data-accordion-trigger="paula">
+<span>Ver caso completo</span>
+<i data-lucide="plus" class="w-4 h-4" data-accordion-icon style="transition:transform .3s;"></i>
+</button>
+<div id="panel-paula" class="accordion-panel" data-open="false">
+<div class="px-6 pb-6 space-y-2">
+<div class="flex flex-wrap gap-2 mt-3">
+<span class="text-xs bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 px-2 py-1 rounded-full">✔ Patrimônio produtivo</span>
+<span class="text-xs bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 px-2 py-1 rounded-full">✔ Estrutura internacional</span>
+<span class="text-xs bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 px-2 py-1 rounded-full">✔ Visão de longo prazo</span>
+</div>
+</div>
+</div>
+</div>
+<!-- caso: Fábio R. -->
+<div class="relative rounded-2xl bg-[#050508] border border-white/10 overflow-hidden group hover:border-white/20 transition-colors scroll-item scroll-fade-up delay-100">
+<div class="p-6">
+<div class="flex items-start justify-between mb-4">
+<div>
+<h3 class="text-xl font-semibold text-white">Fábio R.</h3>
+<p class="text-sm text-gray-500 mt-0.5">Empresário</p>
+<p class="text-xs text-gray-600 mt-0.5">42 anos • Casado • 1 filha</p>
+</div>
+<span class="text-[10px] font-bold bg-amber-500/10 text-amber-400 border border-amber-500/20 px-2 py-1 rounded-full">Nível 1</span>
+</div>
+<div class="flex items-center gap-3 mb-4">
+<div class="flex items-center gap-1.5"><div class="w-2.5 h-2.5 rounded-full bg-red-500"></div><span class="text-2xl font-oswald font-light text-white">14</span></div>
+<i data-lucide="arrow-right" class="w-4 h-4 text-gray-600"></i>
+<div class="flex items-center gap-1.5"><div class="w-2.5 h-2.5 rounded-full bg-yellow-500"></div><span class="text-2xl font-oswald font-light text-white">62</span></div>
+<span class="text-sm font-semibold text-emerald-400 ml-auto">+48 pts</span>
+</div>
+<div class="flex gap-2 mb-2">
+<span class="text-xs text-gray-500 bg-white/5 px-2 py-1 rounded">R$31,2k/mês inicial</span>
+</div>
+<p class="text-sm text-gray-500 italic">Alta renda. Múltiplas tarefas. Pouco foco.</p>
+</div>
+<button class="w-full flex items-center justify-between px-6 py-4 border-t border-white/5 text-sm text-orange-400 hover:text-orange-300 transition-colors" data-accordion-trigger="fabio">
+<span>Ver caso completo</span>
+<i data-lucide="plus" class="w-4 h-4" data-accordion-icon style="transition:transform .3s;"></i>
+</button>
+<div id="panel-fabio" class="accordion-panel" data-open="false">
+<div class="px-6 pb-6 space-y-2">
+<div class="flex flex-wrap gap-2 mt-3">
+<span class="text-xs bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 px-2 py-1 rounded-full">✔ Clareza estratégica</span>
+<span class="text-xs bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 px-2 py-1 rounded-full">✔ Previsibilidade</span>
+<span class="text-xs bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 px-2 py-1 rounded-full">✔ Organização financeira</span>
+</div>
+</div>
+</div>
+</div>
+<!-- caso: Henrique D. -->
+<div class="relative rounded-2xl bg-[#050508] border border-white/10 overflow-hidden group hover:border-white/20 transition-colors scroll-item scroll-fade-up delay-200">
+<div class="p-6">
+<div class="flex items-start justify-between mb-4">
+<div>
+<h3 class="text-xl font-semibold text-white">Henrique D.</h3>
+<p class="text-sm text-gray-500 mt-0.5">Fazendeiro</p>
+<p class="text-xs text-gray-600 mt-0.5">29 anos • Casado • 2 filhos</p>
+</div>
+<span class="text-[10px] font-bold bg-amber-500/10 text-amber-400 border border-amber-500/20 px-2 py-1 rounded-full whitespace-nowrap shrink-0">Nível 1</span>
+</div>
+<div class="flex items-center gap-3 mb-4">
+<div class="flex items-center gap-1.5"><div class="w-2.5 h-2.5 rounded-full bg-red-500"></div><span class="text-2xl font-oswald font-light text-white">38</span></div>
+<i data-lucide="arrow-right" class="w-4 h-4 text-gray-600"></i>
+<div class="flex items-center gap-1.5"><div class="w-2.5 h-2.5 rounded-full bg-yellow-500"></div><span class="text-2xl font-oswald font-light text-white">68</span></div>
+<span class="text-sm font-semibold text-emerald-400 ml-auto">+30 pts</span>
+</div>
+<div class="flex gap-2 mb-2">
+<span class="text-xs text-gray-500 bg-white/5 px-2 py-1 rounded">R$40k/mês inicial</span>
+<span class="text-xs text-gray-500 bg-white/5 px-2 py-1 rounded">R$12M patrimônio</span>
+</div>
+<p class="text-sm text-gray-500 italic">Patrimônio elevado. Estrutura limitada.</p>
+</div>
+<button class="w-full flex items-center justify-between px-6 py-4 border-t border-white/5 text-sm text-orange-400 hover:text-orange-300 transition-colors" data-accordion-trigger="henrique">
+<span>Ver caso completo</span>
+<i data-lucide="plus" class="w-4 h-4" data-accordion-icon style="transition:transform .3s;"></i>
+</button>
+<div id="panel-henrique" class="accordion-panel" data-open="false">
+<div class="px-6 pb-6 space-y-2">
+<p class="text-sm text-gray-400">Hoje segue em evolução dentro do Nível 3 ALF.</p>
+<div class="flex flex-wrap gap-2 mt-3">
+<span class="text-xs bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 px-2 py-1 rounded-full">✔ Separação patrimônio/operação</span>
+<span class="text-xs bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 px-2 py-1 rounded-full">✔ Diversificação</span>
+<span class="text-xs bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 px-2 py-1 rounded-full">✔ Crescimento previsível</span>
+</div>
+</div>
+</div>
+</div>
+<!-- caso: Natália B. -->
+<div class="relative rounded-2xl bg-[#050508] border border-white/10 overflow-hidden group hover:border-white/20 transition-colors scroll-item scroll-fade-up delay-300">
+<div class="p-6">
+<div class="flex items-start justify-between mb-4">
+<div>
+<h3 class="text-xl font-semibold text-white">Natália B.</h3>
+<p class="text-sm text-gray-500 mt-0.5">Enfermeira | Empresária</p>
+<p class="text-xs text-gray-600 mt-0.5">38 anos • Casada • 1 filho</p>
+</div>
+<span class="text-[10px] font-bold bg-amber-500/10 text-amber-400 border border-amber-500/20 px-2 py-1 rounded-full whitespace-nowrap shrink-0">Nível 1</span>
+</div>
+<div class="flex items-center gap-3 mb-4">
+<div class="flex items-center gap-1.5"><div class="w-2.5 h-2.5 rounded-full bg-red-500"></div><span class="text-2xl font-oswald font-light text-white">28</span></div>
+<i data-lucide="arrow-right" class="w-4 h-4 text-gray-600"></i>
+<div class="flex items-center gap-1.5"><div class="w-2.5 h-2.5 rounded-full bg-yellow-500"></div><span class="text-2xl font-oswald font-light text-white">64</span></div>
+<span class="text-sm font-semibold text-emerald-400 ml-auto">+36 pts</span>
+</div>
+<div class="flex gap-2 mb-2">
+<span class="text-xs text-gray-500 bg-white/5 px-2 py-1 rounded">R$26k/mês inicial</span>
+<span class="text-xs text-gray-500 bg-white/5 px-2 py-1 rounded">R$850k patrimônio</span>
+</div>
+<p class="text-sm text-gray-500 italic">Alta dedicação operacional. Patrimônio em construção.</p>
+</div>
+<button class="w-full flex items-center justify-between px-6 py-4 border-t border-white/5 text-sm text-orange-400 hover:text-orange-300 transition-colors group/btn" data-accordion-trigger="natalia">
+<span>Ver caso completo</span>
+<i data-lucide="plus" class="w-4 h-4 transition-transform duration-300" data-accordion-icon style="transition:transform .3s;"></i>
+</button>
+<div id="panel-natalia" class="accordion-panel" data-open="false">
+<div class="px-6 pb-6 space-y-2">
+<div class="text-sm text-gray-400 leading-relaxed">Renda crescente com múltiplas responsabilidades e patrimônio em construção, mas sem estrutura clara. Hoje possui previsibilidade e base organizada para crescer.</div>
+<div class="flex flex-wrap gap-2 mt-3">
+<span class="text-xs bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 px-2 py-1 rounded-full">✔ Organização patrimonial</span>
+<span class="text-xs bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 px-2 py-1 rounded-full">✔ Previsibilidade financeira</span>
+<span class="text-xs bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 px-2 py-1 rounded-full">✔ Diversificação inicial</span>
+<span class="text-xs bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 px-2 py-1 rounded-full">✔ Reserva estratégica</span>
+<span class="text-xs bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 px-2 py-1 rounded-full">✔ Maior clareza estrutural</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- bloco-mapa -->
+<section class="z-10 w-full max-w-6xl mt-24 mr-auto ml-auto px-6">
+<div class="flex flex-col bg-[#0A0A0C] border border-white/10 rounded-3xl p-10 lg:p-16 gap-12">
+<div class="flex flex-col gap-6 max-w-2xl">
+<div class="flex gap-3 items-center scroll-item scroll-fade-up">
+<span class="flex items-center justify-center w-7 h-7 rounded-lg bg-orange-500/10 text-[11px] font-mono font-medium text-orange-400 border border-orange-500/20 shadow-[0_0_10px_rgba(249,115,22,0.2)]">05</span>
+<span class="text-sm font-medium tracking-widest uppercase text-gray-500">O Mapa</span>
+</div>
+<h2 class="text-4xl md:text-5xl lg:text-6xl font-oswald font-light tracking-tight text-white leading-[1.1] scroll-item scroll-fade-up delay-100">Existe uma diferença entre <span class="text-gray-500">patrimônio e arquitetura</span></h2>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6 scroll-item scroll-blur-in delay-200">
+<div class="rounded-2xl bg-[#050508] border border-white/10 p-8 flex flex-col gap-6 relative overflow-hidden">
+<div class="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_top_left,rgba(255,255,255,0.03),transparent_70%)]"></div>
+<div class="relative z-10">
+<p class="text-xs font-medium text-gray-500 uppercase tracking-widest mb-3">Patrimônio</p>
+<p class="text-5xl font-oswald font-light text-white/30 mb-2">acumular</p>
+<p class="text-sm text-gray-500 leading-relaxed">Juntar ativos. Crescer o número. Mas sem conexão estrutural.</p>
+</div>
+</div>
+<div class="rounded-2xl bg-[#050508] border border-orange-500/20 p-8 flex flex-col gap-6 relative overflow-hidden shadow-[0_0_40px_rgba(249,115,22,0.07)]">
+<div class="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,rgba(249,115,22,0.05),transparent_70%)]"></div>
+<div class="relative z-10">
+<p class="text-xs font-medium text-orange-400 uppercase tracking-widest mb-3">Arquitetura</p>
+<p class="text-5xl font-oswald font-light text-orange-400 mb-2">conectar</p>
+<p class="text-sm text-gray-400 leading-relaxed">Fazer cada peça do patrimônio trabalhar em função da liberdade.</p>
+</div>
+<div class="relative z-10 grid grid-cols-2 gap-2 mt-2">
+<span class="flex items-center gap-2 text-sm text-gray-400"><i data-lucide="check" class="w-3.5 h-3.5 text-orange-400 shrink-0"></i>Imóveis</span>
+<span class="flex items-center gap-2 text-sm text-gray-400"><i data-lucide="check" class="w-3.5 h-3.5 text-orange-400 shrink-0"></i>Renda inteligente</span>
+<span class="flex items-center gap-2 text-sm text-gray-400"><i data-lucide="check" class="w-3.5 h-3.5 text-orange-400 shrink-0"></i>Cripto como proteção</span>
+<span class="flex items-center gap-2 text-sm text-gray-400"><i data-lucide="check" class="w-3.5 h-3.5 text-orange-400 shrink-0"></i>Bancos internacionais</span>
+<span class="flex items-center gap-2 text-sm text-gray-400"><i data-lucide="check" class="w-3.5 h-3.5 text-orange-400 shrink-0"></i>Autoridade</span>
+<span class="flex items-center gap-2 text-sm text-gray-400"><i data-lucide="check" class="w-3.5 h-3.5 text-orange-400 shrink-0"></i>Empresa</span>
+<span class="flex items-center gap-2 text-sm text-gray-400"><i data-lucide="check" class="w-3.5 h-3.5 text-orange-400 shrink-0"></i>Família</span>
+<span class="flex items-center gap-2 text-sm text-gray-400"><i data-lucide="check" class="w-3.5 h-3.5 text-orange-400 shrink-0"></i>Mobilidade</span>
+<span class="flex items-center gap-2 text-sm text-gray-400 col-span-2"><i data-lucide="check" class="w-3.5 h-3.5 text-orange-400 shrink-0"></i>Expansão</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- bloco-masterclass -->
+<section id="masterclass" class="z-10 w-full max-w-6xl mt-24 mr-auto ml-auto px-6">
+<div class="flex flex-col lg:flex-row bg-[#0A0A0C] border border-white/10 rounded-3xl p-10 lg:p-16 gap-10 lg:gap-20 items-center relative overflow-hidden scroll-item scroll-blur-in">
+<div class="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(249,115,22,0.05),transparent_60%)]"></div>
+<div class="pointer-events-none absolute inset-0 opacity-10" style="background-image:radial-gradient(white 1px,transparent 1px);background-size:40px 40px;"></div>
+<div class="flex flex-col gap-6 max-w-2xl relative z-10">
+<div class="flex gap-3 items-center">
+<span class="flex items-center justify-center w-7 h-7 rounded-lg bg-orange-500/10 text-[11px] font-mono font-medium text-orange-400 border border-orange-500/20 shadow-[0_0_10px_rgba(249,115,22,0.2)]">06</span>
+<span class="text-sm font-medium tracking-widest uppercase text-gray-500">Masterclass</span>
+</div>
+<h2 class="text-4xl md:text-5xl lg:text-6xl font-oswald font-light tracking-tight text-white leading-[1.1]">Masterclass Estratégica <span class="text-orange-500">Gratuita</span></h2>
+<p class="text-xl text-gray-400 font-light leading-relaxed">Aprenda a construir R$1.000 a R$10.000 por mês sem precisar trabalhar.</p>
+<p class="text-gray-500 font-light leading-relaxed">Você veio pela renda.<br/>Talvez descubra algo maior: onde sua liberdade ainda depende demais de você.</p>
+<button class="sm:w-auto hover:bg-orange-500/10 hover:border-orange-400 hover:shadow-[0_0_35px_rgba(249,115,22,0.6),inset_0_0_20px_rgba(249,115,22,0.4)] hover:scale-[1.02] transition-all duration-300 flex group text-base font-medium text-white bg-black/60 w-full border-orange-500border rounded-full pt-3.5 pr-8 pb-3.5 pl-8 shadow-[0_0_20px_rgba(249,115,22,0.5),inset_0_0_10px_rgba(249,115,22,0.2)] gap-x-2 items-center justify-center">
+<i data-lucide="play-circle" class="w-5 h-5 text-orange-400"></i>
+Quero garantir minha vaga
+</button>
+</div>
+<div class="lg:w-80 shrink-0 relative z-10 flex flex-col items-center justify-center gap-4">
+<div class="w-full aspect-video rounded-2xl bg-[#050508] border border-white/10 flex items-center justify-center relative overflow-hidden group cursor-pointer hover:border-orange-500/30 transition-colors">
+<div class="absolute inset-0 bg-gradient-to-br from-amber-900/20 to-amber-900/10"></div>
+<div class="w-16 h-16 rounded-full bg-orange-500/20 border border-orange-500/30 flex items-center justify-center group-hover:bg-orange-500/30 transition-colors backdrop-blur-sm relative z-10">
+<i data-lucide="play" class="w-7 h-7 text-orange-400 ml-1"></i>
+</div>
+</div>
+<p class="text-xs text-gray-600 text-center">Só depende de você.</p>
+</div>
+</div>
+</section>
+<!-- bloco-quem -->
+<section id="quem" class="z-10 w-full max-w-6xl mt-24 mr-auto ml-auto px-6">
+<div class="flex flex-col lg:flex-row bg-[#0A0A0C] border border-white/10 rounded-3xl p-10 lg:p-16 gap-12 lg:gap-20">
+<div class="lg:w-1/2 flex flex-col gap-8 scroll-item scroll-fade-up">
+<div class="flex gap-3 items-center">
+<span class="flex items-center justify-center w-7 h-7 rounded-lg bg-orange-500/10 text-[11px] font-mono font-medium text-orange-400 border border-orange-500/20 shadow-[0_0_10px_rgba(249,115,22,0.2)]">07</span>
+<span class="text-sm font-medium tracking-widest uppercase text-gray-500">Quem Somos</span>
+</div>
+<h2 class="text-4xl md:text-5xl font-oswald font-light tracking-tight text-white leading-[1.1]">Quem está por trás da <span class="text-orange-500">Arquitetura de Liberdade Familiar?</span></h2>
+<div class="space-y-4 text-gray-400 font-light leading-relaxed text-[15px]">
+<p><strong class="text-white font-medium">Dr. Paulo Bortolotti.</strong> Médico de formação. Caipira do interior. Empresário, investidor e escritor.</p>
+<p>Ao longo da própria trajetória percebeu algo que muitos profissionais de alta renda descobrem tarde: <strong class="text-white">ganhar mais não significa necessariamente construir liberdade.</strong></p>
+<p>Clínicas cresceram. Empresas surgiram. Construiu imóveis. Patrimônio aumentou. Mas uma pergunta começou a aparecer:</p>
+<blockquote class="border-l-2 border-amber-500/50 pl-4 text-gray-300 italic">"O patrimônio está crescendo… ou a dependência também?"</blockquote>
+<p>Foi dessa busca que surgiu a ALF — Arquitetura de Liberdade Familiar. <strong class="text-white">Uma metodologia criada para ajudar famílias e profissionais de alta renda a organizar patrimônio, reduzir vulnerabilidades, ampliar opções e construir estruturas mais inteligentes para o longo prazo.</strong></p>
+</div>
+<div class="border-t border-white/5 pt-6">
+<p class="text-sm text-gray-500 uppercase tracking-widest mb-4">Hoje a ALF conecta:</p>
+<div class="grid grid-cols-2 gap-2">
+<span class="flex items-center gap-2 text-sm text-gray-300"><i data-lucide="check" class="w-3.5 h-3.5 text-orange-400"></i>Patrimônio</span>
+<span class="flex items-center gap-2 text-sm text-gray-300"><i data-lucide="check" class="w-3.5 h-3.5 text-orange-400"></i>Proteção</span>
+<span class="flex items-center gap-2 text-sm text-gray-300"><i data-lucide="check" class="w-3.5 h-3.5 text-orange-400"></i>Mobilidade</span>
+<span class="flex items-center gap-2 text-sm text-gray-300"><i data-lucide="check" class="w-3.5 h-3.5 text-orange-400"></i>Família</span>
+<span class="flex items-center gap-2 text-sm text-gray-300"><i data-lucide="check" class="w-3.5 h-3.5 text-orange-400"></i>Internacionalização</span>
+<span class="flex items-center gap-2 text-sm text-gray-300"><i data-lucide="check" class="w-3.5 h-3.5 text-orange-400"></i>Estratégia</span>
+</div>
+</div>
+<p class="text-gray-500 text-[15px] font-light leading-relaxed">Porque o objetivo nunca foi fugir.<br/><span class="text-gray-300">O objetivo sempre foi ter opções.</span></p>
+</div>
+<div class="lg:w-1/2 flex items-start justify-center scroll-item scroll-blur-in delay-200">
+<div class="w-full max-w-sm aspect-[3/4] rounded-3xl bg-[#050508] border border-white/10 relative overflow-hidden shadow-2xl group">
+<div class="absolute inset-0 bg-gradient-to-br from-amber-900/20 via-transparent to-amber-900/10"></div>
+<div class="absolute bottom-0 left-0 right-0 p-6 bg-gradient-to-t from-black/90 to-transparent">
+<p class="text-white font-semibold">Dr. Paulo Bortolotti</p>
+<p class="text-gray-400 text-sm mt-1">Médico · Empresário · Fundador da ALF</p>
+</div>
+<div class="absolute inset-0 flex items-center justify-center">
+<div class="w-24 h-24 rounded-full border border-white/10 bg-white/5 flex items-center justify-center text-4xl font-oswald font-light text-white/30">PB</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- bloco-fechamento -->
+<section class="z-10 w-full max-w-6xl mt-24 mr-auto ml-auto px-6 mb-32">
+<div class="flex flex-col items-center text-center bg-[#0A0A0C] border border-white/10 rounded-3xl p-12 lg:p-20 relative overflow-hidden scroll-item scroll-blur-in">
+<div class="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(249,115,22,0.06),transparent_60%)]"></div>
+<div class="pointer-events-none absolute inset-0 opacity-10" style="background-image:radial-gradient(white 1px,transparent 1px);background-size:40px 40px;"></div>
+<h2 class="text-4xl md:text-6xl lg:text-7xl font-oswald font-light tracking-tight text-white leading-[1.1] max-w-4xl relative z-10 scroll-item scroll-fade-up">O mundo é grande demais para uma vida inteira depender:</h2>
+<div class="mt-10 space-y-3 relative z-10 scroll-item scroll-fade-up delay-100">
+<p class="text-xl md:text-2xl font-oswald font-light text-gray-400">de um <span class="text-white">CPF</span></p>
+<p class="text-xl md:text-2xl font-oswald font-light text-gray-400">de uma <span class="text-white">moeda</span></p>
+<p class="text-xl md:text-2xl font-oswald font-light text-gray-400">de uma <span class="text-white">jurisdição</span></p>
+<p class="text-xl md:text-2xl font-oswald font-light text-gray-400">de uma <span class="text-white">única fonte de renda</span></p>
+</div>
+<div class="flex flex-col sm:flex-row gap-4 mt-12 relative z-10 scroll-item scroll-fade-up delay-200">
+<button class="group inline-flex overflow-hidden transition-all duration-300 hover:scale-[1.02] hover:shadow-[0_0_40px_-10px_rgba(249,115,22,0.5)] sm:w-auto text-sm font-medium text-white h-[54px] rounded-full pt-4 pr-8 pb-4 pl-8 relative items-center justify-center" style="position:relative;--border-gradient:linear-gradient(135deg,rgba(255,255,255,0.2),rgba(255,255,255,0),rgba(255,255,255,0.2));--border-radius-before:9999px">
+<div class="absolute inset-0 -z-20 rounded-full overflow-hidden p-[1px]">
+<div class="absolute inset-[-100%] bg-[conic-gradient(from_0deg,transparent_0_300deg,#f97316_360deg)]" style="animation:beam-spin 3s linear infinite;"></div>
+<div class="absolute inset-[1px] rounded-full bg-[#050505]"></div>
+</div>
+<div class="overflow-hidden bg-[#0A0A0A] rounded-full absolute top-[2px] right-[2px] bottom-[2px] left-[2px]">
+<div class="bg-gradient-to-b from-amber-900/20 to-transparent absolute inset-0"></div>
+<div class="opacity-[0.07] mix-blend-plus-lighter absolute inset-0" style="background-image:repeating-linear-gradient(90deg,#fff,#fff 1px,transparent 1px,transparent 8px);background-size:24px 100%;animation:lines-slide 1.5s linear infinite;"></div>
+<div class="absolute bottom-0 left-1/2 -translate-x-1/2 w-2/3 h-1/2 bg-orange-500/20 blur-2xl rounded-full group-hover:bg-orange-500/40 transition-colors"></div>
+</div>
+<span class="uppercase font-semibold text-white/90 tracking-tight z-10 relative">COMEÇAR IAL SCORE</span>
+<i data-lucide="arrow-right" class="relative z-10 ml-2 w-4 h-4 transition-transform duration-300 group-hover:translate-x-1"></i>
+</button>
+<button class="sm:w-auto hover:bg-orange-500/10 hover:border-orange-400 hover:shadow-[0_0_35px_rgba(249,115,22,0.6),inset_0_0_20px_rgba(249,115,22,0.4)] hover:scale-[1.02] transition-all duration-300 flex group text-base font-medium text-white bg-black/60 border-orange-500border rounded-full pt-3.5 pr-8 pb-3.5 pl-8 shadow-[0_0_20px_rgba(249,115,22,0.5),inset_0_0_10px_rgba(249,115,22,0.2)] gap-x-2 items-center justify-center" onclick="document.getElementById('masterclass').scrollIntoView({behavior:'smooth'})">
+<i data-lucide="play-circle" class="w-4 h-4 text-orange-400 group-hover:text-orange-300"></i>
+Assistir Masterclass Estratégica
+</button>
+</div>
+</div>
+</section>
+<!-- footer -->
+<footer class="border-t border-white/10 bg-[#050505] relative z-10 pt-16 pb-8">
+<div class="w-full max-w-6xl mx-auto px-6">
+<div class="flex flex-col md:flex-row justify-between gap-12 mb-12">
+<div class="max-w-xs scroll-item scroll-fade-up">
+<a class="text-2xl font-oswald font-semibold text-white tracking-tight" href="#">ALF</a>
+<p class="text-gray-500 text-sm leading-relaxed mt-4">Arquitetura de Liberdade Familiar — uma metodologia para ajudar famílias e profissionais de alta renda a construir estruturas mais inteligentes.</p>
+</div>
+<div class="grid grid-cols-2 md:grid-cols-3 gap-10 text-sm">
+<div class="scroll-item scroll-fade-up delay-100">
+<h4 class="text-white font-medium mb-4">Diagnóstico</h4>
+<ul class="space-y-2 text-gray-500">
+<li><a class="hover:text-orange-400 transition-colors" href="#">Fazer IAL Score</a></li>
+<li><a class="hover:text-orange-400 transition-colors" href="#">Como funciona</a></li>
+<li><a class="hover:text-orange-400 transition-colors" href="#">Os 10 pilares</a></li>
+</ul>
+</div>
+<div class="scroll-item scroll-fade-up delay-200">
+<h4 class="text-white font-medium mb-4">Conteúdo</h4>
+<ul class="space-y-2 text-gray-500">
+<li><a class="hover:text-orange-400 transition-colors" href="#">Masterclass</a></li>
+<li><a class="hover:text-orange-400 transition-colors" href="#">Casos ALF</a></li>
+<li><a class="hover:text-orange-400 transition-colors" href="#">Blog</a></li>
+</ul>
+</div>
+<div class="scroll-item scroll-fade-up delay-300">
+<h4 class="text-white font-medium mb-4">Legal</h4>
+<ul class="space-y-2 text-gray-500">
+<li><a class="hover:text-orange-400 transition-colors" href="#">Privacidade</a></li>
+<li><a class="hover:text-orange-400 transition-colors" href="#">Termos</a></li>
+</ul>
+</div>
+</div>
+</div>
+<div class="border-t border-white/10 pt-6 flex flex-col md:flex-row items-center justify-between gap-4">
+<p class="text-xs text-gray-600">© 2025 ALF — Arquitetura de Liberdade Familiar. Todos os direitos reservados.</p>
+<div class="flex items-center gap-2">
+<div class="w-2 h-2 rounded-full bg-amber-500 animate-pulse"></div>
+<span class="text-xs text-gray-500">O objetivo sempre foi ter opções.</span>
+</div>
+</div>
+</div>
+</footer>
+<!-- js -->
+<!-- UnicornStudio: carrega runtime da CDN e renderiza raios dourados com interação de mouse (projeto AhqzKk9mZE0EnlENMQDi) -->
+<script src="assets/js/unicorn-studio.js"></script>
+<!-- Lucide icons renderer — runs after Lucide runtime loaded in head -->
+<script src="assets/js/lucide-init.js"></script>
+<!-- IntersectionObserver scroll reveal — starts paused animations + triggers IAL score bars -->
+<script src="assets/js/scroll-reveal.js"></script>
+<!-- Accordion expand/collapse — case studies section -->
+<script src="assets/js/accordions.js"></script>
+<!-- Golden ring: anel dourado central que segue o mouse com parallax lento -->
+<script src="assets/js/golden-ring.js"></script>
+</body>
+</html>
