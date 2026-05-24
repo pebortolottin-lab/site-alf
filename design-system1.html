@@ -738,7 +738,7 @@ Assistir Masterclass Estratégica
 <div class="scroll-item scroll-fade-up delay-300">
 <h4 class="text-white font-medium mb-4">Legal</h4>
 <ul class="space-y-2 text-gray-500">
-<li><a class="hover:text-orange-400 transition-colors" href="#">Privacidade</a></li>
+<li><a class="hover:text-orange-400 transition-colors cursor-pointer" onclick="openPrivacy();return false;" href="#">Privacidade</a></li>
 <li><a class="hover:text-orange-400 transition-colors" href="#">Termos</a></li>
 </ul>
 </div>
@@ -1451,7 +1451,148 @@ function closeCase() {
   panel.style.transform = 'translateY(40px)';
   setTimeout(() => { document.body.style.overflow = ''; }, 350);
 }
-document.addEventListener('keydown', e => { if (e.key === 'Escape') closeCase(); });
+document.addEventListener('keydown', e => { if (e.key === 'Escape') { closeCase(); closePrivacy(); } });
+function openPrivacy() {
+  const m = document.getElementById('privacyModal');
+  const p = document.getElementById('privacyModalPanel');
+  p.scrollTop = 0;
+  m.style.opacity = '1'; m.style.pointerEvents = 'auto';
+  p.style.transform = 'translateY(0)';
+  document.body.style.overflow = 'hidden';
+}
+function closePrivacy() {
+  const m = document.getElementById('privacyModal');
+  const p = document.getElementById('privacyModalPanel');
+  m.style.opacity = '0'; m.style.pointerEvents = 'none';
+  p.style.transform = 'translateY(40px)';
+  setTimeout(() => { document.body.style.overflow = ''; }, 350);
+}
 </script>
+<!-- ── MODAL: POLÍTICA DE PRIVACIDADE ─────────────────────────── -->
+<div id="privacyModal" class="fixed inset-0 z-[99998] flex items-end md:items-center justify-center md:p-6" style="opacity:0;pointer-events:none;transition:opacity .3s ease;">
+  <div class="absolute inset-0 bg-black/75 backdrop-blur-sm" onclick="closePrivacy()"></div>
+  <div id="privacyModalPanel" class="relative w-full max-w-3xl max-h-[92vh] bg-[#0C0C14] border border-white/10 rounded-t-3xl md:rounded-3xl overflow-y-auto shadow-2xl" style="transform:translateY(40px);transition:transform .4s cubic-bezier(.22,1,.36,1);">
+    <button onclick="closePrivacy()" class="absolute top-5 right-5 z-10 flex items-center justify-center w-8 h-8 rounded-full bg-white/5 hover:bg-white/10 text-gray-400 hover:text-white transition-colors text-base leading-none select-none">✕</button>
+    <div class="p-8 pb-6 border-b border-white/5">
+      <p class="text-[10px] font-bold tracking-[2.5px] uppercase text-orange-400/60 mb-2">ALF · Arquitetura de Liberdade Familiar</p>
+      <h2 class="text-2xl font-semibold text-white leading-snug">Política de Privacidade e Limitação de Responsabilidade</h2>
+      <p class="text-xs text-gray-600 mt-2">Última atualização: maio de 2026</p>
+    </div>
+    <div class="p-8 space-y-8 text-sm text-gray-400 leading-relaxed">
+      <p>A ALF — Arquitetura de Liberdade Familiar, criada e mantida por P.E.N. Bortolotti, respeita a privacidade e a proteção dos dados compartilhados durante a utilização do site, IAL Score, Masterclass, materiais, conteúdos, ferramentas e demais recursos relacionados à metodologia.</p>
+      <p>Ao utilizar o site e suas ferramentas, o usuário declara ciência desta Política.</p>
+      <div>
+        <p class="text-[10px] font-bold tracking-[2px] uppercase text-orange-400/70 mb-3">1. Dados coletados</p>
+        <p class="mb-3">As informações fornecidas poderão incluir:</p>
+        <div class="flex flex-wrap gap-2 mb-4">
+          <span class="text-xs text-gray-500 bg-white/5 px-2.5 py-1 rounded-lg">nome</span>
+          <span class="text-xs text-gray-500 bg-white/5 px-2.5 py-1 rounded-lg">e-mail</span>
+          <span class="text-xs text-gray-500 bg-white/5 px-2.5 py-1 rounded-lg">telefone</span>
+          <span class="text-xs text-gray-500 bg-white/5 px-2.5 py-1 rounded-lg">respostas do IAL Score</span>
+          <span class="text-xs text-gray-500 bg-white/5 px-2.5 py-1 rounded-lg">informações patrimoniais aproximadas</span>
+          <span class="text-xs text-gray-500 bg-white/5 px-2.5 py-1 rounded-lg">dados familiares</span>
+          <span class="text-xs text-gray-500 bg-white/5 px-2.5 py-1 rounded-lg">dados profissionais</span>
+          <span class="text-xs text-gray-500 bg-white/5 px-2.5 py-1 rounded-lg">informações compartilhadas voluntariamente</span>
+        </div>
+        <p class="mb-3">Também poderão ser coletados automaticamente:</p>
+        <div class="flex flex-wrap gap-2 mb-4">
+          <span class="text-xs text-gray-500 bg-white/5 px-2.5 py-1 rounded-lg">endereço IP</span>
+          <span class="text-xs text-gray-500 bg-white/5 px-2.5 py-1 rounded-lg">tipo de dispositivo</span>
+          <span class="text-xs text-gray-500 bg-white/5 px-2.5 py-1 rounded-lg">navegador</span>
+          <span class="text-xs text-gray-500 bg-white/5 px-2.5 py-1 rounded-lg">páginas acessadas</span>
+          <span class="text-xs text-gray-500 bg-white/5 px-2.5 py-1 rounded-lg">tempo de permanência</span>
+          <span class="text-xs text-gray-500 bg-white/5 px-2.5 py-1 rounded-lg">origem do acesso</span>
+          <span class="text-xs text-gray-500 bg-white/5 px-2.5 py-1 rounded-lg">cookies e tecnologias similares</span>
+        </div>
+        <p>Esses dados poderão ser utilizados exclusivamente para funcionamento, personalização, análises estatísticas, segurança e melhoria da experiência.</p>
+      </div>
+      <div>
+        <p class="text-[10px] font-bold tracking-[2px] uppercase text-orange-400/70 mb-3">2. Uso das informações</p>
+        <p class="mb-3">As informações poderão ser utilizadas para:</p>
+        <ul class="space-y-1.5 mb-4">
+          <li class="flex items-start gap-2"><span class="text-gray-600 shrink-0 mt-0.5">•</span>personalização da experiência</li>
+          <li class="flex items-start gap-2"><span class="text-gray-600 shrink-0 mt-0.5">•</span>entrega de resultados, materiais e conteúdos</li>
+          <li class="flex items-start gap-2"><span class="text-gray-600 shrink-0 mt-0.5">•</span>comunicação relacionada à metodologia ALF</li>
+          <li class="flex items-start gap-2"><span class="text-gray-600 shrink-0 mt-0.5">•</span>contato sobre eventos, Masterclass, conteúdos e ferramentas</li>
+          <li class="flex items-start gap-2"><span class="text-gray-600 shrink-0 mt-0.5">•</span>análises estatísticas e melhorias operacionais</li>
+          <li class="flex items-start gap-2"><span class="text-gray-600 shrink-0 mt-0.5">•</span>funcionamento das ferramentas e automações</li>
+        </ul>
+        <p class="mb-3">Os dados poderão ser tratados com base em consentimento do usuário, execução de solicitações realizadas, legítimo interesse ou cumprimento de obrigações legais, conforme legislação aplicável.</p>
+        <p>O usuário poderá solicitar interrupção de comunicações a qualquer momento.</p>
+      </div>
+      <div>
+        <p class="text-[10px] font-bold tracking-[2px] uppercase text-orange-400/70 mb-3">3. Compartilhamento</p>
+        <p class="mb-3">Nenhuma informação pessoal será comercializada, cedida ou compartilhada com terceiros para fins comerciais.</p>
+        <p class="mb-3">Os dados poderão ser operados por plataformas terceiras necessárias para funcionamento dos serviços, incluindo hospedagem, e-mail marketing, plataformas de vídeo, automações, ferramentas analíticas, processadores de pagamento e ferramentas operacionais.</p>
+        <p>A ALF não se responsabiliza por políticas próprias, indisponibilidades, falhas técnicas ou medidas adotadas por plataformas terceiras.</p>
+      </div>
+      <div>
+        <p class="text-[10px] font-bold tracking-[2px] uppercase text-orange-400/70 mb-3">4. Cookies e rastreamento</p>
+        <p class="mb-3">Este site poderá utilizar cookies, pixels, tags e tecnologias semelhantes para melhorar navegação, compreender uso do site, análises estatísticas e otimização de campanhas e experiências.</p>
+        <p>O usuário poderá configurar, bloquear ou remover cookies através das configurações do navegador. Algumas funcionalidades poderão ser afetadas.</p>
+      </div>
+      <div>
+        <p class="text-[10px] font-bold tracking-[2px] uppercase text-orange-400/70 mb-3">5. Segurança e armazenamento</p>
+        <p class="mb-3">A ALF adota medidas razoáveis e compatíveis com as tecnologias utilizadas para proteção das informações compartilhadas. Nenhum ambiente digital é completamente inviolável.</p>
+        <p>Os dados poderão ser armazenados pelo período necessário para funcionamento dos serviços, cumprimento de obrigações legais, execução da metodologia, atendimento de solicitações e legítimo interesse operacional.</p>
+      </div>
+      <div>
+        <p class="text-[10px] font-bold tracking-[2px] uppercase text-orange-400/70 mb-3">6. Direitos do usuário</p>
+        <p class="mb-3">O usuário poderá solicitar acesso, atualização, correção, exclusão ou informações relacionadas ao tratamento de dados, conforme legislação aplicável.</p>
+        <p>Solicitações poderão ser realizadas através dos canais disponibilizados no site.</p>
+      </div>
+      <div>
+        <p class="text-[10px] font-bold tracking-[2px] uppercase text-orange-400/70 mb-3">7. Natureza educacional</p>
+        <p class="mb-3">IAL Score, Masterclass, conteúdos, materiais, mapas, anamnese, avaliações, relatórios, estudos de caso, níveis, diagnósticos e demais ferramentas possuem finalidade exclusivamente educacional, informativa e metodológica.</p>
+        <p class="mb-3">Os termos <span class="text-gray-300 font-medium">diagnóstico</span>, <span class="text-gray-300 font-medium">anamnese</span>, <span class="text-gray-300 font-medium">mapa</span>, <span class="text-gray-300 font-medium">arquitetura</span>, <span class="text-gray-300 font-medium">score</span>, <span class="text-gray-300 font-medium">níveis</span> e nomenclaturas semelhantes representam exclusivamente conceitos internos da metodologia ALF.</p>
+        <p>Não possuem natureza financeira, tributária, jurídica, contábil, médica, sucessória ou profissional individualizada.</p>
+      </div>
+      <div>
+        <p class="text-[10px] font-bold tracking-[2px] uppercase text-orange-400/70 mb-3">8. Limitação de responsabilidade</p>
+        <p class="mb-3">Nenhum conteúdo disponibilizado pela ALF constitui recomendação individual de investimentos, consultoria financeira, aconselhamento jurídico, orientação tributária, planejamento sucessório, promessa de resultado ou aconselhamento profissional individual.</p>
+        <p class="mb-3">Toda decisão patrimonial, financeira, empresarial, familiar, jurídica ou estratégica permanece de responsabilidade exclusiva do usuário.</p>
+        <p>A ALF recomenda que decisões relevantes sejam analisadas junto a profissionais especializados escolhidos pelo próprio usuário.</p>
+      </div>
+      <div>
+        <p class="text-[10px] font-bold tracking-[2px] uppercase text-orange-400/70 mb-3">9. Resultados individuais</p>
+        <p class="mb-3">Resultados variam conforme contexto individual, execução, perfil, fatores econômicos, fatores externos e decisões pessoais e familiares.</p>
+        <p class="mb-3">Estudos de caso, exemplos, histórias, pontuações e demonstrações possuem finalidade exclusivamente ilustrativa e educacional. Poderão existir adaptações narrativas, alterações parciais de contexto, nomes, características ou elementos ilustrativos utilizados para preservação de privacidade e melhor compreensão dos conceitos.</p>
+        <p>Rentabilidades passadas, estruturas utilizadas ou resultados anteriores não constituem garantia futura.</p>
+      </div>
+      <div>
+        <p class="text-[10px] font-bold tracking-[2px] uppercase text-orange-400/70 mb-3">10. Relação entre as partes</p>
+        <p>O uso do site, IAL Score, Masterclass e demais ferramentas não estabelece vínculo societário, representação, relação fiduciária, consultoria contínua, obrigação permanente ou relação profissional individualizada — salvo quando houver contratação formal específica entre as partes, regida por instrumentos próprios.</p>
+      </div>
+      <div>
+        <p class="text-[10px] font-bold tracking-[2px] uppercase text-orange-400/70 mb-3">11. Propriedade intelectual</p>
+        <p class="mb-3">Todos os materiais disponibilizados, incluindo ALF, IAL Score, Arquitetura de Liberdade Familiar, metodologia, textos, vídeos, gráficos, documentos, nomes, estruturas e demais elementos relacionados são protegidos por direitos autorais e pertencem exclusivamente a P.E.N. Bortolotti ou a seus respectivos licenciadores.</p>
+        <p>É proibida reprodução, distribuição, gravação, revenda, compartilhamento ou utilização comercial sem autorização expressa.</p>
+      </div>
+      <div>
+        <p class="text-[10px] font-bold tracking-[2px] uppercase text-orange-400/70 mb-3">12. Alterações</p>
+        <p>Esta Política poderá ser alterada a qualquer momento. Recomenda-se revisão periódica. A continuidade de uso após alterações representa concordância com as novas condições.</p>
+      </div>
+      <div>
+        <p class="text-[10px] font-bold tracking-[2px] uppercase text-orange-400/70 mb-3">13. Contato</p>
+        <p>Dúvidas, solicitações ou exercício de direitos relacionados aos dados pessoais poderão ser realizados através dos canais disponibilizados no site.</p>
+      </div>
+    </div>
+    <div class="sticky bottom-0 bg-gradient-to-t from-[#0C0C14] via-[#0C0C14] to-transparent px-8 pb-8 pt-14">
+      <button onclick="closePrivacy()" class="group inline-flex overflow-hidden transition-all duration-300 hover:scale-[1.01] hover:shadow-[0_0_40px_-10px_rgba(249,115,22,0.5)] w-full h-[52px] rounded-full relative items-center justify-center" style="position:relative;">
+        <div class="absolute inset-0 -z-20 rounded-full overflow-hidden p-[1px]">
+          <div class="absolute inset-[-100%] bg-[conic-gradient(from_0deg,transparent_0_300deg,#f97316_360deg)]" style="animation:beam-spin 3s linear infinite;"></div>
+          <div class="absolute inset-[1px] rounded-full bg-[#050505]"></div>
+        </div>
+        <div class="overflow-hidden bg-[#0A0A0A] rounded-full absolute top-[2px] right-[2px] bottom-[2px] left-[2px]">
+          <div class="bg-gradient-to-b from-amber-900/20 to-transparent absolute top-0 right-0 bottom-0 left-0"></div>
+          <div class="opacity-[0.07] mix-blend-plus-lighter absolute top-0 right-0 bottom-0 left-0" style="background-image:repeating-linear-gradient(90deg,#fff,#fff 1px,transparent 1px,transparent 8px);background-size:24px 100%;animation:lines-slide 1.5s linear infinite;"></div>
+          <div class="absolute bottom-0 left-1/2 -translate-x-1/2 w-2/3 h-1/2 bg-orange-500/20 blur-2xl rounded-full pointer-events-none transition-colors duration-500 group-hover:bg-orange-500/40"></div>
+        </div>
+        <i data-lucide="x" class="relative z-10 mr-2 w-4 h-4"></i>
+        <span class="transition-colors group-hover:text-white font-semibold text-white/90 tracking-tight z-10 relative">Fechar</span>
+      </button>
+    </div>
+  </div>
+</div>
 </body>
 </html>
