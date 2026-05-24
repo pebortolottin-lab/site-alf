@@ -299,20 +299,10 @@ Masterclass Estratégica Gratuita
 </div>
 <p class="text-sm text-gray-500 italic">Alta renda. Baixa arquitetura.</p>
 </div>
-<button class="w-full flex items-center justify-between px-6 py-4 border-t border-white/5 text-sm text-blue-400 hover:text-blue-300 transition-colors group/btn" data-accordion-trigger="christian">
+<button class="w-full flex items-center justify-between px-6 py-4 border-t border-white/5 text-sm text-blue-400 hover:text-blue-300 transition-colors" onclick="openCase('christian')">
 <span>Ver caso completo</span>
-<i data-lucide="plus" class="w-4 h-4 transition-transform duration-300" data-accordion-icon style="transition:transform .3s;"></i>
+<svg class="w-4 h-4 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
 </button>
-<div id="panel-christian" class="accordion-panel" data-open="false">
-<div class="px-6 pb-6 space-y-2">
-<div class="text-sm text-gray-400 leading-relaxed">Muito patrimônio concentrado em bancos e consumo. Hoje possui estrutura mais previsível, diversificação gradual e novas opções familiares.</div>
-<div class="flex flex-wrap gap-2 mt-3">
-<span class="text-xs bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 px-2 py-1 rounded-full">✔ Organização patrimonial</span>
-<span class="text-xs bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 px-2 py-1 rounded-full">✔ Reservas estratégicas</span>
-<span class="text-xs bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 px-2 py-1 rounded-full">✔ Mobilidade familiar</span>
-</div>
-</div>
-</div>
 </div>
 <!-- caso: Dr. Alan E. -->
 <div class="relative rounded-2xl bg-[#050508] border border-white/10 overflow-hidden group hover:border-white/20 transition-colors scroll-item scroll-fade-up delay-200">
@@ -741,5 +731,150 @@ Assistir Masterclass Estratégica
 <script src="assets/js/accordions.js"></script>
 <!-- Snake-style teal mouse trail cursor — desktop only -->
 <script src="assets/js/cursor-trail.js"></script>
+
+<!-- ── MODAL: CASO COMPLETO ──────────────────────────────────────── -->
+<div id="caseModal" class="fixed inset-0 z-[99997] flex items-end md:items-center justify-center md:p-6" style="opacity:0;pointer-events:none;transition:opacity .3s ease;">
+  <div class="absolute inset-0 bg-black/75 backdrop-blur-sm" onclick="closeCase()"></div>
+  <div id="caseModalPanel" class="relative w-full max-w-2xl max-h-[92vh] bg-[#0C0C14] border border-white/10 rounded-t-3xl md:rounded-3xl overflow-y-auto shadow-2xl" style="transform:translateY(40px);transition:transform .4s cubic-bezier(.22,1,.36,1);">
+    <button onclick="closeCase()" class="absolute top-5 right-5 z-10 flex items-center justify-center w-8 h-8 rounded-full bg-white/5 hover:bg-white/10 text-gray-400 hover:text-white transition-colors text-base leading-none select-none">✕</button>
+    <div id="caseModalContent"></div>
+    <div class="sticky bottom-0 bg-gradient-to-t from-[#0C0C14] via-[#0C0C14] to-transparent px-8 pb-8 pt-14">
+      <button onclick="closeCase()" class="w-full flex items-center justify-center gap-2 py-3.5 border border-white/10 rounded-xl text-sm text-gray-400 hover:text-white hover:border-white/20 transition-colors">
+        ← Voltar para Casos
+      </button>
+    </div>
+  </div>
+</div>
+
+<script>
+// ── CASOS COMPLETOS ──────────────────────────────────────────────
+const cases = {
+  christian: `<div style="position:relative;overflow:hidden"><div style="position:absolute;top:0;left:0;right:0;height:260px;background:radial-gradient(ellipse at 50% -20%,rgba(59,130,246,.09) 0%,transparent 70%);pointer-events:none"></div>
+<div class="relative p-8 pb-6">
+  <p class="text-[10px] font-bold tracking-[2.5px] uppercase text-blue-400/60 mb-3">Caso Real · ALF</p>
+  <div class="flex items-start justify-between gap-4 mb-5">
+    <div>
+      <h2 class="text-[1.8rem] font-semibold text-white leading-tight">Christian M.</h2>
+      <p class="text-sm text-gray-500 mt-1">Engenheiro | Diretor de Multinacional</p>
+      <p class="text-xs text-gray-600 mt-0.5">45 anos • Casado • Filho por vir</p>
+    </div>
+    <span class="shrink-0 text-[10px] font-bold bg-purple-500/10 text-purple-400 border border-purple-500/20 px-2.5 py-1.5 rounded-full whitespace-nowrap">Nível 2</span>
+  </div>
+  <div class="flex items-center gap-3 mb-5">
+    <div class="flex items-center gap-2"><div class="w-2.5 h-2.5 rounded-full bg-red-500"></div><span class="text-3xl font-oswald font-light text-white">43</span></div>
+    <svg class="w-4 h-4 text-gray-600 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+    <div class="flex items-center gap-2"><div class="w-2.5 h-2.5 rounded-full bg-emerald-500"></div><span class="text-3xl font-oswald font-light text-white">72</span></div>
+    <span class="ml-auto text-sm font-semibold text-emerald-400">+29 pts</span>
+  </div>
+  <div class="flex flex-wrap gap-2">
+    <span class="text-xs text-gray-500 bg-white/5 px-2.5 py-1 rounded-lg">Renda R$35k/mês</span>
+    <span class="text-xs text-gray-500 bg-white/5 px-2.5 py-1 rounded-lg">Esposa R$3,8k</span>
+    <span class="text-xs text-gray-500 bg-white/5 px-2.5 py-1 rounded-lg">Patrimônio ~R$2M</span>
+  </div>
+</div>
+<div class="border-t border-white/5 mx-8"></div>
+<div class="p-8 pt-7 space-y-8">
+  <div>
+    <p class="text-[10px] font-bold tracking-[2.5px] uppercase text-blue-400/70 mb-4">Situação inicial</p>
+    <div class="space-y-3 text-sm text-gray-400 leading-relaxed">
+      <p class="text-base font-medium text-white">Renda alta nunca foi o problema.</p>
+      <p>Ao longo dos anos a carreira cresceu, o patrimônio aumentou e a vida parecia organizada.</p>
+      <p>Mas existia uma sensação difícil de explicar:</p>
+      <blockquote class="border-l-2 border-blue-400/30 pl-4 my-2 text-gray-300 italic">entrava muito dinheiro... mas a liberdade não crescia na mesma velocidade.</blockquote>
+      <p>Grande parte do patrimônio permanecia concentrada em bancos, consumo e estruturas pouco produtivas.</p>
+      <p>Existia um apartamento pequeno alugado, visto durante anos como uma reserva.</p>
+      <p>Mas ao mapear a estrutura completa surgiu uma descoberta inesperada:</p>
+      <blockquote class="border-l-2 border-blue-400/30 pl-4 my-2 text-gray-300 italic">a percepção era de lucro. Os números mostraram algo diferente.</blockquote>
+      <p>Custos ocultos, manutenção, despesas indiretas e baixa eficiência faziam o resultado real ser muito menor do que parecia.</p>
+    </div>
+  </div>
+  <div>
+    <p class="text-[10px] font-bold tracking-[2.5px] uppercase text-blue-400/70 mb-4">Diagnóstico ALF</p>
+    <div class="space-y-2 text-sm leading-relaxed mb-5">
+      <p class="text-base font-medium text-white">O problema não era renda.</p>
+      <p class="text-gray-400">Também não era patrimônio.</p>
+      <p class="font-medium text-gray-200">O problema era arquitetura.</p>
+    </div>
+    <p class="text-[10px] font-bold tracking-[2px] uppercase text-gray-500 mb-3">Principais vulnerabilidades identificadas:</p>
+    <ul class="space-y-2.5">
+      <li class="flex items-start gap-3 text-sm text-gray-400"><div class="w-1.5 h-1.5 rounded-full bg-red-500/50 mt-1.5 shrink-0"></div>patrimônio excessivamente concentrado</li>
+      <li class="flex items-start gap-3 text-sm text-gray-400"><div class="w-1.5 h-1.5 rounded-full bg-red-500/50 mt-1.5 shrink-0"></div>baixa previsibilidade financeira</li>
+      <li class="flex items-start gap-3 text-sm text-gray-400"><div class="w-1.5 h-1.5 rounded-full bg-red-500/50 mt-1.5 shrink-0"></div>proteção limitada</li>
+      <li class="flex items-start gap-3 text-sm text-gray-400"><div class="w-1.5 h-1.5 rounded-full bg-red-500/50 mt-1.5 shrink-0"></div>ausência de reservas estratégicas</li>
+      <li class="flex items-start gap-3 text-sm text-gray-400"><div class="w-1.5 h-1.5 rounded-full bg-red-500/50 mt-1.5 shrink-0"></div>pouca mobilidade familiar</li>
+      <li class="flex items-start gap-3 text-sm text-gray-400"><div class="w-1.5 h-1.5 rounded-full bg-red-500/50 mt-1.5 shrink-0"></div>dependência elevada de uma única estrutura geográfica</li>
+    </ul>
+  </div>
+  <div>
+    <p class="text-[10px] font-bold tracking-[2.5px] uppercase text-blue-400/70 mb-4">Mudanças realizadas</p>
+    <ul class="space-y-2.5">
+      <li class="flex items-center gap-3 text-sm text-gray-300"><span class="text-emerald-400 font-bold">✓</span>reorganização patrimonial</li>
+      <li class="flex items-center gap-3 text-sm text-gray-300"><span class="text-emerald-400 font-bold">✓</span>construção de reservas estratégicas</li>
+      <li class="flex items-center gap-3 text-sm text-gray-300"><span class="text-emerald-400 font-bold">✓</span>início de diversificação gradual</li>
+      <li class="flex items-center gap-3 text-sm text-gray-300"><span class="text-emerald-400 font-bold">✓</span>patrimônio internacional</li>
+      <li class="flex items-center gap-3 text-sm text-gray-300"><span class="text-emerald-400 font-bold">✓</span>exposição a novas classes de ativos</li>
+      <li class="flex items-center gap-3 text-sm text-gray-300"><span class="text-emerald-400 font-bold">✓</span>estrutura de proteção externa</li>
+      <li class="flex items-center gap-3 text-sm text-gray-300"><span class="text-emerald-400 font-bold">✓</span>segunda cidadania</li>
+      <li class="flex items-center gap-3 text-sm text-gray-300"><span class="text-emerald-400 font-bold">✓</span>construção de opcionalidade familiar</li>
+    </ul>
+  </div>
+  <div>
+    <p class="text-[10px] font-bold tracking-[2.5px] uppercase text-blue-400/70 mb-4">Resultado</p>
+    <div class="space-y-3 text-sm text-gray-400 leading-relaxed">
+      <p>Hoje existe maior previsibilidade.</p>
+      <p>O patrimônio passou a ter funções diferentes:</p>
+      <div class="grid grid-cols-2 gap-2 my-3">
+        <div class="text-xs text-gray-400 bg-white/5 border border-white/5 px-3 py-2.5 rounded-lg">crescimento</div>
+        <div class="text-xs text-gray-400 bg-white/5 border border-white/5 px-3 py-2.5 rounded-lg">proteção</div>
+        <div class="text-xs text-gray-400 bg-white/5 border border-white/5 px-3 py-2.5 rounded-lg">mobilidade</div>
+        <div class="text-xs text-gray-400 bg-white/5 border border-white/5 px-3 py-2.5 rounded-lg">opções futuras</div>
+      </div>
+      <p>Além de investimentos tradicionais, novas estruturas passaram a integrar a arquitetura patrimonial:</p>
+      <div class="flex flex-wrap gap-2 my-3">
+        <span class="text-xs text-gray-400 bg-white/5 border border-white/5 px-2.5 py-1.5 rounded-lg">bolsa</span>
+        <span class="text-xs text-gray-400 bg-white/5 border border-white/5 px-2.5 py-1.5 rounded-lg">ativos digitais</span>
+        <span class="text-xs text-gray-400 bg-white/5 border border-white/5 px-2.5 py-1.5 rounded-lg">estratégias automatizadas</span>
+        <span class="text-xs text-gray-400 bg-white/5 border border-white/5 px-2.5 py-1.5 rounded-lg">patrimônio internacional</span>
+      </div>
+      <p class="text-gray-500">Mais importante:</p>
+      <p>a sensação deixou de ser:</p>
+      <blockquote class="border-l-2 border-red-500/30 pl-4 py-0.5 text-gray-500 italic">"preciso continuar acelerando"</blockquote>
+      <p>para algo próximo de:</p>
+      <blockquote class="border-l-2 border-emerald-500/40 pl-4 py-0.5 text-gray-300 italic">"agora existe direção"</blockquote>
+    </div>
+  </div>
+  <div class="rounded-2xl bg-white/5 border border-white/10 p-5 flex items-center justify-between">
+    <p class="text-sm text-gray-500 font-medium">Score IAL</p>
+    <div class="flex items-center gap-3">
+      <span class="text-gray-500 font-oswald text-xl">43</span>
+      <svg class="w-3 h-3 text-gray-600" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+      <span class="text-white font-oswald text-2xl font-medium">72</span>
+      <span class="text-emerald-400 text-sm font-semibold ml-1">+29 pts</span>
+    </div>
+  </div>
+</div></div>`
+};
+
+function openCase(id) {
+  const html = cases[id];
+  if (!html) return;
+  const modal = document.getElementById('caseModal');
+  const panel = document.getElementById('caseModalPanel');
+  document.getElementById('caseModalContent').innerHTML = html;
+  modal.style.opacity = '1';
+  modal.style.pointerEvents = 'auto';
+  panel.style.transform = 'translateY(0)';
+  document.body.style.overflow = 'hidden';
+}
+function closeCase() {
+  const modal = document.getElementById('caseModal');
+  const panel = document.getElementById('caseModalPanel');
+  modal.style.opacity = '0';
+  modal.style.pointerEvents = 'none';
+  panel.style.transform = 'translateY(40px)';
+  setTimeout(() => { document.body.style.overflow = ''; }, 350);
+}
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeCase(); });
+</script>
 </body>
 </html>
