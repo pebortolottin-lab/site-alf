@@ -739,7 +739,7 @@ Assistir Masterclass Estratégica
 <h4 class="text-white font-medium mb-4">Legal</h4>
 <ul class="space-y-2 text-gray-500">
 <li><a class="hover:text-orange-400 transition-colors cursor-pointer" onclick="openPrivacy();return false;" href="#">Privacidade</a></li>
-<li><a class="hover:text-orange-400 transition-colors" href="#">Termos</a></li>
+<li><a class="hover:text-orange-400 transition-colors cursor-pointer" onclick="openTerms();return false;" href="#">Termos</a></li>
 </ul>
 </div>
 </div>
@@ -1451,7 +1451,7 @@ function closeCase() {
   panel.style.transform = 'translateY(40px)';
   setTimeout(() => { document.body.style.overflow = ''; }, 350);
 }
-document.addEventListener('keydown', e => { if (e.key === 'Escape') { closeCase(); closePrivacy(); } });
+document.addEventListener('keydown', e => { if (e.key === 'Escape') { closeCase(); closePrivacy(); closeTerms(); } });
 function openPrivacy() {
   const m = document.getElementById('privacyModal');
   const p = document.getElementById('privacyModalPanel');
@@ -1463,6 +1463,21 @@ function openPrivacy() {
 function closePrivacy() {
   const m = document.getElementById('privacyModal');
   const p = document.getElementById('privacyModalPanel');
+  m.style.opacity = '0'; m.style.pointerEvents = 'none';
+  p.style.transform = 'translateY(40px)';
+  setTimeout(() => { document.body.style.overflow = ''; }, 350);
+}
+function openTerms() {
+  const m = document.getElementById('termsModal');
+  const p = document.getElementById('termsModalPanel');
+  p.scrollTop = 0;
+  m.style.opacity = '1'; m.style.pointerEvents = 'auto';
+  p.style.transform = 'translateY(0)';
+  document.body.style.overflow = 'hidden';
+}
+function closeTerms() {
+  const m = document.getElementById('termsModal');
+  const p = document.getElementById('termsModalPanel');
   m.style.opacity = '0'; m.style.pointerEvents = 'none';
   p.style.transform = 'translateY(40px)';
   setTimeout(() => { document.body.style.overflow = ''; }, 350);
@@ -1613,6 +1628,208 @@ function closePrivacy() {
     </div>
     <div class="sticky bottom-0 bg-gradient-to-t from-[#0C0C14] via-[#0C0C14] to-transparent px-8 pb-8 pt-14">
       <button onclick="closePrivacy()" class="group inline-flex overflow-hidden transition-all duration-300 hover:scale-[1.01] hover:shadow-[0_0_40px_-10px_rgba(249,115,22,0.5)] w-full h-[52px] rounded-full relative items-center justify-center" style="position:relative;">
+        <div class="absolute inset-0 -z-20 rounded-full overflow-hidden p-[1px]">
+          <div class="absolute inset-[-100%] bg-[conic-gradient(from_0deg,transparent_0_300deg,#f97316_360deg)]" style="animation:beam-spin 3s linear infinite;"></div>
+          <div class="absolute inset-[1px] rounded-full bg-[#050505]"></div>
+        </div>
+        <div class="overflow-hidden bg-[#0A0A0A] rounded-full absolute top-[2px] right-[2px] bottom-[2px] left-[2px]">
+          <div class="bg-gradient-to-b from-amber-900/20 to-transparent absolute top-0 right-0 bottom-0 left-0"></div>
+          <div class="opacity-[0.07] mix-blend-plus-lighter absolute top-0 right-0 bottom-0 left-0" style="background-image:repeating-linear-gradient(90deg,#fff,#fff 1px,transparent 1px,transparent 8px);background-size:24px 100%;animation:lines-slide 1.5s linear infinite;"></div>
+          <div class="absolute bottom-0 left-1/2 -translate-x-1/2 w-2/3 h-1/2 bg-orange-500/20 blur-2xl rounded-full pointer-events-none transition-colors duration-500 group-hover:bg-orange-500/40"></div>
+        </div>
+        <i data-lucide="x" class="relative z-10 mr-2 w-4 h-4"></i>
+        <span class="transition-colors group-hover:text-white font-semibold text-white/90 tracking-tight z-10 relative">Fechar</span>
+      </button>
+    </div>
+  </div>
+</div>
+<!-- ── MODAL: TERMOS DE USO ──────────────────────────────────── -->
+<div id="termsModal" class="fixed inset-0 z-[99997] flex items-end md:items-center justify-center md:p-6" style="opacity:0;pointer-events:none;transition:opacity .3s ease;">
+  <div class="absolute inset-0 bg-black/75 backdrop-blur-sm" onclick="closeTerms()"></div>
+  <div id="termsModalPanel" class="relative w-full max-w-3xl max-h-[92vh] bg-[#0C0C14] border border-white/10 rounded-t-3xl md:rounded-3xl overflow-y-auto shadow-2xl" style="transform:translateY(40px);transition:transform .4s cubic-bezier(.22,1,.36,1);">
+    <button onclick="closeTerms()" class="absolute top-5 right-5 z-10 flex items-center justify-center w-8 h-8 rounded-full bg-white/5 hover:bg-white/10 text-gray-400 hover:text-white transition-colors text-base leading-none select-none">✕</button>
+    <div class="p-8 pb-6 border-b border-white/5">
+      <p class="text-[10px] font-bold tracking-[2.5px] uppercase text-orange-400/60 mb-2">ALF · Arquitetura de Liberdade Familiar</p>
+      <h2 class="text-2xl font-semibold text-white leading-snug">Termos de Uso</h2>
+      <p class="text-xs text-gray-600 mt-2">Vigência e última atualização: maio de 2026</p>
+    </div>
+    <div class="p-8 space-y-8 text-sm text-gray-400 leading-relaxed">
+      <div class="space-y-3">
+        <p>Ao acessar o site, utilizar o IAL Score, participar da Masterclass, responder avaliações, fornecer informações, criar cadastro, acessar a área privada, adquirir níveis, materiais, sessões ou utilizar quaisquer ferramentas relacionadas à ALF, o usuário declara ter lido, compreendido e concordado integralmente com estes Termos.</p>
+        <p>Caso não concorde com qualquer disposição, recomenda-se não utilizar os serviços.</p>
+      </div>
+      <div>
+        <p class="text-[10px] font-bold tracking-[2px] uppercase text-orange-400/70 mb-3">Sobre a ALF</p>
+        <p class="mb-3">ALF, Arquitetura de Liberdade Familiar, é uma metodologia privada de compartilhamento de experiências e visão estratégica, desenvolvida por Paulo Eduardo Bortolotti Nunes (P.E.N. Bortolotti), doravante denominado Responsável, atuando diretamente ou através de pessoa jurídica vinculada, com base em vivência pessoal, trajetória profissional e conhecimento acumulado como médico, empresário, investidor e autor.</p>
+        <p class="mb-3">A ALF não é uma instituição de ensino, curso técnico, graduação, pós-graduação, EAD credenciado ou programa educacional formal. Trata-se de metodologia particular de compartilhamento de experiências, perspectivas e frameworks estratégicos, sem vínculo com órgãos reguladores de educação.</p>
+        <p class="mb-3">A experiência ALF poderá integrar: IAL Score, Masterclass, ferramentas de autoavaliação, anamnese estruturada, mapas patrimoniais, conteúdos, materiais, sessões individuais, área privada, ferramentas digitais, recursos tecnológicos, automações e integrações futuras.</p>
+        <p>A composição, ferramentas e estrutura poderão evoluir ao longo do tempo. Alterações futuras não reduzirão entregas essenciais expressamente previstas em instrumento específico já formalizado entre as partes.</p>
+      </div>
+      <div>
+        <p class="text-[10px] font-bold tracking-[2px] uppercase text-orange-400/70 mb-3">Natureza da metodologia</p>
+        <p class="mb-3">A ALF constitui uma experiência de compartilhamento de vivência, visão estratégica e frameworks pessoais, com finalidade informativa e metodológica.</p>
+        <p class="mb-3">A ALF não constitui: instituição financeira, corretora, gestora, seguradora, escritório jurídico, consultoria tributária, instituição de ensino formal, planejamento sucessório ou aconselhamento profissional individualizado.</p>
+        <p class="mb-3">Os termos <span class="text-gray-300 font-medium">diagnóstico</span>, <span class="text-gray-300 font-medium">tratamento</span>, <span class="text-gray-300 font-medium">anamnese</span>, <span class="text-gray-300 font-medium">score</span>, <span class="text-gray-300 font-medium">mapa</span>, <span class="text-gray-300 font-medium">arquitetura</span>, <span class="text-gray-300 font-medium">níveis</span>, <span class="text-gray-300 font-medium">evolução</span>, <span class="text-gray-300 font-medium">crescimento</span>, <span class="text-gray-300 font-medium">proteção</span> e expressões semelhantes representam exclusivamente nomenclaturas internas da metodologia. Nenhuma nomenclatura utilizada deverá ser interpretada em sentido técnico, regulatório, clínico, médico, jurídico, financeiro ou profissional.</p>
+        <p>O Responsável compartilha experiências, estudos, percepções, frameworks e perspectivas construídos a partir de trajetória própria, conhecimento acumulado e desenvolvimento contínuo da metodologia ALF. Não exerce, através da ALF, atividade regulamentada de qualquer natureza.</p>
+      </div>
+      <div>
+        <p class="text-[10px] font-bold tracking-[2px] uppercase text-orange-400/70 mb-3">Sobre o IAL Score</p>
+        <p class="mb-3">O IAL Score é uma ferramenta gratuita de autoavaliação e reflexão, desenvolvida para estimular percepções sobre: patrimônio, vulnerabilidades, estrutura, família, mobilidade, planejamento estratégico e opcionalidade.</p>
+        <p class="mb-3">Pontuações, categorias, níveis e resultados não possuem validade técnica, não representam laudo, diagnóstico profissional, avaliação financeira, parecer individual e não garantem resultados.</p>
+        <p>O IAL Score reflete exclusivamente as respostas fornecidas pelo próprio usuário e possui finalidade de estímulo à reflexão.</p>
+      </div>
+      <div>
+        <p class="text-[10px] font-bold tracking-[2px] uppercase text-orange-400/70 mb-3">Masterclass, materiais e conteúdos</p>
+        <p class="mb-3">Masterclass, apresentações, materiais, vídeos, ferramentas e conteúdos gratuitos ou pagos representam compartilhamento de experiências, perspectivas e informações com finalidade informativa.</p>
+        <p class="mb-3">Exemplos, estruturas, estudos, números, gráficos, casos e simulações possuem finalidade ilustrativa.</p>
+        <p>Nenhum conteúdo disponibilizado constitui: recomendação individual de investimentos, promessa de ganhos, aconselhamento jurídico, orientação tributária, indicação financeira ou aconselhamento profissional individualizado.</p>
+      </div>
+      <div>
+        <p class="text-[10px] font-bold tracking-[2px] uppercase text-orange-400/70 mb-3">Estudos de caso</p>
+        <p class="mb-3">Estudos de caso, histórias, exemplos, nomes, pontuações, estruturas e resultados apresentados poderão utilizar: adaptações narrativas; alterações de nomes; reorganizações cronológicas; alterações parciais de contexto; ajustes de características; recursos destinados à preservação de privacidade.</p>
+        <p class="mb-3">Os materiais possuem finalidade exclusivamente educacional e ilustrativa.</p>
+        <p class="mb-3">Qualquer semelhança com situações reais poderá decorrer de coincidências, inspirações conceituais ou adaptações metodológicas.</p>
+        <p>Não representam promessa, previsão ou expectativa legítima de resultados semelhantes.</p>
+      </div>
+      <div>
+        <p class="text-[10px] font-bold tracking-[2px] uppercase text-orange-400/70 mb-3">Área privada e acesso</p>
+        <p class="mb-3">O acesso disponibilizado ao usuário possui natureza individual, pessoal e intransferível.</p>
+        <p class="mb-3">É proibido:</p>
+        <div class="flex flex-wrap gap-2 mb-4">
+          <span class="text-xs text-gray-500 bg-white/5 px-2.5 py-1 rounded-lg">compartilhar login</span>
+          <span class="text-xs text-gray-500 bg-white/5 px-2.5 py-1 rounded-lg">ceder acesso</span>
+          <span class="text-xs text-gray-500 bg-white/5 px-2.5 py-1 rounded-lg">reproduzir materiais</span>
+          <span class="text-xs text-gray-500 bg-white/5 px-2.5 py-1 rounded-lg">gravar sessões ou aulas</span>
+          <span class="text-xs text-gray-500 bg-white/5 px-2.5 py-1 rounded-lg">copiar conteúdos</span>
+          <span class="text-xs text-gray-500 bg-white/5 px-2.5 py-1 rounded-lg">redistribuir</span>
+          <span class="text-xs text-gray-500 bg-white/5 px-2.5 py-1 rounded-lg">revender</span>
+          <span class="text-xs text-gray-500 bg-white/5 px-2.5 py-1 rounded-lg">disponibilizar materiais a terceiros</span>
+        </div>
+        <p class="mb-3">Em caso de suspeita de violação, o Responsável notificará o usuário, que terá 5 dias úteis para apresentar esclarecimentos. Confirmada a violação, o acesso poderá ser suspenso ou cancelado.</p>
+        <p>Nessa hipótese, o reembolso será proporcional às sessões ou entregas ainda não realizadas, descontado o valor das sessões ou entregas já concluídas.</p>
+      </div>
+      <div>
+        <p class="text-[10px] font-bold tracking-[2px] uppercase text-orange-400/70 mb-3">Pagamentos</p>
+        <p class="mb-3">Pagamentos poderão ocorrer por:</p>
+        <div class="flex flex-wrap gap-2 mb-4">
+          <span class="text-xs text-gray-500 bg-white/5 px-2.5 py-1 rounded-lg">PIX</span>
+          <span class="text-xs text-gray-500 bg-white/5 px-2.5 py-1 rounded-lg">cartão</span>
+          <span class="text-xs text-gray-500 bg-white/5 px-2.5 py-1 rounded-lg">boleto</span>
+          <span class="text-xs text-gray-500 bg-white/5 px-2.5 py-1 rounded-lg">criptomoedas</span>
+          <span class="text-xs text-gray-500 bg-white/5 px-2.5 py-1 rounded-lg">plataformas terceiras</span>
+          <span class="text-xs text-gray-500 bg-white/5 px-2.5 py-1 rounded-lg">meios futuros</span>
+        </div>
+        <p>A liberação de acesso poderá depender da confirmação financeira.</p>
+      </div>
+      <div>
+        <p class="text-[10px] font-bold tracking-[2px] uppercase text-orange-400/70 mb-3">Pagamentos em criptomoedas</p>
+        <p class="mb-3">Pagamentos realizados através de criptomoedas ou ativos digitais observarão as seguintes condições:</p>
+        <p class="mb-3">A cotação de referência será a do momento da geração do link ou fatura de pagamento, com base na cotação da exchange ou índice definido pelo Responsável no ato da emissão.</p>
+        <p class="mb-3">O usuário reconhece que operações em blockchain poderão apresentar volatilidade, oscilações cambiais, taxas externas, atrasos operacionais e irreversibilidade.</p>
+        <p class="mb-3">Diferenças de valor decorrentes de oscilação entre o momento da geração da fatura e a confirmação em rede: variações de até 5% serão absorvidas por ambas as partes sem ajuste. Variações superiores a 5% poderão ser objeto de ajuste mediante acordo entre as partes.</p>
+        <p class="mb-3">Após confirmação em rede, a operação será considerada definitiva.</p>
+        <p>Em caso de envio para endereço incorreto informado pelo próprio usuário, utilização de rede incompatível ou erro operacional decorrente da execução realizada pelo usuário, a responsabilidade será exclusivamente deste.</p>
+      </div>
+      <div>
+        <p class="text-[10px] font-bold tracking-[2px] uppercase text-orange-400/70 mb-3">Cancelamento e reembolso</p>
+        <p class="mb-3">O usuário poderá exercer o direito de arrependimento em até 7 dias corridos após a contratação, conforme legislação aplicável, desde que não tenha utilizado sessões, consumido conteúdo exclusivo relevante, participado de encontros individuais ou recebido entregas personalizadas relacionadas ao nível contratado. Nesse período, o reembolso será integral.</p>
+        <p class="mb-3">Após os 7 dias, ou caso o usuário já tenha utilizado sessões, consumido conteúdo exclusivo relevante, participado de encontros individuais ou recebido entregas personalizadas, o cancelamento observará as seguintes condições: o reembolso será proporcional às sessões ou entregas ainda não realizadas, descontado o valor das sessões ou entregas já concluídas, calculado proporcionalmente ao valor total do nível contratado.</p>
+        <p>Solicitações de cancelamento deverão ser realizadas por escrito, através dos canais oficiais disponibilizados no site. O reembolso será processado em até 15 dias úteis após a formalização.</p>
+      </div>
+      <div>
+        <p class="text-[10px] font-bold tracking-[2px] uppercase text-orange-400/70 mb-3">Agendamentos e sessões</p>
+        <p class="mb-3">Sessões e encontros dependem de disponibilidade e serão agendados em comum acordo entre as partes.</p>
+        <ul class="space-y-3 mb-4">
+          <li class="flex items-start gap-2"><span class="text-gray-600 shrink-0 mt-0.5">•</span><span><span class="text-gray-300 font-medium">Reagendamento pelo usuário:</span> poderá ser solicitado com no mínimo 48 horas de antecedência, sem custo. Reagendamentos com menos de 48 horas poderão ser aceitos conforme disponibilidade, sem garantia.</span></li>
+          <li class="flex items-start gap-2"><span class="text-gray-600 shrink-0 mt-0.5">•</span><span><span class="text-gray-300 font-medium">Ausência sem aviso (no-show):</span> será considerada sessão realizada, podendo ser remarcada uma única vez mediante disponibilidade, a critério do Responsável.</span></li>
+          <li class="flex items-start gap-2"><span class="text-gray-600 shrink-0 mt-0.5">•</span><span><span class="text-gray-300 font-medium">Reagendamento pelo Responsável:</span> em caso de impossibilidade, a sessão será remarcada sem custo, em data mutuamente acordada.</span></li>
+          <li class="flex items-start gap-2"><span class="text-gray-600 shrink-0 mt-0.5">•</span><span><span class="text-gray-300 font-medium">Prazos de entrega:</span> relatórios, mapas e materiais personalizados serão entregues em até 15 dias úteis após a sessão ou etapa correspondente, salvo prazo diferente informado na contratação.</span></li>
+        </ul>
+      </div>
+      <div>
+        <p class="text-[10px] font-bold tracking-[2px] uppercase text-orange-400/70 mb-3">Limitação de responsabilidade</p>
+        <p class="mb-3">A ALF não garante:</p>
+        <div class="flex flex-wrap gap-2 mb-4">
+          <span class="text-xs text-gray-500 bg-white/5 px-2.5 py-1 rounded-lg">rentabilidade</span>
+          <span class="text-xs text-gray-500 bg-white/5 px-2.5 py-1 rounded-lg">renda passiva</span>
+          <span class="text-xs text-gray-500 bg-white/5 px-2.5 py-1 rounded-lg">independência financeira</span>
+          <span class="text-xs text-gray-500 bg-white/5 px-2.5 py-1 rounded-lg">liberdade financeira</span>
+          <span class="text-xs text-gray-500 bg-white/5 px-2.5 py-1 rounded-lg">crescimento patrimonial</span>
+          <span class="text-xs text-gray-500 bg-white/5 px-2.5 py-1 rounded-lg">valorização de ativos</span>
+          <span class="text-xs text-gray-500 bg-white/5 px-2.5 py-1 rounded-lg">evolução de score</span>
+          <span class="text-xs text-gray-500 bg-white/5 px-2.5 py-1 rounded-lg">redução de custos</span>
+          <span class="text-xs text-gray-500 bg-white/5 px-2.5 py-1 rounded-lg">resultados empresariais</span>
+          <span class="text-xs text-gray-500 bg-white/5 px-2.5 py-1 rounded-lg">resultados familiares</span>
+          <span class="text-xs text-gray-500 bg-white/5 px-2.5 py-1 rounded-lg">mobilidade internacional</span>
+          <span class="text-xs text-gray-500 bg-white/5 px-2.5 py-1 rounded-lg">resultados específicos de qualquer natureza</span>
+        </div>
+        <p class="mb-3">Resultados dependem de fatores individuais, familiares, econômicos, comportamentais, operacionais e externos imprevisíveis. Toda decisão permanece sob responsabilidade exclusiva do usuário.</p>
+        <p class="mb-3">Em qualquer hipótese, a responsabilidade do Responsável estará limitada ao valor efetivamente pago pelo usuário pelo nível ou serviço contratado. Para ferramentas gratuitas (IAL Score, Masterclass e conteúdos gratuitos), não haverá responsabilidade patrimonial.</p>
+        <p class="mb-3">Em nenhuma hipótese o Responsável responderá por:</p>
+        <ul class="space-y-1.5 mb-4">
+          <li class="flex items-start gap-2"><span class="text-gray-600 shrink-0 mt-0.5">•</span>danos indiretos</li>
+          <li class="flex items-start gap-2"><span class="text-gray-600 shrink-0 mt-0.5">•</span>lucros cessantes</li>
+          <li class="flex items-start gap-2"><span class="text-gray-600 shrink-0 mt-0.5">•</span>perda de oportunidade</li>
+          <li class="flex items-start gap-2"><span class="text-gray-600 shrink-0 mt-0.5">•</span>danos presumidos</li>
+          <li class="flex items-start gap-2"><span class="text-gray-600 shrink-0 mt-0.5">•</span>expectativas frustradas</li>
+          <li class="flex items-start gap-2"><span class="text-gray-600 shrink-0 mt-0.5">•</span>consequências decorrentes de decisões tomadas pelo usuário com base nas informações, materiais ou metodologia ALF</li>
+        </ul>
+      </div>
+      <div>
+        <p class="text-[10px] font-bold tracking-[2px] uppercase text-orange-400/70 mb-3">Expectativas e interpretação</p>
+        <p class="mb-3">Resultados, estudos de caso, mapas, estruturas, níveis, progressões, exemplos, pontuações, evoluções ou narrativas possuem finalidade exclusivamente ilustrativa e metodológica.</p>
+        <p class="mb-3">Expressões utilizadas pela metodologia incluindo <span class="text-gray-300 font-medium">evolução</span>, <span class="text-gray-300 font-medium">proteção</span>, <span class="text-gray-300 font-medium">crescimento</span>, <span class="text-gray-300 font-medium">expansão</span>, <span class="text-gray-300 font-medium">estrutura</span>, <span class="text-gray-300 font-medium">avanço</span> e <span class="text-gray-300 font-medium">tratamento</span> não constituem promessa, garantia ou previsão futura.</p>
+        <p>A interpretação e aplicação das informações permanece sob responsabilidade exclusiva do usuário.</p>
+      </div>
+      <div>
+        <p class="text-[10px] font-bold tracking-[2px] uppercase text-orange-400/70 mb-3">Plataformas externas</p>
+        <p>A ALF poderá utilizar plataformas, serviços e ferramentas de terceiros. O Responsável seleciona parceiros que adotem padrões razoáveis de segurança e funcionamento, mas não garante nem responde por interrupções, indisponibilidades, falhas externas, alterações de políticas ou limitações operacionais de terceiros que estejam fora de seu controle direto.</p>
+      </div>
+      <div>
+        <p class="text-[10px] font-bold tracking-[2px] uppercase text-orange-400/70 mb-3">Propriedade intelectual</p>
+        <p class="mb-3">ALF, IAL Score, Arquitetura de Liberdade Familiar, metodologia, textos, gráficos, vídeos, documentos, estruturas, materiais e demais conteúdos relacionados encontram-se protegidos por direitos autorais e propriedade intelectual, pertencendo exclusivamente a P.E.N. Bortolotti ou a seus respectivos licenciadores.</p>
+        <p>É proibida a reprodução, gravação, compartilhamento, redistribuição, engenharia reversa, revenda ou utilização comercial, total ou parcial, sem autorização prévia e expressa. A violação poderá resultar em medidas judiciais e extrajudiciais cabíveis.</p>
+      </div>
+      <div>
+        <p class="text-[10px] font-bold tracking-[2px] uppercase text-orange-400/70 mb-3">Capacidade legal</p>
+        <p>O uso da ALF destina-se exclusivamente a usuários maiores de 18 anos. Ao utilizar qualquer ferramenta da ALF, o usuário declara possuir capacidade legal para aceitação destes Termos.</p>
+      </div>
+      <div>
+        <p class="text-[10px] font-bold tracking-[2px] uppercase text-orange-400/70 mb-3">Relação entre as partes</p>
+        <p class="mb-3">A utilização da ALF não cria: sociedade, representação, obrigação fiduciária, vínculo profissional, consultoria contínua ou relação individual permanente.</p>
+        <p>Quando houver contratação formal de nível específico, a relação será regida por instrumento contratual próprio, com termos, entregas, prazos e condições definidos entre as partes.</p>
+      </div>
+      <div>
+        <p class="text-[10px] font-bold tracking-[2px] uppercase text-orange-400/70 mb-3">Eventos fora do controle</p>
+        <p>O Responsável não será responsabilizado por atrasos, interrupções ou impossibilidade de cumprimento decorrentes de eventos fora de seu controle razoável, incluindo desastres naturais, pandemias, falhas técnicas de terceiros, instabilidades políticas, interrupções de serviços de internet, decisões governamentais ou qualquer outra circunstância imprevisível ou inevitável. Nesses casos, prazos serão prorrogados pelo período equivalente ao da impossibilidade.</p>
+      </div>
+      <div>
+        <p class="text-[10px] font-bold tracking-[2px] uppercase text-orange-400/70 mb-3">Resolução de conflitos</p>
+        <p class="mb-3">As partes se comprometem a buscar resolução amigável de eventuais divergências através de negociação direta pelo prazo mínimo de 30 dias corridos.</p>
+        <p class="mb-3">Persistindo a divergência, fica eleito o foro do domicílio do usuário, conforme legislação de proteção ao consumidor aplicável.</p>
+        <p>A tentativa de solução amigável não impede a adoção de medidas urgentes, cautelares ou o exercício de direitos previstos em legislação aplicável.</p>
+      </div>
+      <div>
+        <p class="text-[10px] font-bold tracking-[2px] uppercase text-orange-400/70 mb-3">Alterações</p>
+        <p class="mb-3">A ALF poderá modificar funcionalidades, recursos e estes Termos a qualquer momento. A continuidade do uso representa concordância com as alterações.</p>
+        <p>Alterações nestes Termos não reduzirão entregas essenciais expressamente previstas em instrumento específico já formalizado entre as partes.</p>
+      </div>
+      <div>
+        <p class="text-[10px] font-bold tracking-[2px] uppercase text-orange-400/70 mb-3">Aceite</p>
+        <p class="mb-3">Ao utilizar o site, responder o IAL Score, participar da Masterclass, acessar conteúdos, criar cadastro ou adquirir qualquer recurso relacionado à ALF, o usuário declara concordância integral com estes Termos.</p>
+        <p class="mb-3">O aceite poderá ocorrer mediante:</p>
+        <div class="flex flex-wrap gap-2 mb-4">
+          <span class="text-xs text-gray-500 bg-white/5 px-2.5 py-1 rounded-lg">cadastro</span>
+          <span class="text-xs text-gray-500 bg-white/5 px-2.5 py-1 rounded-lg">checkbox eletrônico</span>
+          <span class="text-xs text-gray-500 bg-white/5 px-2.5 py-1 rounded-lg">contratação</span>
+          <span class="text-xs text-gray-500 bg-white/5 px-2.5 py-1 rounded-lg">utilização das ferramentas</span>
+          <span class="text-xs text-gray-500 bg-white/5 px-2.5 py-1 rounded-lg">acesso continuado</span>
+        </div>
+        <p>A utilização da ALF após o aceite representa concordância integral com as condições vigentes.</p>
+      </div>
+    </div>
+    <div class="sticky bottom-0 bg-gradient-to-t from-[#0C0C14] via-[#0C0C14] to-transparent px-8 pb-8 pt-14">
+      <button onclick="closeTerms()" class="group inline-flex overflow-hidden transition-all duration-300 hover:scale-[1.01] hover:shadow-[0_0_40px_-10px_rgba(249,115,22,0.5)] w-full h-[52px] rounded-full relative items-center justify-center" style="position:relative;">
         <div class="absolute inset-0 -z-20 rounded-full overflow-hidden p-[1px]">
           <div class="absolute inset-[-100%] bg-[conic-gradient(from_0deg,transparent_0_300deg,#f97316_360deg)]" style="animation:beam-spin 3s linear infinite;"></div>
           <div class="absolute inset-[1px] rounded-full bg-[#050505]"></div>
