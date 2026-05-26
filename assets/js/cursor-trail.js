@@ -45,13 +45,13 @@ document.addEventListener('DOMContentLoaded', () => {
       `width:${baseSize}px;`,
       `height:${baseSize}px;`,
       'border-radius:9999px;',
-      'transform:translate(-50%,-50%);',
+      'transform:translate3d(-50%,-50%,0);',
       // Cor: dourado claro com opacidade variável — mais próximo = mais brilhante
       `background:rgba(252,211,77,${Math.min(0.95, 0.65 + 0.02 * (SEGMENTS - i))});`,
       'box-shadow:0 0 0 2px rgba(180,120,10,0.08),0 0 18px rgba(245,158,11,0.25),inset 0 0 6px rgba(255,255,255,0.06);',
       `opacity:${opacity};`,
       'transition:opacity .2s;',
-      'will-change:left,top;'
+      'will-change:transform;'
     ].join('');
     document.body.appendChild(el);
     return el;
@@ -164,10 +164,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Feedback de clique: anel comprime levemente
   window.addEventListener('mousedown', () => {
-    ring.style.transform = 'translate(-50%, -50%) scale(0.88)';
+    ring.style.transform = 'translate3d(-50%, -50%, 0) scale(0.88)';
   });
   window.addEventListener('mouseup', () => {
-    ring.style.transform = 'translate(-50%, -50%) scale(1)';
+    ring.style.transform = 'translate3d(-50%, -50%, 0) scale(1)';
   });
 
   // Pausa a animação quando a aba fica em segundo plano (economiza CPU)

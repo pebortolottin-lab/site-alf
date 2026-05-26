@@ -25,7 +25,8 @@
   height: 28px;
   border: 1.5px solid rgba(251, 191, 36, 0.85);
   border-radius: 9999px;
-  transform: translate(-50%, -50%) scale(1);
+  transform: translate3d(-50%, -50%, 0) scale(1);
+  will-change: transform;
   box-shadow:
     rgba(180, 120, 10, 0.15) 0 0 0 2px,
     rgba(245, 158, 11, 0.25) 0 0 30px;
@@ -53,7 +54,8 @@
   height: 6px;
   background: rgba(252, 211, 77, 0.95);
   border-radius: 9999px;
-  transform: translate(-50%, -50%);
+  transform: translate3d(-50%, -50%, 0);
+  will-change: transform;
   transition: transform .06s, opacity .2s;
   box-shadow: rgba(252, 211, 77, 0.6) 0 0 10px;
   opacity: 0.9;
