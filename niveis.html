@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html class="dark" lang="pt-BR">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Níveis de Arquitetura — ALF</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin=""/>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="assets/css/base.css"/>
+<link rel="stylesheet" href="assets/css/fonts.css"/>
+<link rel="stylesheet" href="assets/css/animations.css"/>
+<link rel="stylesheet" href="assets/css/components.css"/>
+<link rel="stylesheet" href="assets/css/cursor-trail.css"/>
+<script src="assets/resource_3fa48481346f.es"></script>
+<script src="assets/lucide_latest_2eebd0ebe8c2.es"></script>
+</head>
+<body class="antialiased overflow-x-hidden selection:bg-orange-500 selection:text-white text-white bg-[#000000] font-sans" style="font-family:'Inter',sans-serif;">
+<div id="cursor-ring"></div>
+<div id="cursor-dot"></div>
+<!-- background: mesmo raio dourado da página principal -->
+<div class="aura-background-component -z-10 w-full top-0 absolute h-[900px] saturate-150 brightness-110" data-alpha-mask="50" style="mask-image:linear-gradient(transparent,black 0%,black 55%,transparent);transform:translateX(-25%);">
+<div class="aura-background-component top-0 w-full -z-10 absolute h-full">
+<div class="absolute w-full h-full left-0 top-0 -z-10" data-us-project="AhqzKk9mZE0EnlENMQDi"></div>
+</div>
+</div>
+<!-- nav -->
+<nav class="flex z-50 fixed w-full pt-6 pr-4 pl-4 top-0 right-0 left-0 items-center justify-center">
+<div class="flex scroll-item scroll-fade-up bg-black/90 w-full max-w-5xl border-white/10 border rounded-full pt-1 pr-2 pb-1 pl-5 relative shadow-2xl backdrop-blur-md items-center justify-between">
+<a class="text-xl font-semibold tracking-tight text-white font-oswald" href="index.html">ALF</a>
+<div class="hidden md:flex -translate-x-1/2 absolute left-1/2 gap-x-4 items-center">
+<a class="text-[13px] hover:text-gray-300 transition-colors font-medium text-white/80 tracking-wide whitespace-nowrap" href="index.html#ial-score-section">IAL Score</a>
+<a class="text-[13px] hover:text-gray-300 transition-colors font-medium text-white/80 tracking-wide whitespace-nowrap" href="index.html#masterclass">Masterclass</a>
+<a class="text-[13px] hover:text-gray-300 transition-colors font-medium text-white/80 tracking-wide whitespace-nowrap" href="index.html#casos">Casos</a>
+<a class="text-[13px] font-medium text-orange-400 tracking-wide whitespace-nowrap" href="niveis.html">Níveis de Arquitetura</a>
+<a class="text-[13px] hover:text-gray-300 transition-colors font-medium text-white/80 tracking-wide whitespace-nowrap" href="index.html#quem">Quem Somos</a>
+</div>
+<div class="flex gap-x-3 items-center">
+<button class="md:hidden p-2 text-white" id="hamburger-btn" onclick="toggleMobileMenu()"><i data-lucide="menu" class="w-6 h-6" id="hamburger-icon"></i></button>
+<a class="hidden md:flex group transition-all duration-300 hover:bg-orange-500/10 hover:border-orange-400 hover:shadow-[0_0_35px_rgba(249,115,22,0.6),inset_0_0_20px_rgba(249,115,22,0.4)] hover:scale-[1.02] items-center justify-center bg-black/60 border border-orange-500 rounded-full pt-2.5 pr-6 pb-2.5 pl-6 shadow-[0_0_20px_rgba(249,115,22,0.5),inset_0_0_10px_rgba(249,115,22,0.2)]" href="quiz-ial.html" target="_blank">
+<span class="uppercase text-[13px] font-semibold text-white/90 tracking-tight z-10 relative">FAZER SCORE</span>
+</a>
+</div>
+</div>
+</nav>
+<!-- mobile-menu -->
+<div id="mobile-menu" class="fixed inset-0 z-40 pointer-events-none md:hidden" style="opacity:0;transition:opacity .3s ease;">
+<div class="absolute inset-0 bg-black/80 backdrop-blur-sm" onclick="closeMobileMenu()"></div>
+<div id="mobile-menu-panel" class="absolute top-0 left-0 right-0 bg-[#080808] border-b border-white/10 pt-24 pb-8 px-6 flex flex-col gap-1" style="transform:translateY(-100%);transition:transform .4s cubic-bezier(.22,1,.36,1);">
+<a class="text-base font-medium text-white/80 hover:text-white transition-colors py-3 border-b border-white/5" href="index.html#ial-score-section" onclick="closeMobileMenu()">IAL Score</a>
+<a class="text-base font-medium text-white/80 hover:text-white transition-colors py-3 border-b border-white/5" href="index.html#masterclass" onclick="closeMobileMenu()">Masterclass</a>
+<a class="text-base font-medium text-white/80 hover:text-white transition-colors py-3 border-b border-white/5" href="index.html#casos" onclick="closeMobileMenu()">Casos</a>
+<a class="text-base font-medium text-orange-400 py-3 border-b border-white/5" href="niveis.html" onclick="closeMobileMenu()">Níveis de Arquitetura</a>
+<a class="text-base font-medium text-white/80 hover:text-white transition-colors py-3 border-b border-white/5" href="index.html#quem" onclick="closeMobileMenu()">Quem Somos</a>
+<a href="quiz-ial.html" target="_blank" onclick="closeMobileMenu()" class="flex items-center justify-center mt-4 bg-black/60 border border-orange-500 rounded-full py-3 px-6 shadow-[0_0_20px_rgba(249,115,22,0.5)] text-sm font-semibold text-white/90 tracking-tight">FAZER SCORE</a>
+</div>
+</div>
+
+<!-- hero -->
+<main class="flex flex-col z-10 pt-36 md:pt-44 pr-6 pl-6 pb-20 relative items-center justify-center max-w-4xl mx-auto text-center">
+<div class="flex gap-3 items-center justify-center mb-8 scroll-item scroll-fade-up">
+<span class="flex items-center justify-center w-7 h-7 rounded-lg bg-orange-500/10 text-[11px] font-mono font-medium text-orange-400 border border-orange-500/20 shadow-[0_0_10px_rgba(249,115,22,0.2)]">05</span>
+<span class="text-sm font-medium tracking-widest uppercase text-gray-500">Níveis de Arquitetura</span>
+</div>
+<h1 class="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-oswald font-light tracking-tight leading-[1.1] scroll-item scroll-blur-in delay-100">
+A Arquitetura funciona<br/><span class="text-orange-500">em níveis.</span>
+</h1>
+<p class="text-xl md:text-2xl text-gray-400 font-light mt-8 leading-relaxed scroll-item scroll-fade-up delay-200">
+Você não recebe ordens. Você recebe visão.<br class="hidden md:block"/> As decisões são sempre suas.
+</p>
+<div class="mt-10 scroll-item scroll-fade-up delay-300">
+<a href="quiz-ial.html" target="_blank" class="inline-flex items-center gap-3 group hover:bg-orange-500/10 hover:border-orange-400 hover:shadow-[0_0_35px_rgba(249,115,22,0.6),inset_0_0_20px_rgba(249,115,22,0.4)] hover:scale-[1.02] transition-all duration-300 bg-black/60 border border-orange-500 rounded-full py-3.5 px-8 shadow-[0_0_20px_rgba(249,115,22,0.5),inset_0_0_10px_rgba(249,115,22,0.2)]">
+<i data-lucide="zap" class="w-4 h-4 text-orange-400"></i>
+<span class="text-sm font-medium text-white/90">Ainda não fez o Score? <span class="text-orange-400 font-semibold">Descubra seu IAL gratuitamente.</span></span>
+</a>
+</div>
+</main>
+
+<!-- política de valorização -->
+<section class="z-10 w-full max-w-3xl mx-auto px-6 mb-20">
+<div class="rounded-2xl bg-[#050508] border border-orange-500/20 p-8 md:p-10 relative overflow-hidden shadow-[0_0_40px_rgba(249,115,22,0.05)] scroll-item scroll-blur-in">
+<div class="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_top,rgba(249,115,22,0.05),transparent_70%)]"></div>
+<div class="relative z-10 flex flex-col gap-4">
+<div class="flex items-center gap-3">
+<i data-lucide="shield-check" class="w-5 h-5 text-orange-400 shrink-0"></i>
+<h2 class="text-lg font-semibold text-white tracking-tight">Política de Valorização da Confiança</h2>
+</div>
+<div class="h-px bg-orange-500/20"></div>
+<ul class="space-y-3 text-gray-400 text-[15px] leading-relaxed">
+<li class="flex gap-3"><i data-lucide="check" class="w-4 h-4 text-orange-400 shrink-0 mt-0.5"></i><span>Se optar diretamente por um nível avançado, os anteriores já estão incluídos.</span></li>
+<li class="flex gap-3"><i data-lucide="check" class="w-4 h-4 text-orange-400 shrink-0 mt-0.5"></i><span>Quem confia desde o início, paga menos.</span></li>
+<li class="flex gap-3"><i data-lucide="check" class="w-4 h-4 text-orange-400 shrink-0 mt-0.5"></i><span>Avançou em até 30 dias? <strong class="text-white">100% de crédito.</strong></span></li>
+<li class="flex gap-3"><i data-lucide="check" class="w-4 h-4 text-orange-400 shrink-0 mt-0.5"></i><span>Após 30 dias, <strong class="text-white">50% de crédito.</strong></span></li>
+</ul>
+</div>
+</div>
+</section>
+
+<!-- níveis -->
+<section id="niveis" class="z-10 w-full max-w-7xl mx-auto px-6 pb-32">
+<div class="flex flex-col gap-8">
+
+<!-- nível 1 -->
+<div class="group rounded-3xl bg-[#050508] border border-white/10 hover:border-white/20 transition-colors p-8 md:p-10 relative overflow-hidden scroll-item scroll-fade-up">
+<div class="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_top_left,rgba(255,255,255,0.02),transparent_60%)]"></div>
+<div class="relative z-10 flex flex-col lg:flex-row gap-8 lg:gap-16">
+<div class="lg:w-2/3 flex flex-col gap-5">
+<div class="flex flex-wrap items-center gap-3">
+<span class="flex items-center justify-center w-8 h-8 rounded-lg bg-orange-500/10 text-[12px] font-mono font-bold text-orange-400 border border-orange-500/20">01</span>
+<h2 class="text-2xl md:text-3xl font-oswald font-light tracking-tight text-white">NÍVEL 1: <span class="text-orange-400">CLAREZA</span></h2>
+</div>
+<p class="text-gray-400 text-[15px] leading-relaxed">Descobrir onde sua liberdade está vazando. Enxergar seu patrimônio inteiro pela primeira vez. Identificar vulnerabilidades invisíveis. Receber um plano claro para caminhar para 60 a 70 pontos.</p>
+<div>
+<p class="text-xs font-medium text-gray-600 uppercase tracking-widest mb-3">Inclui</p>
+<div class="flex flex-wrap gap-2">
+<span class="text-xs bg-white/5 border border-white/10 rounded-full px-3 py-1 text-gray-400">Score IAL</span>
+<span class="text-xs bg-white/5 border border-white/10 rounded-full px-3 py-1 text-gray-400">Mapa Patrimonial</span>
+<span class="text-xs bg-white/5 border border-white/10 rounded-full px-3 py-1 text-gray-400">Plano de Tratamento</span>
+<span class="text-xs bg-white/5 border border-white/10 rounded-full px-3 py-1 text-gray-400">Imóveis</span>
+<span class="text-xs bg-white/5 border border-white/10 rounded-full px-3 py-1 text-gray-400">Renda Inteligente</span>
+<span class="text-xs bg-white/5 border border-white/10 rounded-full px-3 py-1 text-gray-400">Cripto</span>
+<span class="text-xs bg-white/5 border border-white/10 rounded-full px-3 py-1 text-gray-400">Família</span>
+</div>
+</div>
+<p class="text-sm text-gray-600 flex items-center gap-2"><i data-lucide="video" class="w-3.5 h-3.5"></i>2 sessões online + relatório em PDF</p>
+</div>
+<div class="lg:w-1/3 flex flex-col justify-between gap-6 lg:items-end">
+<div class="lg:text-right">
+<p class="text-xs text-gray-600 uppercase tracking-widest mb-1">60 a 70 pontos IAL</p>
+<p class="text-4xl font-oswald font-light text-white">R$ 8.000</p>
+</div>
+<button onclick="openNivel(1)" class="hover:bg-orange-500/10 hover:border-orange-400 hover:shadow-[0_0_35px_rgba(249,115,22,0.6),inset_0_0_20px_rgba(249,115,22,0.4)] hover:scale-[1.02] transition-all duration-300 flex group/btn text-sm font-medium text-white bg-black/60 w-full border border-orange-500 rounded-full py-3.5 px-6 shadow-[0_0_20px_rgba(249,115,22,0.5),inset_0_0_10px_rgba(249,115,22,0.2)] gap-x-2 items-center justify-center">
+<i data-lucide="play-circle" class="w-4 h-4 text-orange-400"></i>
+Ver detalhes completos do que muda na sua vida
+</button>
+</div>
+</div>
+</div>
+
+<!-- nível 2 -->
+<div class="group rounded-3xl bg-[#050508] border border-orange-500/30 hover:border-orange-500/60 transition-colors p-8 md:p-10 relative overflow-hidden scroll-item scroll-fade-up delay-100 shadow-[0_0_60px_rgba(249,115,22,0.08)]">
+<div class="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_top,rgba(249,115,22,0.05),transparent_60%)]"></div>
+<div class="absolute top-6 right-6 z-10">
+<span class="text-[11px] font-semibold uppercase tracking-widest bg-orange-500 text-white rounded-full px-3 py-1">Mais escolhido</span>
+</div>
+<div class="relative z-10 flex flex-col lg:flex-row gap-8 lg:gap-16">
+<div class="lg:w-2/3 flex flex-col gap-5">
+<div class="flex flex-wrap items-center gap-3">
+<span class="flex items-center justify-center w-8 h-8 rounded-lg bg-orange-500/20 text-[12px] font-mono font-bold text-orange-400 border border-orange-500/30">02</span>
+<h2 class="text-2xl md:text-3xl font-oswald font-light tracking-tight text-white">NÍVEL 2: <span class="text-orange-400">ESTRUTURA</span></h2>
+</div>
+<p class="text-gray-400 text-[15px] leading-relaxed">Reduzir dependência operacional. Construir patrimônio mais previsível. Começar a pensar além do CPF. Transformar conhecimento em opcionalidade.</p>
+<div>
+<p class="text-xs font-medium text-gray-600 uppercase tracking-widest mb-3">Inclui tudo do Nível 1 +</p>
+<div class="flex flex-wrap gap-2">
+<span class="text-xs bg-orange-500/10 border border-orange-500/20 rounded-full px-3 py-1 text-orange-300">Bitcoin e Cripto</span>
+<span class="text-xs bg-orange-500/10 border border-orange-500/20 rounded-full px-3 py-1 text-orange-300">Banco Internacional</span>
+<span class="text-xs bg-orange-500/10 border border-orange-500/20 rounded-full px-3 py-1 text-orange-300">Imóveis como Patrimônio Ativo</span>
+<span class="text-xs bg-orange-500/10 border border-orange-500/20 rounded-full px-3 py-1 text-orange-300">Casais Inteligentes</span>
+<span class="text-xs bg-orange-500/10 border border-orange-500/20 rounded-full px-3 py-1 text-orange-300">Autoridade</span>
+</div>
+</div>
+<p class="text-sm text-gray-600 flex items-center gap-2"><i data-lucide="video" class="w-3.5 h-3.5"></i>2 sessões online + relatório completo + material de apoio</p>
+</div>
+<div class="lg:w-1/3 flex flex-col justify-between gap-6 lg:items-end">
+<div class="lg:text-right">
+<p class="text-xs text-gray-600 uppercase tracking-widest mb-1">71 a 80 pontos IAL</p>
+<p class="text-4xl font-oswald font-light text-white">R$ 25.000</p>
+<p class="text-xs text-gray-600 mt-1">inclui Nível 1</p>
+</div>
+<button onclick="openNivel(2)" class="hover:bg-orange-500/10 hover:border-orange-400 hover:shadow-[0_0_35px_rgba(249,115,22,0.6),inset_0_0_20px_rgba(249,115,22,0.4)] hover:scale-[1.02] transition-all duration-300 flex group/btn text-sm font-medium text-white bg-black/60 w-full border border-orange-500 rounded-full py-3.5 px-6 shadow-[0_0_20px_rgba(249,115,22,0.5),inset_0_0_10px_rgba(249,115,22,0.2)] gap-x-2 items-center justify-center">
+<i data-lucide="play-circle" class="w-4 h-4 text-orange-400"></i>
+Ver detalhes completos do que muda na sua vida
+</button>
+</div>
+</div>
+</div>
+
+<!-- nível 3 -->
+<div class="group rounded-3xl bg-[#050508] border border-white/10 hover:border-white/20 transition-colors p-8 md:p-10 relative overflow-hidden scroll-item scroll-fade-up delay-200">
+<div class="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,rgba(255,255,255,0.02),transparent_60%)]"></div>
+<div class="relative z-10 flex flex-col lg:flex-row gap-8 lg:gap-16">
+<div class="lg:w-2/3 flex flex-col gap-5">
+<div class="flex flex-wrap items-center gap-3">
+<span class="flex items-center justify-center w-8 h-8 rounded-lg bg-orange-500/10 text-[12px] font-mono font-bold text-orange-400 border border-orange-500/20">03</span>
+<h2 class="text-2xl md:text-3xl font-oswald font-light tracking-tight text-white">NÍVEL 3: <span class="text-orange-400">MUNDO</span></h2>
+</div>
+<p class="text-gray-400 text-[15px] leading-relaxed">Parar de pensar apenas Brasil. Construir mobilidade real. Entender estruturas globais. Reduzir dependência de uma única jurisdição.</p>
+<div>
+<p class="text-xs font-medium text-gray-600 uppercase tracking-widest mb-3">Inclui tudo dos Níveis 1 e 2 +</p>
+<div class="flex flex-wrap gap-2">
+<span class="text-xs bg-white/5 border border-white/10 rounded-full px-3 py-1 text-gray-400">Empresa no Exterior</span>
+<span class="text-xs bg-white/5 border border-white/10 rounded-full px-3 py-1 text-gray-400">Redução Tributária</span>
+<span class="text-xs bg-white/5 border border-white/10 rounded-full px-3 py-1 text-gray-400">Teoria das Bandeiras</span>
+<span class="text-xs bg-white/5 border border-white/10 rounded-full px-3 py-1 text-gray-400">IBKR</span>
+<span class="text-xs bg-white/5 border border-white/10 rounded-full px-3 py-1 text-gray-400">Renda em Dólar com Cripto</span>
+<span class="text-xs bg-white/5 border border-white/10 rounded-full px-3 py-1 text-gray-400">Autoridade e Expansão</span>
+<span class="text-xs bg-white/5 border border-white/10 rounded-full px-3 py-1 text-gray-400">YouTube e Livros</span>
+</div>
+</div>
+<p class="text-sm text-gray-600 flex items-center gap-2"><i data-lucide="video" class="w-3.5 h-3.5"></i>3 sessões online + relatório internacional + e-book "A Tríade do Guerreiro"</p>
+</div>
+<div class="lg:w-1/3 flex flex-col justify-between gap-6 lg:items-end">
+<div class="lg:text-right">
+<p class="text-xs text-gray-600 uppercase tracking-widest mb-1">81 a 95 pontos IAL</p>
+<p class="text-4xl font-oswald font-light text-white">R$ 50.000</p>
+<p class="text-xs text-gray-600 mt-1">inclui Níveis 1 e 2</p>
+</div>
+<button onclick="openNivel(3)" class="hover:bg-orange-500/10 hover:border-orange-400 hover:shadow-[0_0_35px_rgba(249,115,22,0.6),inset_0_0_20px_rgba(249,115,22,0.4)] hover:scale-[1.02] transition-all duration-300 flex group/btn text-sm font-medium text-white bg-black/60 w-full border border-orange-500 rounded-full py-3.5 px-6 shadow-[0_0_20px_rgba(249,115,22,0.5),inset_0_0_10px_rgba(249,115,22,0.2)] gap-x-2 items-center justify-center">
+<i data-lucide="play-circle" class="w-4 h-4 text-orange-400"></i>
+Ver detalhes completos do que muda na sua vida
+</button>
+</div>
+</div>
+</div>
+
+<!-- nível 4 -->
+<div class="group rounded-3xl bg-[#050508] border border-white/10 hover:border-white/20 transition-colors p-8 md:p-10 relative overflow-hidden scroll-item scroll-fade-up delay-300">
+<div class="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_bottom_right,rgba(255,255,255,0.02),transparent_60%)]"></div>
+<div class="relative z-10 flex flex-col lg:flex-row gap-8 lg:gap-16">
+<div class="lg:w-2/3 flex flex-col gap-5">
+<div class="flex flex-wrap items-center gap-3">
+<span class="flex items-center justify-center w-8 h-8 rounded-lg bg-orange-500/10 text-[12px] font-mono font-bold text-orange-400 border border-orange-500/20">04</span>
+<h2 class="text-2xl md:text-3xl font-oswald font-light tracking-tight text-white">NÍVEL 4: <span class="text-orange-400">LIBERDADE ASSISTIDA</span></h2>
+</div>
+<p class="text-gray-400 text-[15px] leading-relaxed">Arquitetura completa com acompanhamento contínuo. Ter alguém caminhando ao lado. Planejar os próximos 5, 10, 20 anos com clareza.</p>
+<div>
+<p class="text-xs font-medium text-gray-600 uppercase tracking-widest mb-3">Inclui tudo dos Níveis 1, 2 e 3 +</p>
+<div class="flex flex-wrap gap-2">
+<span class="text-xs bg-white/5 border border-white/10 rounded-full px-3 py-1 text-gray-400">Encontro Mensal</span>
+<span class="text-xs bg-white/5 border border-white/10 rounded-full px-3 py-1 text-gray-400">Melhor Lugar para Viver</span>
+<span class="text-xs bg-white/5 border border-white/10 rounded-full px-3 py-1 text-gray-400">EUA: Sonho Americano?</span>
+<span class="text-xs bg-white/5 border border-white/10 rounded-full px-3 py-1 text-gray-400">Estrutura Empresarial Global</span>
+<span class="text-xs bg-white/5 border border-white/10 rounded-full px-3 py-1 text-gray-400">Planejamento de Longo Prazo</span>
+</div>
+</div>
+<p class="text-sm text-gray-600 flex items-center gap-2"><i data-lucide="calendar" class="w-3.5 h-3.5"></i>12 meses de acompanhamento + relatório completo + todos os livros publicados</p>
+</div>
+<div class="lg:w-1/3 flex flex-col justify-between gap-6 lg:items-end">
+<div class="lg:text-right">
+<p class="text-xs text-gray-600 uppercase tracking-widest mb-1">95+ pontos IAL</p>
+<p class="text-4xl font-oswald font-light text-white">R$ 80.000</p>
+<p class="text-xs text-gray-600 mt-1">inclui Níveis 1, 2 e 3</p>
+</div>
+<button onclick="openNivel(4)" class="hover:bg-orange-500/10 hover:border-orange-400 hover:shadow-[0_0_35px_rgba(249,115,22,0.6),inset_0_0_20px_rgba(249,115,22,0.4)] hover:scale-[1.02] transition-all duration-300 flex group/btn text-sm font-medium text-white bg-black/60 w-full border border-orange-500 rounded-full py-3.5 px-6 shadow-[0_0_20px_rgba(249,115,22,0.5),inset_0_0_10px_rgba(249,115,22,0.2)] gap-x-2 items-center justify-center">
+<i data-lucide="play-circle" class="w-4 h-4 text-orange-400"></i>
+Ver detalhes completos do que muda na sua vida
+</button>
+</div>
+</div>
+</div>
+
+</div>
+</section>
+
+<!-- footer -->
+<footer class="border-t border-white/10 bg-[#050505] relative z-10 pt-16 pb-8">
+<div class="w-full max-w-7xl mx-auto px-6">
+<div class="flex flex-col md:flex-row justify-between gap-12 mb-12">
+<div class="max-w-xs">
+<a class="text-2xl font-oswald font-semibold text-white tracking-tight" href="index.html">ALF</a>
+<p class="text-gray-500 text-sm leading-relaxed mt-4">Arquitetura de Liberdade Familiar: uma metodologia para ajudar famílias e profissionais de alta renda a construir estruturas mais inteligentes.</p>
+</div>
+<div class="grid grid-cols-2 md:grid-cols-3 gap-10 text-sm">
+<div>
+<h4 class="text-white font-medium mb-4">Diagnóstico</h4>
+<ul class="space-y-2 text-gray-500">
+<li><a class="hover:text-orange-400 transition-colors" href="quiz-ial.html" target="_blank">Fazer IAL Score</a></li>
+<li><a class="hover:text-orange-400 transition-colors" href="#">Como funciona</a></li>
+<li><a class="hover:text-orange-400 transition-colors" href="#">Os 10 pilares</a></li>
+<li><a class="hover:text-orange-400 transition-colors" href="niveis.html">Níveis de Arquitetura</a></li>
+</ul>
+</div>
+<div>
+<h4 class="text-white font-medium mb-4">Conteúdo</h4>
+<ul class="space-y-2 text-gray-500">
+<li><a class="hover:text-orange-400 transition-colors" href="index.html#masterclass">Masterclass</a></li>
+<li><a class="hover:text-orange-400 transition-colors" href="index.html#casos">Casos ALF</a></li>
+<li><a class="hover:text-orange-400 transition-colors" href="#">Blog</a></li>
+</ul>
+</div>
+<div>
+<h4 class="text-white font-medium mb-4">Legal</h4>
+<ul class="space-y-2 text-gray-500">
+<li><a class="hover:text-orange-400 transition-colors" href="index.html">Privacidade</a></li>
+<li><a class="hover:text-orange-400 transition-colors" href="index.html">Termos</a></li>
+</ul>
+</div>
+</div>
+</div>
+<div class="border-t border-white/10 pt-6 flex flex-col md:flex-row items-center justify-between gap-4">
+<p class="text-xs text-gray-600">© 2025 ALF — Arquitetura de Liberdade Familiar. Todos os direitos reservados.</p>
+<div class="flex items-center gap-2">
+<div class="w-2 h-2 rounded-full bg-amber-500 animate-pulse"></div>
+<span class="text-xs text-gray-500">O objetivo sempre foi ter opções.</span>
+</div>
+</div>
+</div>
+</footer>
+
+<!-- js -->
+<script src="assets/js/unicorn-studio.js"></script>
+<script src="assets/js/lucide-init.js"></script>
+<script src="assets/js/scroll-reveal.js"></script>
+<script src="assets/js/cursor-trail.js"></script>
+
+<!-- mobile menu -->
+<script>
+function toggleMobileMenu() {
+  const menu = document.getElementById('mobile-menu');
+  const panel = document.getElementById('mobile-menu-panel');
+  const icon = document.getElementById('hamburger-icon');
+  const isOpen = menu.style.opacity === '1';
+  if (isOpen) {
+    menu.style.opacity = '0';
+    menu.style.pointerEvents = 'none';
+    panel.style.transform = 'translateY(-100%)';
+    icon.setAttribute('data-lucide', 'menu');
+  } else {
+    menu.style.opacity = '1';
+    menu.style.pointerEvents = 'auto';
+    panel.style.transform = 'translateY(0)';
+    icon.setAttribute('data-lucide', 'x');
+  }
+  if (window.lucide) lucide.createIcons();
+}
+function closeMobileMenu() {
+  const menu = document.getElementById('mobile-menu');
+  const panel = document.getElementById('mobile-menu-panel');
+  const icon = document.getElementById('hamburger-icon');
+  menu.style.opacity = '0';
+  menu.style.pointerEvents = 'none';
+  panel.style.transform = 'translateY(-100%)';
+  icon.setAttribute('data-lucide', 'menu');
+  if (window.lucide) lucide.createIcons();
+}
+</script>
+
+<!-- modais dos níveis -->
+<div id="nivelModal" class="fixed inset-0 z-[99997] flex items-end md:items-center justify-center md:p-6" style="opacity:0;pointer-events:none;transition:opacity .3s ease;">
+<div class="absolute inset-0 bg-black/75 backdrop-blur-sm" onclick="closeNivel()"></div>
+<div id="nivelModalPanel" class="relative w-full max-w-2xl max-h-[92vh] bg-[#0C0C14] border border-white/10 rounded-t-3xl md:rounded-3xl overflow-y-auto shadow-2xl" style="transform:translateY(40px);transition:transform .4s cubic-bezier(.22,1,.36,1);">
+<button onclick="closeNivel()" class="absolute top-5 right-5 z-10 flex items-center justify-center w-8 h-8 rounded-full bg-white/5 hover:bg-white/10 text-gray-400 hover:text-white transition-colors text-base leading-none select-none">✕</button>
+<div id="nivelModalContent"></div>
+<div class="sticky bottom-0 bg-gradient-to-t from-[#0C0C14] via-[#0C0C14] to-transparent px-8 pb-8 pt-14">
+<button onclick="closeNivel()" class="group inline-flex overflow-hidden transition-all duration-300 hover:scale-[1.01] hover:shadow-[0_0_40px_-10px_rgba(249,115,22,0.5)] w-full h-[52px] rounded-full relative items-center justify-center" style="position:relative;">
+<div class="absolute inset-0 -z-20 rounded-full overflow-hidden p-[1px]">
+<div class="absolute inset-[-100%] bg-[conic-gradient(from_0deg,transparent_0_300deg,#f97316_360deg)]" style="animation:beam-spin 3s linear infinite;"></div>
+<div class="absolute inset-[1px] rounded-full bg-[#050505]"></div>
+</div>
+<div class="overflow-hidden bg-[#0A0A0A] rounded-full absolute top-[2px] right-[2px] bottom-[2px] left-[2px]">
+<div class="bg-gradient-to-b from-amber-900/20 to-transparent absolute top-0 right-0 bottom-0 left-0"></div>
+</div>
+<span class="text-sm font-medium text-white relative z-10">Fechar</span>
+</button>
+</div>
+</div>
+</div>
+
+<script>
+const niveisData = {
+  1: {
+    num: '01', nome: 'CLAREZA', pontos: '60 a 70 pontos', preco: 'R$ 8.000',
+    sessoes: '2 sessões online + relatório em PDF',
+    includes: ['Score IAL', 'Mapa Patrimonial', 'Plano de Tratamento', 'Imóveis', 'Renda Inteligente', 'Cripto', 'Família'],
+    changes: [
+      { icon: 'eye', titulo: 'Você enxerga seu patrimônio pela primeira vez', texto: 'Um mapa completo de onde seu dinheiro está, como cada ativo se comporta e onde estão os vazamentos que ninguém te mostrou.' },
+      { icon: 'map-pin', titulo: 'Você sabe exatamente onde está', texto: 'Seu IAL Score revela com precisão seu nível de liberdade patrimonial atual. Sem achismo. Com dados.' },
+      { icon: 'alert-triangle', titulo: 'Você identifica vulnerabilidades invisíveis', texto: 'Imóvel concentrado, renda dependente do seu esforço, família sem estrutura. Cada fraqueza fica visível — e tratável.' },
+      { icon: 'compass', titulo: 'Você recebe um plano claro', texto: 'Um caminho personalizado para sair do seu ponto atual e avançar para o próximo nível. Sem generalidades. Sem teoria.' },
+    ]
+  },
+  2: {
+    num: '02', nome: 'ESTRUTURA', pontos: '71 a 80 pontos', preco: 'R$ 25.000',
+    sessoes: '2 sessões online + relatório completo + material de apoio',
+    includes: ['Tudo do Nível 1', 'Bitcoin e Cripto', 'Banco Internacional', 'Imóveis como Patrimônio Ativo', 'Casais Inteligentes', 'Autoridade'],
+    changes: [
+      { icon: 'trending-down', titulo: 'Você reduz dependência operacional', texto: 'Sua renda começa a funcionar com menos da sua presença direta. Cada pilar começa a trabalhar em conjunto.' },
+      { icon: 'globe', titulo: 'Você começa a pensar além do CPF', texto: 'Banco internacional, cripto estruturado, imóveis como ativos — você expande sua jurisdição patrimonial.' },
+      { icon: 'shield', titulo: 'Seu patrimônio fica mais previsível', texto: 'Reduz volatilidade, aumenta previsibilidade. Você dorme melhor sabendo o que acontece com cada real.' },
+      { icon: 'users', titulo: 'Casal alinhado, decisões mais inteligentes', texto: 'O módulo Casais Inteligentes coloca cônjuge e sócio na mesma página. Decisões financeiras deixam de ser fonte de conflito.' },
+    ]
+  },
+  3: {
+    num: '03', nome: 'MUNDO', pontos: '81 a 95 pontos', preco: 'R$ 50.000',
+    sessoes: '3 sessões online + relatório internacional + e-book "A Tríade do Guerreiro"',
+    includes: ['Tudo dos Níveis 1 e 2', 'Empresa no Exterior', 'Redução Tributária', 'Teoria das Bandeiras', 'IBKR', 'Renda em Dólar com Cripto', 'Autoridade e Expansão', 'YouTube e Livros'],
+    changes: [
+      { icon: 'globe-2', titulo: 'Você para de pensar apenas Brasil', texto: 'Estruturas globais, múltiplas jurisdições, ativos em dólar. Você constrói um patrimônio que não depende de um único país.' },
+      { icon: 'flag', titulo: 'Teoria das Bandeiras na prática', texto: 'Residência aqui, empresa lá, banco em outro lugar. Você aprende a usar a diversificação geográfica como escudo patrimonial.' },
+      { icon: 'bar-chart-2', titulo: 'Renda em dólar e tributação menor', texto: 'IBKR, cripto estruturado, empresa no exterior. Ferramentas que os ricos usam — agora acessíveis e organizadas para você.' },
+      { icon: 'mic', titulo: 'Autoridade e expansão', texto: 'YouTube, livros, posicionamento. Você aprende a construir autoridade como ativo — que gera renda e liberdade ao mesmo tempo.' },
+    ]
+  },
+  4: {
+    num: '04', nome: 'LIBERDADE ASSISTIDA', pontos: '95+ pontos', preco: 'R$ 80.000',
+    sessoes: '12 meses de acompanhamento + relatório completo + todos os livros publicados',
+    includes: ['Tudo dos Níveis 1, 2 e 3', 'Encontro Mensal', 'Melhor Lugar para Viver', 'EUA: Sonho Americano?', 'Estrutura Empresarial Global', 'Planejamento de Longo Prazo'],
+    changes: [
+      { icon: 'anchor', titulo: 'Arquitetura completa com acompanhamento contínuo', texto: '12 meses com alguém ao lado. Não é consultoria pontual. É um parceiro caminhando com você enquanto as decisões acontecem.' },
+      { icon: 'map', titulo: 'Você planeja os próximos 5, 10, 20 anos', texto: 'Um plano de longo prazo real. Com cenários, caminhos e estratégias revisadas mês a mês conforme sua vida evolui.' },
+      { icon: 'home', titulo: 'O melhor lugar para viver — para você', texto: 'Não existe resposta universal. Você descobre qual país, cidade e estrutura fazem sentido para a sua família e objetivos específicos.' },
+      { icon: 'briefcase', titulo: 'Estrutura empresarial global', texto: 'Holding, offshore, empresa operacional. Você monta a estrutura certa para proteger o que construiu e crescer com inteligência.' },
+    ]
+  }
+};
+
+function openNivel(n) {
+  const d = niveisData[n];
+  const content = document.getElementById('nivelModalContent');
+  content.innerHTML = `
+    <div class="p-8 pb-0">
+      <div class="flex items-center gap-3 mb-6">
+        <span class="flex items-center justify-center w-8 h-8 rounded-lg bg-orange-500/10 text-[12px] font-mono font-bold text-orange-400 border border-orange-500/20">${d.num}</span>
+        <div>
+          <p class="text-xs text-gray-500 uppercase tracking-widest">${d.pontos}</p>
+          <h3 class="text-xl font-oswald font-light text-white">NÍVEL ${n}: <span class="text-orange-400">${d.nome}</span></h3>
+        </div>
+        <div class="ml-auto text-right">
+          <p class="text-2xl font-oswald font-light text-white">${d.preco}</p>
+        </div>
+      </div>
+      <div class="h-px bg-white/10 mb-6"></div>
+      <p class="text-xs font-medium text-gray-500 uppercase tracking-widest mb-4">O que muda na sua vida</p>
+      <div class="flex flex-col gap-4 mb-8">
+        ${d.changes.map(c => `
+        <div class="flex gap-4 p-4 rounded-xl bg-white/3 border border-white/5">
+          <div class="w-8 h-8 rounded-lg bg-orange-500/10 border border-orange-500/20 flex items-center justify-center shrink-0 mt-0.5">
+            <i data-lucide="${c.icon}" class="w-4 h-4 text-orange-400"></i>
+          </div>
+          <div>
+            <p class="text-sm font-medium text-white mb-1">${c.titulo}</p>
+            <p class="text-sm text-gray-400 leading-relaxed">${c.texto}</p>
+          </div>
+        </div>`).join('')}
+      </div>
+      <div class="mb-6">
+        <p class="text-xs font-medium text-gray-500 uppercase tracking-widest mb-3">Inclui</p>
+        <div class="flex flex-wrap gap-2">
+          ${d.includes.map(i => `<span class="text-xs bg-white/5 border border-white/10 rounded-full px-3 py-1 text-gray-400">${i}</span>`).join('')}
+        </div>
+      </div>
+      <p class="text-sm text-gray-600 flex items-center gap-2 mb-2"><i data-lucide="video" class="w-3.5 h-3.5"></i>${d.sessoes}</p>
+    </div>`;
+  const modal = document.getElementById('nivelModal');
+  const panel = document.getElementById('nivelModalPanel');
+  modal.style.opacity = '1';
+  modal.style.pointerEvents = 'auto';
+  panel.style.transform = 'translateY(0)';
+  document.body.style.overflow = 'hidden';
+  if (window.lucide) lucide.createIcons();
+}
+
+function closeNivel() {
+  const modal = document.getElementById('nivelModal');
+  const panel = document.getElementById('nivelModalPanel');
+  modal.style.opacity = '0';
+  modal.style.pointerEvents = 'none';
+  panel.style.transform = 'translateY(40px)';
+  document.body.style.overflow = '';
+}
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeNivel(); });
+</script>
+
+</body>
+</html>
