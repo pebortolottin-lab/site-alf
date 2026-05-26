@@ -1,6 +1,6 @@
 /* ── CURSOR TRAIL — ALF Site ──────────────────────────────────────────────────
    Snake-style cursor trail: anel + ponto central + cauda de 18 segmentos.
-   Cores: laranja ALF (orange-500 / #f97316).
+   Cores: dourado ALF (gold / #fbbf24).
    Sem dependências externas — JS puro.
 ─────────────────────────────────────────────────────────────────────────── */
 document.addEventListener('DOMContentLoaded', () => {
@@ -46,9 +46,9 @@ document.addEventListener('DOMContentLoaded', () => {
       `height:${baseSize}px;`,
       'border-radius:9999px;',
       'transform:translate(-50%,-50%);',
-      // Cor: orange-400 com opacidade variável — mais próximo = mais brilhante
-      `background:rgba(251,146,60,${Math.min(0.95, 0.65 + 0.02 * (SEGMENTS - i))});`,
-      'box-shadow:0 0 0 2px rgba(194,65,12,0.08),0 0 18px rgba(249,115,22,0.25),inset 0 0 6px rgba(255,255,255,0.06);',
+      // Cor: dourado claro com opacidade variável — mais próximo = mais brilhante
+      `background:rgba(252,211,77,${Math.min(0.95, 0.65 + 0.02 * (SEGMENTS - i))});`,
+      'box-shadow:0 0 0 2px rgba(180,120,10,0.08),0 0 18px rgba(245,158,11,0.25),inset 0 0 6px rgba(255,255,255,0.06);',
       `opacity:${opacity};`,
       'transition:opacity .2s;',
       'will-change:left,top;'
@@ -147,16 +147,16 @@ document.addEventListener('DOMContentLoaded', () => {
     el.addEventListener('mouseenter', () => {
       ring.style.width       = '44px';
       ring.style.height      = '44px';
-      ring.style.borderColor = 'rgba(251, 146, 60, 1)';
-      ring.style.boxShadow   = '0 0 0 3px rgba(251,146,60,0.15), 0 0 60px rgba(249,115,22,0.4)';
+      ring.style.borderColor = 'rgba(252, 211, 77, 1)';
+      ring.style.boxShadow   = '0 0 0 3px rgba(252,211,77,0.15), 0 0 60px rgba(245,158,11,0.4)';
       sizeBoost = 2;
       updateSegmentSizes();
     });
     el.addEventListener('mouseleave', () => {
       ring.style.width       = '28px';
       ring.style.height      = '28px';
-      ring.style.borderColor = 'rgba(249, 115, 22, 0.85)';
-      ring.style.boxShadow   = '0 0 0 2px rgba(194,65,12,0.15), 0 0 30px rgba(249,115,22,0.25)';
+      ring.style.borderColor = 'rgba(251, 191, 36, 0.85)';
+      ring.style.boxShadow   = '0 0 0 2px rgba(180,120,10,0.15), 0 0 30px rgba(245,158,11,0.25)';
       sizeBoost = 0;
       updateSegmentSizes();
     });

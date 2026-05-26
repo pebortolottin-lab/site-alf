@@ -1,6 +1,6 @@
 /* ── CURSOR TRAIL — ALF Site ──────────────────────────────────────────────────
    Efeito: anel + ponto + cauda em cobra (18 segmentos) que seguem o mouse.
-   Cores adaptadas para o laranja do ALF (#f97316 / orange-500).
+   Cores adaptadas para o dourado do ALF (#fbbf24 / gold).
    Em mobile (touch) todos os elementos ficam ocultos automaticamente.
 ─────────────────────────────────────────────────────────────────────────── */
 
@@ -23,12 +23,12 @@
   z-index: 9999;
   width: 28px;
   height: 28px;
-  border: 1.5px solid rgba(249, 115, 22, 0.85);
+  border: 1.5px solid rgba(251, 191, 36, 0.85);
   border-radius: 9999px;
   transform: translate(-50%, -50%) scale(1);
   box-shadow:
-    rgba(194, 65, 12, 0.15) 0 0 0 2px,
-    rgba(249, 115, 22, 0.25) 0 0 30px;
+    rgba(180, 120, 10, 0.15) 0 0 0 2px,
+    rgba(245, 158, 11, 0.25) 0 0 30px;
   transition:
     width        .2s,
     height       .2s,
@@ -51,11 +51,11 @@
   z-index: 9999;
   width: 6px;
   height: 6px;
-  background: rgba(251, 146, 60, 0.95);
+  background: rgba(252, 211, 77, 0.95);
   border-radius: 9999px;
   transform: translate(-50%, -50%);
   transition: transform .06s, opacity .2s;
-  box-shadow: rgba(251, 146, 60, 0.6) 0 0 10px;
+  box-shadow: rgba(252, 211, 77, 0.6) 0 0 10px;
   opacity: 0.9;
 }
 
