@@ -17,8 +17,8 @@
 <link rel="stylesheet" href="assets/css/animations.css"/>
 <!-- gradient border helper (hero CTA) + accordion panel transitions -->
 <link rel="stylesheet" href="assets/css/components.css"/>
-<!-- golden parallax ring that follows the mouse — hero section -->
-<link rel="stylesheet" href="assets/css/golden-ring.css"/>
+<!-- golden cursor trail (snake-style, dourado) — site-wide -->
+<link rel="stylesheet" href="assets/css/cursor-trail.css"/>
 <!-- head-only js -->
 <!-- Tailwind utility runtime — must stay in head to apply utility classes -->
 <script src="assets/resource_3fa48481346f.es"></script>
@@ -26,8 +26,9 @@
 <script src="assets/lucide_latest_2eebd0ebe8c2.es"></script>
 </head>
 <body class="antialiased overflow-x-hidden selection:bg-orange-500 selection:text-white text-white bg-[#000000] font-sans" style="font-family:'Inter',sans-serif;">
-<!-- golden-ring: large glowing golden circle that follows mouse with parallax -->
-<div id="golden-ring"></div>
+<!-- cursor trail: anel + ponto laranja que seguem o mouse com cauda em cobra (snake-style) -->
+<div id="cursor-ring"></div>
+<div id="cursor-dot"></div>
 <!-- background-effect: golden rays rising + mouse interaction (UnicornStudio project AhqzKk9mZE0EnlENMQDi from ai-social-automation) — shifted 25% left so visual center sits at first quarter of screen -->
 <div class="aura-background-component -z-10 w-full top-0 absolute h-[900px] saturate-150 brightness-110" data-alpha-mask="50" style="mask-image:linear-gradient(transparent,black 0%,black 55%,transparent);transform:translateX(-25%);">
 <div class="aura-background-component top-0 w-full -z-10 absolute h-full">
@@ -45,23 +46,34 @@
 <a class="text-[14px] hover:text-gray-300 transition-colors font-medium text-white/80 tracking-wide" href="#quem">Quem Somos</a>
 </div>
 <div class="flex gap-x-3 items-center">
-<button class="md:hidden p-2 text-white"><i data-lucide="menu" class="w-6 h-6"></i></button>
+<button class="md:hidden p-2 text-white" id="hamburger-btn" onclick="toggleMobileMenu()"><i data-lucide="menu" class="w-6 h-6" id="hamburger-icon"></i></button>
 <a class="hidden md:flex group transition-all duration-300 hover:bg-orange-500/10 hover:border-orange-400 hover:shadow-[0_0_35px_rgba(249,115,22,0.6),inset_0_0_20px_rgba(249,115,22,0.4)] hover:scale-[1.02] items-center justify-center bg-black/60 border-orange-500border rounded-full pt-2.5 pr-6 pb-2.5 pl-6 shadow-[0_0_20px_rgba(249,115,22,0.5),inset_0_0_10px_rgba(249,115,22,0.2)]" href="quiz-ial.html" target="_blank">
 <span class="uppercase text-[13px] font-semibold text-white/90 tracking-tight z-10 relative">FAZER SCORE</span>
 </a>
 </div>
 </div>
 </nav>
+<!-- mobile-menu-drawer -->
+<div id="mobile-menu" class="fixed inset-0 z-40 pointer-events-none md:hidden" style="opacity:0;transition:opacity .3s ease;">
+  <div class="absolute inset-0 bg-black/80 backdrop-blur-sm" onclick="closeMobileMenu()"></div>
+  <div id="mobile-menu-panel" class="absolute top-0 left-0 right-0 bg-[#080808] border-b border-white/10 pt-24 pb-8 px-6 flex flex-col gap-1" style="transform:translateY(-100%);transition:transform .4s cubic-bezier(.22,1,.36,1);">
+    <a class="text-base font-medium text-white/80 hover:text-white transition-colors py-3 border-b border-white/5" href="#ial-score-section" onclick="closeMobileMenu()">IAL Score</a>
+    <a class="text-base font-medium text-white/80 hover:text-white transition-colors py-3 border-b border-white/5" href="#masterclass" onclick="closeMobileMenu()">Masterclass</a>
+    <a class="text-base font-medium text-white/80 hover:text-white transition-colors py-3 border-b border-white/5" href="#casos" onclick="closeMobileMenu()">Casos</a>
+    <a class="text-base font-medium text-white/80 hover:text-white transition-colors py-3 border-b border-white/5" href="#quem" onclick="closeMobileMenu()">Quem Somos</a>
+    <a href="quiz-ial.html" target="_blank" onclick="closeMobileMenu()" class="flex items-center justify-center mt-4 bg-black/60 border border-orange-500 rounded-full py-3 px-6 shadow-[0_0_20px_rgba(249,115,22,0.5)] text-sm font-semibold text-white/90 tracking-tight">FAZER SCORE</a>
+  </div>
+</div>
 <!-- hero -->
-<main class="flex flex-col z-10 pt-40 pr-6 pl-6 relative items-center justify-center">
+<main class="flex flex-col z-10 pt-28 sm:pt-36 md:pt-40 pr-6 pl-6 relative items-center justify-center">
 <div class="inline-flex hover:bg-white/10 transition-colors cursor-pointer group scroll-item scroll-fade-up bg-white/5 border-white/10 border rounded-full mb-8 pt-1.5 pr-3 pb-1.5 pl-3 backdrop-blur-sm items-center">
 <span class="bg-orange-500/20 text-orange-400 rounded px-1.5 py-0.5 text-[10px] font-medium tracking-wide">IAL SCORE</span>
 <span class="text-xs text-gray-300 font-medium group-hover:text-white transition-colors pr-1">&nbsp;Diagnóstico gratuito disponível</span>
 <i data-lucide="arrow-right" class="w-3 h-3 text-gray-500 group-hover:text-white transition-colors"></i>
 </div>
-<h1 class="text-center text-[3.15rem] md:text-[4.75rem] leading-[1.1] max-w-4xl mx-auto font-oswald font-light tracking-tight scroll-item scroll-blur-in delay-100">
+<h1 class="text-center text-[2rem] sm:text-[3.15rem] md:text-[4rem] lg:text-[4.75rem] leading-[1.1] max-w-4xl mx-auto font-oswald font-light tracking-tight scroll-item scroll-blur-in delay-100">
 Arquitetura de<br/>
-<span class="font-light text-orange-500 tracking-tight font-oswald">Liberdade Familiar™</span>
+<span class="font-light text-orange-500 tracking-tight font-oswald">Liberdade Familiar</span>
 </h1>
 <p class="text-center text-[1.575rem] text-gray-300 mt-6 font-light scroll-item scroll-fade-up delay-200">Alta renda não significa liberdade.</p>
 <p class="text-center text-[1.18rem] text-gray-500 mt-4 max-w-xl mx-auto leading-relaxed font-light scroll-item scroll-fade-up delay-300">
@@ -90,8 +102,8 @@ Masterclass Estratégica Gratuita
 <p class="text-center text-sm text-gray-300 mt-3 max-w-xl mx-auto leading-relaxed scroll-item scroll-fade-up delay-700">Assista e descubra, na prática, como construir R$1.000 a R$10.000 por mês sem depender exclusivamente do próprio trabalho.</p>
 </main>
 <!-- bloco-ferida -->
-<section class="z-10 w-full max-w-6xl mt-56 mr-auto ml-auto px-6">
-<div class="flex flex-col lg:flex-row bg-[#0A0A0C] border border-white/10 rounded-3xl p-10 lg:p-16 gap-12 lg:gap-20 scroll-item scroll-blur-in">
+<section class="z-10 w-full max-w-7xl mt-16 md:mt-32 lg:mt-56 mr-auto ml-auto px-6">
+<div class="flex flex-col md:flex-row gap-12 md:gap-20 scroll-item scroll-blur-in">
 <div class="flex flex-col gap-8 lg:w-1/2">
 <div class="flex gap-3 items-center scroll-item scroll-fade-up">
 <span class="flex items-center justify-center w-7 h-7 rounded-lg bg-orange-500/10 text-[11px] font-mono font-medium text-orange-400 border border-orange-500/20 shadow-[0_0_10px_rgba(249,115,22,0.2)]">01</span>
@@ -119,8 +131,8 @@ Masterclass Estratégica Gratuita
 </div>
 </section>
 <!-- bloco-mentiras -->
-<section class="z-10 w-full max-w-6xl mt-24 mr-auto ml-auto px-6">
-<div class="flex flex-col bg-[#0A0A0C] border border-white/10 rounded-3xl p-10 lg:p-16 gap-12">
+<section class="z-10 w-full max-w-7xl mt-10 md:mt-16 lg:mt-24 mr-auto ml-auto px-6">
+<div class="flex flex-col gap-10 md:gap-12">
 <div class="flex flex-col md:flex-row md:items-end justify-between gap-8">
 <div class="flex flex-col gap-6 max-w-2xl">
 <div class="flex gap-3 items-center scroll-item scroll-fade-up">
@@ -179,8 +191,8 @@ Masterclass Estratégica Gratuita
 </div>
 </section>
 <!-- bloco-ial-score -->
-<section id="ial-score-section" class="z-10 w-full max-w-6xl mt-24 mr-auto ml-auto px-6">
-<div class="flex flex-col bg-[#0A0A0C] border border-white/10 rounded-3xl p-10 lg:p-16 gap-12">
+<section id="ial-score-section" class="z-10 w-full max-w-7xl mt-10 md:mt-16 lg:mt-24 mr-auto ml-auto px-6">
+<div class="flex flex-col bg-[#0A0A0C] border border-white/10 rounded-3xl p-6 md:p-10 lg:p-16 gap-12">
 <div class="flex flex-col md:flex-row md:items-end justify-between gap-8">
 <div class="flex flex-col gap-6 max-w-2xl">
 <div class="flex gap-3 items-center scroll-item scroll-fade-up">
@@ -259,8 +271,8 @@ Masterclass Estratégica Gratuita
 </div>
 </section>
 <!-- bloco-casos -->
-<section id="casos" class="z-10 w-full max-w-6xl mt-24 mr-auto ml-auto px-6">
-<div class="flex flex-col bg-[#0A0A0C] border border-white/10 rounded-3xl p-10 lg:p-16 gap-12">
+<section id="casos" class="z-10 w-full max-w-7xl mt-10 md:mt-16 lg:mt-24 mr-auto ml-auto px-6">
+<div class="flex flex-col gap-10 md:gap-12">
 <div class="flex flex-col md:flex-row md:items-end justify-between gap-8">
 <div class="flex flex-col gap-6 max-w-2xl">
 <div class="flex gap-3 items-center scroll-item scroll-fade-up">
@@ -275,44 +287,42 @@ Masterclass Estratégica Gratuita
 </button>
 </div>
 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-<!-- caso: Christian M. -->
+<!-- caso: Fábio R. -->
 <div class="relative rounded-2xl bg-[#050508] border border-white/10 overflow-hidden group hover:border-white/20 transition-colors scroll-item scroll-fade-up delay-100">
 <div class="p-6">
 <div class="flex items-start justify-between mb-4">
 <div>
-<h3 class="text-xl font-semibold text-white">Christian M.</h3>
-<p class="text-sm text-gray-500 mt-0.5">Engenheiro | Diretor Multinacional</p>
-<p class="text-xs text-gray-600 mt-0.5">45 anos • Casado • Filho por vir</p>
+<h3 class="text-xl font-semibold text-white">Fábio R.</h3>
+<p class="text-sm text-gray-500 mt-0.5">Empresário</p>
+<p class="text-xs text-gray-600 mt-0.5">42 anos • Casado • 1 filha</p>
 </div>
-<span class="text-[10px] font-bold bg-amber-500/10 text-amber-400 border border-amber-500/20 px-2 py-1 rounded-full whitespace-nowrap shrink-0">Nível 2</span>
+<span class="text-[10px] font-bold bg-amber-500/10 text-amber-400 border border-amber-500/20 px-2 py-1 rounded-full">Nível 1</span>
 </div>
 <div class="flex items-center gap-3 mb-4">
-<div class="flex items-center gap-1.5"><div class="w-2.5 h-2.5 rounded-full bg-red-500"></div><span class="text-2xl font-oswald font-light text-white">43</span></div>
+<div class="flex items-center gap-1.5"><div class="w-2.5 h-2.5 rounded-full bg-red-500"></div><span class="text-2xl font-oswald font-light text-white">14</span></div>
 <i data-lucide="arrow-right" class="w-4 h-4 text-gray-600"></i>
-<div class="flex items-center gap-1.5"><div class="w-2.5 h-2.5 rounded-full bg-emerald-500"></div><span class="text-2xl font-oswald font-light text-white">72</span></div>
-<span class="text-sm font-semibold text-emerald-400 ml-auto">+29 pts</span>
+<div class="flex items-center gap-1.5"><div class="w-2.5 h-2.5 rounded-full bg-yellow-500"></div><span class="text-2xl font-oswald font-light text-white">62</span></div>
+<span class="text-sm font-semibold text-emerald-400 ml-auto">+48 pts</span>
 </div>
 <div class="flex gap-2 mb-2">
-<span class="text-xs text-gray-500 bg-white/5 px-2 py-1 rounded">R$35k/mês inicial</span>
-<span class="text-xs text-gray-500 bg-white/5 px-2 py-1 rounded">R$2M patrimônio</span>
+<span class="text-xs text-gray-500 bg-white/5 px-2 py-1 rounded">R$31,2k/mês inicial</span>
 </div>
-<p class="text-sm text-gray-500 italic">Alta renda. Baixa arquitetura.</p>
+<p class="text-sm text-gray-500 italic">Alta renda. Múltiplas tarefas. Pouco foco.</p>
 </div>
-<button class="w-full flex items-center justify-between px-6 py-4 border-t border-white/5 text-sm text-orange-400 hover:text-orange-300 transition-colors" data-accordion-trigger="christian">
+<button class="w-full flex items-center justify-between px-6 py-4 border-t border-white/5 text-sm text-orange-400 hover:text-orange-300 transition-colors" data-accordion-trigger="fabio">
 <span>Principais mudanças após ALF</span>
 <i data-lucide="plus" class="w-4 h-4" data-accordion-icon style="transition:transform .3s;"></i>
 </button>
-<div id="panel-christian" class="accordion-panel" data-open="false">
+<div id="panel-fabio" class="accordion-panel" data-open="false">
 <div class="px-6 pb-4 space-y-2">
-<div class="text-sm text-gray-400 leading-relaxed">Muito patrimônio concentrado em bancos e consumo. Hoje possui estrutura mais previsível, diversificação gradual e novas opções familiares.</div>
 <div class="flex flex-wrap gap-2 mt-3">
-<span class="text-xs bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 px-2 py-1 rounded-full">✔ Organização patrimonial</span>
-<span class="text-xs bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 px-2 py-1 rounded-full">✔ Reservas estratégicas</span>
-<span class="text-xs bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 px-2 py-1 rounded-full">✔ Mobilidade familiar</span>
+<span class="text-xs bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 px-2 py-1 rounded-full">✔ Clareza estratégica</span>
+<span class="text-xs bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 px-2 py-1 rounded-full">✔ Previsibilidade</span>
+<span class="text-xs bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 px-2 py-1 rounded-full">✔ Organização financeira</span>
 </div>
 </div>
 </div>
-<button class="w-full flex items-center justify-between px-6 py-4 border-t border-white/5 text-sm text-orange-400 hover:text-orange-300 transition-colors" onclick="openCase('christian')">
+<button class="w-full flex items-center justify-between px-6 py-4 border-t border-white/5 text-sm text-orange-400 hover:text-orange-300 transition-colors" onclick="openCase('fabio')">
 <span>Ver caso completo</span>
 <svg class="w-4 h-4 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
 </button>
@@ -410,48 +420,8 @@ Masterclass Estratégica Gratuita
 <svg class="w-4 h-4 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
 </button>
 </div>
-<!-- caso: Fábio R. -->
-<div class="relative rounded-2xl bg-[#050508] border border-white/10 overflow-hidden group hover:border-white/20 transition-colors scroll-item scroll-fade-up delay-100">
-<div class="p-6">
-<div class="flex items-start justify-between mb-4">
-<div>
-<h3 class="text-xl font-semibold text-white">Fábio R.</h3>
-<p class="text-sm text-gray-500 mt-0.5">Empresário</p>
-<p class="text-xs text-gray-600 mt-0.5">42 anos • Casado • 1 filha</p>
-</div>
-<span class="text-[10px] font-bold bg-amber-500/10 text-amber-400 border border-amber-500/20 px-2 py-1 rounded-full">Nível 1</span>
-</div>
-<div class="flex items-center gap-3 mb-4">
-<div class="flex items-center gap-1.5"><div class="w-2.5 h-2.5 rounded-full bg-red-500"></div><span class="text-2xl font-oswald font-light text-white">14</span></div>
-<i data-lucide="arrow-right" class="w-4 h-4 text-gray-600"></i>
-<div class="flex items-center gap-1.5"><div class="w-2.5 h-2.5 rounded-full bg-yellow-500"></div><span class="text-2xl font-oswald font-light text-white">62</span></div>
-<span class="text-sm font-semibold text-emerald-400 ml-auto">+48 pts</span>
-</div>
-<div class="flex gap-2 mb-2">
-<span class="text-xs text-gray-500 bg-white/5 px-2 py-1 rounded">R$31,2k/mês inicial</span>
-</div>
-<p class="text-sm text-gray-500 italic">Alta renda. Múltiplas tarefas. Pouco foco.</p>
-</div>
-<button class="w-full flex items-center justify-between px-6 py-4 border-t border-white/5 text-sm text-orange-400 hover:text-orange-300 transition-colors" data-accordion-trigger="fabio">
-<span>Principais mudanças após ALF</span>
-<i data-lucide="plus" class="w-4 h-4" data-accordion-icon style="transition:transform .3s;"></i>
-</button>
-<div id="panel-fabio" class="accordion-panel" data-open="false">
-<div class="px-6 pb-4 space-y-2">
-<div class="flex flex-wrap gap-2 mt-3">
-<span class="text-xs bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 px-2 py-1 rounded-full">✔ Clareza estratégica</span>
-<span class="text-xs bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 px-2 py-1 rounded-full">✔ Previsibilidade</span>
-<span class="text-xs bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 px-2 py-1 rounded-full">✔ Organização financeira</span>
-</div>
-</div>
-</div>
-<button class="w-full flex items-center justify-between px-6 py-4 border-t border-white/5 text-sm text-orange-400 hover:text-orange-300 transition-colors" onclick="openCase('fabio')">
-<span>Ver caso completo</span>
-<svg class="w-4 h-4 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-</button>
-</div>
 <!-- caso: Henrique D. -->
-<div class="relative rounded-2xl bg-[#050508] border border-white/10 overflow-hidden group hover:border-white/20 transition-colors scroll-item scroll-fade-up delay-200">
+<div class="relative rounded-2xl bg-[#050508] border border-white/10 overflow-hidden group hover:border-white/20 transition-colors scroll-item scroll-fade-up delay-100">
 <div class="p-6">
 <div class="flex items-start justify-between mb-4">
 <div>
@@ -498,6 +468,48 @@ Masterclass Estratégica Gratuita
 </div>
 </div>
 <button class="w-full flex items-center justify-between px-6 py-4 border-t border-white/5 text-sm text-orange-400 hover:text-orange-300 transition-colors" onclick="openCase('henrique')">
+<span>Ver caso completo</span>
+<svg class="w-4 h-4 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+</button>
+</div>
+<!-- caso: Christian M. -->
+<div class="relative rounded-2xl bg-[#050508] border border-white/10 overflow-hidden group hover:border-white/20 transition-colors scroll-item scroll-fade-up delay-200">
+<div class="p-6">
+<div class="flex items-start justify-between mb-4">
+<div>
+<h3 class="text-xl font-semibold text-white">Christian M.</h3>
+<p class="text-sm text-gray-500 mt-0.5">Engenheiro | Diretor Multinacional</p>
+<p class="text-xs text-gray-600 mt-0.5">45 anos • Casado • Filho por vir</p>
+</div>
+<span class="text-[10px] font-bold bg-amber-500/10 text-amber-400 border border-amber-500/20 px-2 py-1 rounded-full whitespace-nowrap shrink-0">Nível 2</span>
+</div>
+<div class="flex items-center gap-3 mb-4">
+<div class="flex items-center gap-1.5"><div class="w-2.5 h-2.5 rounded-full bg-red-500"></div><span class="text-2xl font-oswald font-light text-white">43</span></div>
+<i data-lucide="arrow-right" class="w-4 h-4 text-gray-600"></i>
+<div class="flex items-center gap-1.5"><div class="w-2.5 h-2.5 rounded-full bg-emerald-500"></div><span class="text-2xl font-oswald font-light text-white">72</span></div>
+<span class="text-sm font-semibold text-emerald-400 ml-auto">+29 pts</span>
+</div>
+<div class="flex gap-2 mb-2">
+<span class="text-xs text-gray-500 bg-white/5 px-2 py-1 rounded">R$35k/mês inicial</span>
+<span class="text-xs text-gray-500 bg-white/5 px-2 py-1 rounded">R$2M patrimônio</span>
+</div>
+<p class="text-sm text-gray-500 italic">Alta renda. Baixa arquitetura.</p>
+</div>
+<button class="w-full flex items-center justify-between px-6 py-4 border-t border-white/5 text-sm text-orange-400 hover:text-orange-300 transition-colors" data-accordion-trigger="christian">
+<span>Principais mudanças após ALF</span>
+<i data-lucide="plus" class="w-4 h-4" data-accordion-icon style="transition:transform .3s;"></i>
+</button>
+<div id="panel-christian" class="accordion-panel" data-open="false">
+<div class="px-6 pb-4 space-y-2">
+<div class="text-sm text-gray-400 leading-relaxed">Muito patrimônio concentrado em bancos e consumo. Hoje possui estrutura mais previsível, diversificação gradual e novas opções familiares.</div>
+<div class="flex flex-wrap gap-2 mt-3">
+<span class="text-xs bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 px-2 py-1 rounded-full">✔ Organização patrimonial</span>
+<span class="text-xs bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 px-2 py-1 rounded-full">✔ Reservas estratégicas</span>
+<span class="text-xs bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 px-2 py-1 rounded-full">✔ Mobilidade familiar</span>
+</div>
+</div>
+</div>
+<button class="w-full flex items-center justify-between px-6 py-4 border-t border-white/5 text-sm text-orange-400 hover:text-orange-300 transition-colors" onclick="openCase('christian')">
 <span>Ver caso completo</span>
 <svg class="w-4 h-4 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
 </button>
@@ -560,8 +572,8 @@ Masterclass Estratégica Gratuita
 </div>
 </section>
 <!-- bloco-mapa -->
-<section class="z-10 w-full max-w-6xl mt-24 mr-auto ml-auto px-6">
-<div class="flex flex-col bg-[#0A0A0C] border border-white/10 rounded-3xl p-10 lg:p-16 gap-12">
+<section class="z-10 w-full max-w-7xl mt-10 md:mt-16 lg:mt-24 mr-auto ml-auto px-6">
+<div class="flex flex-col gap-10 md:gap-12">
 <div class="flex flex-col gap-6 max-w-2xl">
 <div class="flex gap-3 items-center scroll-item scroll-fade-up">
 <span class="flex items-center justify-center w-7 h-7 rounded-lg bg-orange-500/10 text-[11px] font-mono font-medium text-orange-400 border border-orange-500/20 shadow-[0_0_10px_rgba(249,115,22,0.2)]">05</span>
@@ -601,8 +613,8 @@ Masterclass Estratégica Gratuita
 </div>
 </section>
 <!-- bloco-masterclass -->
-<section id="masterclass" class="z-10 w-full max-w-6xl mt-24 mr-auto ml-auto px-6">
-<div class="flex flex-col lg:flex-row bg-[#0A0A0C] border border-white/10 rounded-3xl p-10 lg:p-16 gap-10 lg:gap-20 items-center relative overflow-hidden scroll-item scroll-blur-in">
+<section id="masterclass" class="z-10 w-full max-w-7xl mt-10 md:mt-16 lg:mt-24 mr-auto ml-auto px-6">
+<div class="flex flex-col lg:flex-row bg-[#0A0A0C] border border-white/10 rounded-3xl p-6 md:p-10 lg:p-16 gap-10 lg:gap-20 items-center relative overflow-hidden scroll-item scroll-blur-in">
 <div class="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(249,115,22,0.05),transparent_60%)]"></div>
 <div class="pointer-events-none absolute inset-0 opacity-10" style="background-image:radial-gradient(white 1px,transparent 1px);background-size:40px 40px;"></div>
 <div class="flex flex-col gap-6 max-w-2xl relative z-10">
@@ -630,13 +642,13 @@ Quero garantir minha vaga
 </div>
 </section>
 <!-- bloco-quem -->
-<section id="quem" class="z-10 w-full max-w-6xl mt-24 mr-auto ml-auto px-6">
-<div class="flex flex-col bg-[#0A0A0C] border border-white/10 rounded-3xl p-10 lg:p-16 gap-10">
+<section id="quem" class="z-10 w-full max-w-7xl mt-10 md:mt-16 lg:mt-24 mr-auto ml-auto px-6">
+<div class="flex flex-col bg-[#0A0A0C] border border-white/10 rounded-3xl p-6 md:p-10 lg:p-16 gap-10">
 <div class="flex gap-3 items-center scroll-item scroll-fade-up">
 <span class="flex items-center justify-center w-7 h-7 rounded-lg bg-orange-500/10 text-[11px] font-mono font-medium text-orange-400 border border-orange-500/20 shadow-[0_0_10px_rgba(249,115,22,0.2)]">07</span>
 <span class="text-sm font-medium tracking-widest uppercase text-gray-500">Por trás da ALF</span>
 </div>
-<div class="flex flex-col lg:flex-row gap-12 lg:gap-20 items-start">
+<div class="flex flex-col md:flex-row gap-12 md:gap-20 items-start">
 <div class="lg:w-1/2 flex flex-col gap-6 scroll-item scroll-fade-up">
 <h2 class="text-4xl md:text-5xl font-oswald font-light tracking-tight text-white leading-[1.1]">Quem está por trás da <span class="text-orange-500">Arquitetura de Liberdade Familiar?</span></h2>
 <div class="space-y-4 text-gray-400 font-light leading-relaxed text-[15px]">
@@ -654,7 +666,7 @@ Quero garantir minha vaga
 <p class="text-gray-500 text-[15px] font-light leading-relaxed">Porque o objetivo nunca foi fugir.<br/><span class="text-gray-300">O objetivo sempre foi ter opções.</span></p>
 </div>
 <div class="lg:w-1/2 flex flex-col items-center gap-6 scroll-item scroll-blur-in delay-200">
-<div class="w-full max-w-sm aspect-[3/4] rounded-3xl bg-[#050508] border border-white/10 relative overflow-hidden shadow-2xl group">
+<div class="w-full max-w-sm aspect-[3/4] max-h-[420px] md:max-h-none rounded-3xl bg-[#050508] border border-white/10 relative overflow-hidden shadow-2xl group">
 <div class="absolute inset-0 bg-gradient-to-br from-amber-900/20 via-transparent to-amber-900/10"></div>
 <div class="absolute bottom-0 left-0 right-0 p-6 bg-gradient-to-t from-black/90 to-transparent">
 <p class="text-white font-semibold">Dr. Paulo Bortolotti</p>
@@ -678,8 +690,8 @@ Quero garantir minha vaga
 </div>
 </section>
 <!-- bloco-fechamento -->
-<section class="z-10 w-full max-w-6xl mt-24 mr-auto ml-auto px-6 mb-32">
-<div class="flex flex-col items-center text-center bg-[#0A0A0C] border border-white/10 rounded-3xl p-12 lg:p-20 relative overflow-hidden scroll-item scroll-blur-in">
+<section class="z-10 w-full max-w-7xl mt-10 md:mt-16 lg:mt-24 mr-auto ml-auto px-6 mb-20 md:mb-32">
+<div class="flex flex-col items-center text-center bg-[#0A0A0C] border border-white/10 rounded-3xl p-8 md:p-12 lg:p-20 relative overflow-hidden scroll-item scroll-blur-in">
 <div class="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(249,115,22,0.06),transparent_60%)]"></div>
 <div class="pointer-events-none absolute inset-0 opacity-10" style="background-image:radial-gradient(white 1px,transparent 1px);background-size:40px 40px;"></div>
 <h2 class="text-4xl md:text-6xl lg:text-7xl font-oswald font-light tracking-tight text-white leading-[1.1] max-w-4xl relative z-10 scroll-item scroll-fade-up">O mundo é grande demais para uma vida inteira depender:</h2>
@@ -712,7 +724,7 @@ Assistir Masterclass Estratégica
 </section>
 <!-- footer -->
 <footer class="border-t border-white/10 bg-[#050505] relative z-10 pt-16 pb-8">
-<div class="w-full max-w-6xl mx-auto px-6">
+<div class="w-full max-w-7xl mx-auto px-6">
 <div class="flex flex-col md:flex-row justify-between gap-12 mb-12">
 <div class="max-w-xs scroll-item scroll-fade-up">
 <a class="text-2xl font-oswald font-semibold text-white tracking-tight" href="#">ALF</a>
@@ -762,8 +774,8 @@ Assistir Masterclass Estratégica
 <script src="assets/js/scroll-reveal.js"></script>
 <!-- Accordion expand/collapse — case studies section -->
 <script src="assets/js/accordions.js"></script>
-<!-- Golden ring: anel dourado central que segue o mouse com parallax lento -->
-<script src="assets/js/golden-ring.js"></script>
+<!-- Golden cursor trail: rastro dourado em cobra (18 segmentos) que segue o mouse -->
+<script src="assets/js/cursor-trail.js"></script>
 
 <!-- ── MODAL: CASO COMPLETO ──────────────────────────────────────── -->
 <div id="caseModal" class="fixed inset-0 z-[99997] flex items-end md:items-center justify-center md:p-6" style="opacity:0;pointer-events:none;transition:opacity .3s ease;">
@@ -1451,7 +1463,26 @@ function closeCase() {
   panel.style.transform = 'translateY(40px)';
   setTimeout(() => { document.body.style.overflow = ''; }, 350);
 }
-document.addEventListener('keydown', e => { if (e.key === 'Escape') { closeCase(); closePrivacy(); closeTerms(); } });
+document.addEventListener('keydown', e => { if (e.key === 'Escape') { closeCase(); closePrivacy(); closeTerms(); closeMobileMenu(); } });
+function toggleMobileMenu() {
+  const menu = document.getElementById('mobile-menu');
+  const panel = document.getElementById('mobile-menu-panel');
+  const isOpen = menu.style.pointerEvents === 'auto';
+  if (isOpen) { closeMobileMenu(); return; }
+  menu.style.opacity = '1';
+  menu.style.pointerEvents = 'auto';
+  panel.style.transform = 'translateY(0)';
+  document.body.style.overflow = 'hidden';
+}
+function closeMobileMenu() {
+  const menu = document.getElementById('mobile-menu');
+  const panel = document.getElementById('mobile-menu-panel');
+  if (!menu) return;
+  menu.style.opacity = '0';
+  menu.style.pointerEvents = 'none';
+  panel.style.transform = 'translateY(-100%)';
+  setTimeout(() => { if (menu.style.pointerEvents === 'none') document.body.style.overflow = ''; }, 350);
+}
 function openPrivacy() {
   const m = document.getElementById('privacyModal');
   const p = document.getElementById('privacyModalPanel');

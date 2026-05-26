@@ -1,0 +1,68 @@
+/* ── CURSOR TRAIL — ALF Site ──────────────────────────────────────────────────
+   Efeito: anel + ponto + cauda em cobra (18 segmentos) que seguem o mouse.
+   Cores adaptadas para o laranja do ALF (#f97316 / orange-500).
+   Em mobile (touch) todos os elementos ficam ocultos automaticamente.
+─────────────────────────────────────────────────────────────────────────── */
+
+/* Esconde o cursor nativo no desktop — o rastro substitui */
+@media (pointer: fine) {
+  body { cursor: none; }
+  a, button, [role="button"], input, select, textarea, label, .cursor-glow {
+    cursor: none;
+  }
+}
+
+/* ── CURSOR RING ───────────────────────────────────────────────────────────
+   Anel externo que segue o mouse com leve atraso (sensação de "arrasto").
+──────────────────────────────────────────────────────────────────────────── */
+#cursor-ring {
+  pointer-events: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 9999;
+  width: 28px;
+  height: 28px;
+  border: 1.5px solid rgba(249, 115, 22, 0.85);
+  border-radius: 9999px;
+  transform: translate(-50%, -50%) scale(1);
+  box-shadow:
+    rgba(194, 65, 12, 0.15) 0 0 0 2px,
+    rgba(249, 115, 22, 0.25) 0 0 30px;
+  transition:
+    width        .2s,
+    height       .2s,
+    border-color .2s,
+    box-shadow   .2s,
+    transform    .06s,
+    opacity      .2s;
+  backdrop-filter: blur(1px);
+  opacity: 0.9;
+}
+
+/* ── CURSOR DOT ────────────────────────────────────────────────────────────
+   Ponto central que fica sempre exatamente onde o cursor está.
+──────────────────────────────────────────────────────────────────────────── */
+#cursor-dot {
+  pointer-events: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 9999;
+  width: 6px;
+  height: 6px;
+  background: rgba(251, 146, 60, 0.95);
+  border-radius: 9999px;
+  transform: translate(-50%, -50%);
+  transition: transform .06s, opacity .2s;
+  box-shadow: rgba(251, 146, 60, 0.6) 0 0 10px;
+  opacity: 0.9;
+}
+
+/* Em touch devices (celular/tablet) esconde tudo do cursor customizado */
+@media (hover: none) {
+  #cursor-ring,
+  #cursor-dot {
+    display: none;
+  }
+}

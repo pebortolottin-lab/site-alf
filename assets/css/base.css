@@ -1,4 +1,13 @@
 /* Base utilities: hidden scrollbars and visibility helpers */
+
+/* Remove iframe/canvas border from UnicornStudio background */
+.aura-background-component iframe,
+.aura-background-component canvas,
+.aura-background-component * {
+  border: none !important;
+  outline: none !important;
+}
+
 .invisible { visibility: hidden !important; }
 ::-webkit-scrollbar { display: none; }
 body { -ms-overflow-style: none; scrollbar-width: none; }
