@@ -20,7 +20,7 @@
   position: fixed;
   top: 0;
   left: 0;
-  z-index: 9999;
+  z-index: 999999;
   width: 28px;
   height: 28px;
   border: 1.5px solid rgba(251, 191, 36, 0.85);
@@ -48,7 +48,7 @@
   position: fixed;
   top: 0;
   left: 0;
-  z-index: 9999;
+  z-index: 999999;
   width: 6px;
   height: 6px;
   background: rgba(252, 211, 77, 0.95);
