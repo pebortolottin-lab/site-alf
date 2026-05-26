@@ -41,7 +41,7 @@ document.addEventListener('DOMContentLoaded', () => {
       'position:fixed;',
       'top:0;',
       'left:0;',
-      'z-index:9998;',
+      'z-index:999999;',
       `width:${baseSize}px;`,
       `height:${baseSize}px;`,
       'border-radius:9999px;',
