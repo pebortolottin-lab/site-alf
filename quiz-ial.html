@@ -539,6 +539,33 @@
   }
   .btn-restart:hover { border-color: var(--border); color: var(--text); }
 
+  .btn-niveis {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    background: rgba(0,0,0,0.6);
+    border: 1px solid #f97316;
+    border-radius: 9999px;
+    padding: 14px 32px;
+    color: #fff;
+    font-family: 'Inter', sans-serif;
+    font-size: 15px;
+    font-weight: 500;
+    cursor: pointer;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    box-shadow: 0 0 20px rgba(249,115,22,0.5), inset 0 0 10px rgba(249,115,22,0.2);
+    margin-top: 16px;
+  }
+  .btn-niveis:hover {
+    background: rgba(249,115,22,0.1);
+    border-color: #fb923c;
+    box-shadow: 0 0 35px rgba(249,115,22,0.6), inset 0 0 20px rgba(249,115,22,0.4);
+    transform: scale(1.02);
+  }
+
   /* ── HIDDEN ── */
   .quiz-content { display: block; }
   .quiz-content.hidden { display: none; }
@@ -620,6 +647,11 @@
       <p>Aprenda a construir R$1.000 a R$10.000 por mês sem precisar trabalhar.<br><br>Descubra por que ganhar mais pode não resolver e onde sua liberdade patrimonial está vazando.</p>
       <a href="#" class="btn-cta" id="ctaBtn">Quero garantir minha vaga</a>
     </div>
+
+    <a href="#" class="btn-niveis">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#fb923c" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polygon points="10 8 16 12 10 16 10 8" fill="#fb923c" stroke="none"/></svg>
+      Escolha seu Nível da Arquitetura
+    </a>
 
     <button class="btn-restart" onclick="restart()">↺ Refazer o diagnóstico</button>
   </div>
