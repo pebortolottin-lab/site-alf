@@ -208,7 +208,7 @@ Ver detalhes completos
 <p class="text-4xl font-oswald font-light text-white">R$ 50.000</p>
 <p class="text-xs text-gray-600 mt-1">inclui Níveis 1 e 2</p>
 </div>
-<button onclick="openNivel(3)" class="hover:bg-orange-500/10 hover:border-orange-400 hover:shadow-[0_0_35px_rgba(249,115,22,0.6),inset_0_0_20px_rgba(249,115,22,0.4)] hover:scale-[1.02] transition-all duration-300 flex group/btn text-sm font-medium text-white bg-black/60 w-full border border-orange-500 rounded-full py-2.5 px-6 shadow-[0_0_20px_rgba(249,115,22,0.5),inset_0_0_10px_rgba(249,115,22,0.2)] gap-x-2 items-center justify-center">
+<button onclick="openNivel3Detail()" class="hover:bg-orange-500/10 hover:border-orange-400 hover:shadow-[0_0_35px_rgba(249,115,22,0.6),inset_0_0_20px_rgba(249,115,22,0.4)] hover:scale-[1.02] transition-all duration-300 flex group/btn text-sm font-medium text-white bg-black/60 w-full border border-orange-500 rounded-full py-2.5 px-6 shadow-[0_0_20px_rgba(249,115,22,0.5),inset_0_0_10px_rgba(249,115,22,0.2)] gap-x-2 items-center justify-center">
 <i data-lucide="play-circle" class="w-4 h-4 text-orange-400"></i>
 Ver detalhes completos
 </button>
@@ -577,6 +577,120 @@ function closeMobileMenu() {
 </div>
 </div>
 
+<!-- modal detalhado nível 3 -->
+<div id="nivel3DetailModal" class="fixed inset-0 z-[99998] flex items-end md:items-center justify-center md:p-6" style="opacity:0;pointer-events:none;transition:opacity .3s ease;">
+<div class="absolute inset-0 bg-black/75" onclick="closeNivel3Detail()"></div>
+<div id="nivel3DetailPanel" class="relative w-full max-w-2xl max-h-[92vh] bg-[#0C0C14] border border-white/10 rounded-t-3xl md:rounded-3xl overflow-y-auto shadow-2xl" style="transform:translateY(40px);transition:transform .4s cubic-bezier(.22,1,.36,1);">
+<button onclick="closeNivel3Detail()" class="absolute top-5 right-5 z-10 flex items-center justify-center w-8 h-8 rounded-full bg-white/5 hover:bg-white/10 text-gray-400 hover:text-white transition-colors text-base leading-none select-none">✕</button>
+<div class="p-8 pb-0">
+
+  <!-- título -->
+  <h2 class="text-2xl font-oswald font-light tracking-tight text-white mb-6">A Arquitetura funciona <span class="text-orange-500">em níveis.</span></h2>
+
+  <!-- intro -->
+  <p class="text-gray-400 text-[15px] leading-relaxed mb-4">Cada nível foi desenhado para elevar seu Score de forma real e prática. Não é um curso. Não é consultoria financeira. É uma Arquitetura: um desenho inteligente da sua vida patrimonial e familiar, construído por alguém que já percorreu esse caminho inteiro.</p>
+  <p class="text-gray-400 text-[15px] leading-relaxed mb-6">Você não recebe ordens. Você recebe visão. As decisões são sempre suas.</p>
+
+  <!-- cta score -->
+  <a href="../quiz-ial.html" target="_blank" class="inline-flex items-center gap-2 text-sm text-orange-400 hover:text-orange-300 transition-colors mb-8">
+    <i data-lucide="zap" class="w-4 h-4 shrink-0"></i>
+    Ainda não fez o Score? <span class="underline ml-1">Descubra seu IAL Score gratuitamente.</span>
+  </a>
+
+  <!-- política -->
+  <div class="rounded-xl bg-orange-500/5 border border-orange-500/20 p-5 mb-8">
+    <div class="flex items-center gap-2 mb-3">
+      <i data-lucide="shield-check" class="w-4 h-4 text-orange-400 shrink-0"></i>
+      <h3 class="text-sm font-semibold text-white">Política de Valorização da Confiança</h3>
+    </div>
+    <ul class="space-y-3 text-[14px] text-gray-400 leading-relaxed">
+      <li class="flex gap-2"><i data-lucide="check" class="w-3.5 h-3.5 text-orange-400 shrink-0 mt-0.5"></i><span>Se você optar diretamente por um nível avançado, os níveis anteriores já estão incluídos, sem custo adicional. Quem confia desde o início, paga menos.</span></li>
+      <li class="flex gap-2"><i data-lucide="check" class="w-3.5 h-3.5 text-orange-400 shrink-0 mt-0.5"></i><span>Se começar em um nível e decidir avançar dentro de 30 dias, terá <strong class="text-white">100% do que já investiu como crédito</strong> no próximo nível. Após 30 dias, o crédito é de <strong class="text-white">50%</strong>.</span></li>
+    </ul>
+  </div>
+
+  <div class="h-px bg-white/10 mb-8"></div>
+
+  <!-- nível header -->
+  <div class="flex flex-wrap items-center gap-3 mb-3">
+    <span class="flex items-center justify-center w-8 h-8 rounded-lg bg-orange-500/10 text-[12px] font-mono font-bold text-orange-400 border border-orange-500/20">03</span>
+    <h2 class="text-2xl font-oswald font-light text-white">NÍVEL 3: <span class="text-orange-400">MUNDO</span></h2>
+  </div>
+  <div class="flex flex-wrap gap-5 mb-8 text-sm text-gray-500">
+    <span>Score atual → meta: <strong class="text-white">81 a 95 pontos</strong></span>
+    <span>Investimento: <strong class="text-white">R$ 50.000</strong> <span class="text-gray-600">(inclui tudo dos Níveis 1 e 2)</span></span>
+  </div>
+
+  <!-- o que muda -->
+  <p class="text-xs font-semibold text-orange-400/70 uppercase tracking-widest mb-3">O que muda na sua vida</p>
+  <ul class="space-y-2 text-[14px] text-gray-400 leading-relaxed mb-8">
+    <li class="flex gap-2"><i data-lucide="arrow-right" class="w-3.5 h-3.5 text-orange-400 shrink-0 mt-0.5"></i>Parar de pensar apenas Brasil.</li>
+    <li class="flex gap-2"><i data-lucide="arrow-right" class="w-3.5 h-3.5 text-orange-400 shrink-0 mt-0.5"></i>Construir mobilidade real.</li>
+    <li class="flex gap-2"><i data-lucide="arrow-right" class="w-3.5 h-3.5 text-orange-400 shrink-0 mt-0.5"></i>Ampliar possibilidades futuras da família.</li>
+    <li class="flex gap-2"><i data-lucide="arrow-right" class="w-3.5 h-3.5 text-orange-400 shrink-0 mt-0.5"></i>Entender estruturas globais.</li>
+    <li class="flex gap-2"><i data-lucide="arrow-right" class="w-3.5 h-3.5 text-orange-400 shrink-0 mt-0.5"></i>Reduzir dependência de uma única jurisdição.</li>
+    <li class="flex gap-2"><i data-lucide="arrow-right" class="w-3.5 h-3.5 text-orange-400 shrink-0 mt-0.5"></i>Construir visão internacional.</li>
+    <li class="flex gap-2"><i data-lucide="arrow-right" class="w-3.5 h-3.5 text-orange-400 shrink-0 mt-0.5"></i>Caminhar para 81 a 95 pontos.</li>
+  </ul>
+
+  <!-- o que você recebe -->
+  <p class="text-xs font-semibold text-orange-400/70 uppercase tracking-widest mb-4">O que você recebe</p>
+  <div class="flex flex-col gap-4 mb-8">
+    <div class="p-4 rounded-xl bg-white/[0.03] border border-white/5">
+      <p class="text-sm font-semibold text-white mb-1">Tudo dos Níveis 1 e 2</p>
+      <p class="text-sm text-gray-400 leading-relaxed">Score, Plano de Tratamento, Mapa, Direcionamento, Introduções, Bitcoin, Cripto, Banco Internacional, Imóveis, Casais e Autoridade, caso ainda não tenha feito.</p>
+    </div>
+    <div class="p-4 rounded-xl bg-white/[0.03] border border-white/5">
+      <p class="text-sm font-semibold text-white mb-1">Empresa no Exterior: Conceito e Caminhos</p>
+      <p class="text-sm text-gray-400 leading-relaxed">Como funciona abrir e manter empresas em diferentes jurisdições ao redor do mundo. O que cada uma oferece, quanto custa, quais as vantagens reais. Você sai com clareza para, junto ao seu advogado e contador, tomar a melhor decisão. E se desejar, posso apresentar escritórios que conheço pessoalmente nessas jurisdições.</p>
+    </div>
+    <div class="p-4 rounded-xl bg-white/[0.03] border border-white/5">
+      <p class="text-sm font-semibold text-white mb-1">Redução de Custos Tributários com Estrutura Legal</p>
+      <p class="text-sm text-gray-400 leading-relaxed">A estrutura certa, no lugar certo, pode reduzir legalmente o que você paga de imposto. Não é evasão. Não é truque. É arquitetura.</p>
+    </div>
+    <div class="p-4 rounded-xl bg-white/[0.03] border border-white/5">
+      <p class="text-sm font-semibold text-white mb-1">Teoria das Bandeiras, Aplicada</p>
+      <p class="text-sm text-gray-400 leading-relaxed">Onde morar. Onde ter empresa. Onde investir. Onde ter cidadania. Onde guardar patrimônio. Cada decisão em uma jurisdição diferente, de acordo com o que faz mais sentido para sua família. Eu vivo isso. Não é teoria. É minha vida.</p>
+    </div>
+    <div class="p-4 rounded-xl bg-white/[0.03] border border-white/5">
+      <p class="text-sm font-semibold text-white mb-1">Investimentos Internacionais via IBKR</p>
+      <p class="text-sm text-gray-400 leading-relaxed">Existem retenções de 30% nos EUA que muitos investidores só descobrem depois. Existem arquiteturas legais capazes de mudar significativamente essa dinâmica, chegando em alguns cenários a até 50% menos retenção. Vou te mostrar a lógica. A execução é sua.</p>
+    </div>
+    <div class="p-4 rounded-xl bg-white/[0.03] border border-white/5">
+      <p class="text-sm font-semibold text-white mb-1">Renda em Dólar com Cripto e Custódia Inteligente</p>
+      <p class="text-sm text-gray-400 leading-relaxed">Estratégias de renda em dólar e cripto, incluindo operações automatizadas, robôs e estruturas capazes de gerar fluxo de caixa com baixa demanda operacional. Vou mostrar possibilidades reais, vantagens, riscos e limitações.</p>
+    </div>
+    <div class="p-4 rounded-xl bg-white/[0.03] border border-white/5">
+      <p class="text-sm font-semibold text-white mb-1">Autoridade, Tecnologia e Expansão</p>
+      <p class="text-sm text-gray-400 leading-relaxed">Ferramentas e estratégias que aceleram crescimento, produtividade e construção de patrimônio invisível.</p>
+    </div>
+    <div class="p-4 rounded-xl bg-white/[0.03] border border-white/5">
+      <p class="text-sm font-semibold text-white mb-1">Redes Sociais, YouTube e Livros</p>
+      <p class="text-sm text-gray-400 leading-relaxed">Como funciona o jogo de conteúdo. Como escrever e publicar um livro e transformá-lo em bestseller. Tenho dois bestsellers top 1 de vendas no Brasil, mais um na área médica e um nos EUA. Vou te mostrar como fazer isso.</p>
+    </div>
+  </div>
+
+  <!-- formato -->
+  <div class="flex items-start gap-3 p-4 rounded-xl bg-white/[0.03] border border-white/5 mb-4">
+    <i data-lucide="video" class="w-4 h-4 text-orange-400 shrink-0 mt-0.5"></i>
+    <div>
+      <p class="text-xs font-semibold text-orange-400/70 uppercase tracking-widest mb-1">Formato</p>
+      <p class="text-sm text-gray-400 leading-relaxed">3 sessões online individuais (total de aproximadamente 3 horas) + relatório completo de arquitetura internacional personalizada + material de apoio + acesso a contatos de escritórios internacionais (se desejar) + indicação de profissionais para execução + e-book "A Tríade do Guerreiro".</p>
+    </div>
+  </div>
+
+</div>
+<!-- sticky bottom -->
+<div class="sticky bottom-0 bg-gradient-to-t from-[#0C0C14] via-[#0C0C14] to-transparent px-8 pb-8 pt-14">
+  <button onclick="closeNivel3Detail()" class="group inline-flex overflow-hidden transition-all duration-300 hover:scale-[1.01] hover:shadow-[0_0_40px_-10px_rgba(249,115,22,0.5)] w-full h-[52px] rounded-full relative items-center justify-center" style="position:relative;">
+    <div class="absolute inset-0 -z-20 rounded-full overflow-hidden p-[1px]"><div class="absolute inset-[-100%] bg-[conic-gradient(from_0deg,transparent_0_300deg,#f97316_360deg)]" style="animation:beam-spin 3s linear infinite;"></div><div class="absolute inset-[1px] rounded-full bg-[#050505]"></div></div>
+    <div class="overflow-hidden bg-[#0A0A0A] rounded-full absolute top-[2px] right-[2px] bottom-[2px] left-[2px]"><div class="bg-gradient-to-b from-amber-900/20 to-transparent absolute top-0 right-0 bottom-0 left-0"></div></div>
+    <span class="text-sm font-medium text-white relative z-10">← Voltar e ver outros níveis</span>
+  </button>
+</div>
+</div>
+</div>
+
 <!-- modais dos níveis -->
 <div id="nivelModal" class="fixed inset-0 z-[99997] flex items-end md:items-center justify-center md:p-6" style="opacity:0;pointer-events:none;transition:opacity .3s ease;">
 <div class="absolute inset-0 bg-black/75" onclick="closeNivel()"></div>
@@ -700,7 +814,7 @@ function closeNivel() {
   panel.style.transform = 'translateY(40px)';
   document.body.style.overflow = '';
 }
-document.addEventListener('keydown', e => { if (e.key === 'Escape') { closeNivel(); closeNivel1Detail(); closeNivel2Detail(); } });
+document.addEventListener('keydown', e => { if (e.key === 'Escape') { closeNivel(); closeNivel1Detail(); closeNivel2Detail(); closeNivel3Detail(); } });
 
 function openNivel1Detail() {
   const modal = document.getElementById('nivel1DetailModal');
@@ -732,6 +846,24 @@ function openNivel2Detail() {
 function closeNivel2Detail() {
   const modal = document.getElementById('nivel2DetailModal');
   const panel = document.getElementById('nivel2DetailPanel');
+  modal.style.opacity = '0';
+  modal.style.pointerEvents = 'none';
+  panel.style.transform = 'translateY(40px)';
+  document.body.style.overflow = '';
+}
+
+function openNivel3Detail() {
+  const modal = document.getElementById('nivel3DetailModal');
+  const panel = document.getElementById('nivel3DetailPanel');
+  modal.style.opacity = '1';
+  modal.style.pointerEvents = 'auto';
+  panel.style.transform = 'translateY(0)';
+  document.body.style.overflow = 'hidden';
+  if (window.lucide) lucide.createIcons();
+}
+function closeNivel3Detail() {
+  const modal = document.getElementById('nivel3DetailModal');
+  const panel = document.getElementById('nivel3DetailPanel');
   modal.style.opacity = '0';
   modal.style.pointerEvents = 'none';
   panel.style.transform = 'translateY(40px)';
