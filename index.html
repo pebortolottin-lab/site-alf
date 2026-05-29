@@ -902,6 +902,8 @@ Assistir Masterclass Estratégica
   <div class="relative w-full max-w-3xl flex flex-col items-center gap-4" style="cursor:auto;">
     <!-- fechar -->
     <button onclick="closeCarrosselModal()" class="absolute -top-10 right-0 text-gray-400 hover:text-white text-2xl leading-none z-10" style="cursor:pointer;">✕</button>
+    <!-- título -->
+    <h3 id="carrosselTitle" class="text-lg md:text-xl font-oswald font-light text-white text-center z-10" style="transition:opacity .3s ease;"></h3>
     <!-- contador -->
     <p id="carrosselCounter" class="text-xs text-gray-500 uppercase tracking-widest z-10">1 / 4</p>
     <!-- imagem -->
@@ -926,15 +928,25 @@ const carrosselImages = [
   'assets/img/trajetoria/3.jpg',
   'assets/img/trajetoria/4.jpg'
 ];
+const carrosselTitles = [
+  'Autoridade se constrói com história',
+  'Reconhecimento não tem fronteira',
+  'Quem ensina precisa ter vivido',
+  'Arquitetura existe para isso'
+];
 let carrosselIndex = 0;
 let carrosselTimer = null;
 
 function carrosselUpdate() {
   const img = document.getElementById('carrosselImg');
+  const title = document.getElementById('carrosselTitle');
   img.style.opacity = '0';
+  title.style.opacity = '0';
   setTimeout(() => {
     img.src = carrosselImages[carrosselIndex];
+    title.textContent = carrosselTitles[carrosselIndex];
     img.style.opacity = '1';
+    title.style.opacity = '1';
   }, 300);
   document.getElementById('carrosselCounter').textContent = (carrosselIndex + 1) + ' / ' + carrosselImages.length;
   carrosselImages.forEach((_, i) => {
