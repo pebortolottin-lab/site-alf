@@ -22,9 +22,13 @@
 <style>
 /* cursor normal dentro dos modais (cursor trail fica atrás do backdrop-filter) */
 #caseModal, #caseModal *,
-#trajetoriaModal, #trajetoriaModal * { cursor: auto !important; }
+#trajetoriaModal, #trajetoriaModal *,
+#curriculoModal, #curriculoModal *,
+#carrosselModal, #carrosselModal * { cursor: auto !important; }
 #caseModal a, #caseModal button,
-#trajetoriaModal a, #trajetoriaModal button { cursor: pointer !important; }
+#trajetoriaModal a, #trajetoriaModal button,
+#curriculoModal a, #curriculoModal button,
+#carrosselModal a, #carrosselModal button { cursor: pointer !important; }
 </style>
 <!-- head-only js -->
 <!-- Tailwind utility runtime — must stay in head to apply utility classes -->
@@ -797,10 +801,10 @@ Quero garantir minha vaga
       <i data-lucide="image" class="w-4 h-4 text-orange-400 relative z-10"></i>
       <span class="text-sm font-medium text-white relative z-10">Trajetória em Imagens</span>
     </button>
-    <a href="#" target="_blank" class="hover:bg-orange-500/10 hover:border-orange-400 hover:shadow-[0_0_35px_rgba(249,115,22,0.6),inset_0_0_20px_rgba(249,115,22,0.4)] hover:scale-[1.02] transition-all duration-300 flex text-sm font-semibold text-white bg-black/60 w-full border border-orange-500 rounded-full py-3.5 px-6 shadow-[0_0_20px_rgba(249,115,22,0.5),inset_0_0_10px_rgba(249,115,22,0.2)] items-center justify-center gap-2">
+    <button onclick="openCurriculoModal()" class="hover:bg-orange-500/10 hover:border-orange-400 hover:shadow-[0_0_35px_rgba(249,115,22,0.6),inset_0_0_20px_rgba(249,115,22,0.4)] hover:scale-[1.02] transition-all duration-300 flex text-sm font-semibold text-white bg-black/60 w-full border border-orange-500 rounded-full py-3.5 px-6 shadow-[0_0_20px_rgba(249,115,22,0.5),inset_0_0_10px_rgba(249,115,22,0.2)] items-center justify-center gap-2">
       <i data-lucide="file-text" class="w-4 h-4 text-orange-400"></i>
       Ver currículo completo
-    </a>
+    </button>
     <a href="#" target="_blank" class="group inline-flex overflow-hidden transition-all duration-300 hover:scale-[1.01] hover:shadow-[0_0_40px_-10px_rgba(249,115,22,0.5)] w-full h-[52px] rounded-full relative items-center justify-center gap-2" style="position:relative;">
       <div class="absolute inset-0 -z-20 rounded-full overflow-hidden p-[1px]"><div class="absolute inset-[-100%] bg-[conic-gradient(from_0deg,transparent_0_300deg,#f97316_360deg)]" style="animation:beam-spin 3s linear infinite;"></div><div class="absolute inset-[1px] rounded-full bg-[#050505]"></div></div>
       <div class="overflow-hidden bg-[#0A0A0A] rounded-full absolute top-[2px] right-[2px] bottom-[2px] left-[2px]"><div class="bg-gradient-to-b from-amber-900/20 to-transparent absolute top-0 right-0 bottom-0 left-0"></div></div>
@@ -896,6 +900,155 @@ Assistir Masterclass Estratégica
 <script src="assets/js/scroll-reveal.js"></script>
 <!-- Accordion expand/collapse — case studies section -->
 <script src="assets/js/accordions.js"></script>
+<!-- modal currículo completo -->
+<div id="curriculoModal" class="fixed inset-0 z-[99998] flex items-end md:items-center justify-center md:p-6" style="opacity:0;pointer-events:none;transition:opacity .3s ease;">
+<div class="absolute inset-0 bg-black/75" onclick="closeCurriculoModal()"></div>
+<div id="curriculoPanel" class="relative w-full max-w-2xl max-h-[92vh] bg-[#0C0C14] border border-white/10 rounded-t-3xl md:rounded-3xl overflow-y-auto shadow-2xl" style="transform:translateY(40px);transition:transform .4s cubic-bezier(.22,1,.36,1);">
+  <button onclick="closeCurriculoModal()" class="absolute top-5 right-5 z-10 flex items-center justify-center w-8 h-8 rounded-full bg-white/5 hover:bg-white/10 text-gray-400 hover:text-white transition-colors text-base leading-none select-none">✕</button>
+  <div class="p-8 pb-0">
+
+    <!-- cabeçalho -->
+    <div class="mb-8">
+      <p class="text-xs font-semibold text-orange-400/70 uppercase tracking-widest mb-2">Currículo Completo</p>
+      <h2 class="text-2xl md:text-3xl font-oswald font-light text-white leading-tight mb-1">Paulo Eduardo Bortolotti Nunes</h2>
+      <p class="text-sm text-orange-400 font-medium">P.E.N. Bortolotti</p>
+    </div>
+
+    <!-- Competências Estratégicas -->
+    <div class="mb-7">
+      <p class="text-xs font-bold text-orange-400/70 uppercase tracking-widest mb-4">Competências Estratégicas</p>
+      <div class="space-y-4">
+        <div><p class="text-sm font-semibold text-white mb-1">Gestão Operacional</p><p class="text-sm text-gray-400 leading-relaxed">Supervisão de operações diárias, gestão de equipes, manutenção de infraestrutura e garantia de qualidade em rede de clínicas com mais de 5 mil pacientes por mês. Experiência em escalar operação mantendo padrão de atendimento.</p></div>
+        <div><p class="text-sm font-semibold text-white mb-1">Planejamento Estratégico</p><p class="text-sm text-gray-400 leading-relaxed">Desenvolvimento de estratégias de longo prazo para crescimento e expansão empresarial. Análise de mercado, identificação de oportunidades, diversificação de serviços e expansão geográfica. Transformou clínica única na primeira rede de franquias médicas do segmento no Brasil.</p></div>
+        <div><p class="text-sm font-semibold text-white mb-1">Gestão Financeira</p><p class="text-sm text-gray-400 leading-relaxed">Controle orçamentário, otimização de custos, monitoramento de lucratividade e planejamento de investimentos em múltiplas unidades. MBA em Finanças e Análise de Ações aplicado à gestão patrimonial pessoal e empresarial.</p></div>
+        <div><p class="text-sm font-semibold text-white mb-1">Gestão de Saúde Comunitária</p><p class="text-sm text-gray-400 leading-relaxed">Coordenação de ambulatório em região com único centro de saúde atendendo duas cidades. Gestão de casos crônicos, planejamento familiar, vigilância epidemiológica e integração comunitária. Experiência que ensinou a fazer muito com pouco e pensar em sistema, não em peça isolada.</p></div>
+        <div><p class="text-sm font-semibold text-white mb-1">Estratégia Digital e Autoridade</p><p class="text-sm text-gray-400 leading-relaxed">Arquitetura e planejamento estratégico do canal YouTube Dra. Caroline Hespanhol, com ≈500 mil seguidores em dermatologia. Responsável pela estrutura de crescimento, posicionamento e estratégia de conteúdo. Experiência prática em construção de autoridade digital como ferramenta patrimonial.</p></div>
+        <div><p class="text-sm font-semibold text-white mb-1">Educação e Formação Continuada</p><p class="text-sm text-gray-400 leading-relaxed">Palestrante convidado pelo CRM da Paraíba. Autor de 8 livros de dermatologia voltados para educação de pacientes. Participação em mais de 60 atualizações médicas com laboratórios líderes globais. Cultura de aprendizado contínuo aplicada à medicina, finanças e arquitetura patrimonial.</p></div>
+        <div><p class="text-sm font-semibold text-white mb-1">Arquitetura Patrimonial Internacional</p><p class="text-sm text-gray-400 leading-relaxed">Investidor com operação em múltiplas jurisdições. Experiência prática com offshore, holding, criptoativos, lending, robôs de trading, autocustódia, IBKR, bancos internacionais e teoria das bandeiras. Não teoria. Execução própria.</p></div>
+      </div>
+    </div>
+
+    <div class="border-t border-white/5 my-6"></div>
+
+    <!-- Formação -->
+    <div class="mb-7">
+      <p class="text-xs font-bold text-orange-400/70 uppercase tracking-widest mb-4">Formação Acadêmica</p>
+      <ul class="space-y-2">
+        <li class="text-sm text-gray-400 leading-relaxed"><span class="text-white font-medium">MBA em Finanças e Análise de Ações</span> — Centro Universitário ETEP (2023)</li>
+        <li class="text-sm text-gray-400 leading-relaxed"><span class="text-white font-medium">Pós-graduação em Perícia Médica</span> — Universidade Brasil (2015–2017)</li>
+        <li class="text-sm text-gray-400 leading-relaxed"><span class="text-white font-medium">Pós-graduação em Dermatologia</span> — Instituto Superior de Medicina e Dermatologia / ISMD (2012)</li>
+        <li class="text-sm text-gray-400 leading-relaxed"><span class="text-white font-medium">Pós-graduação em Medicina Estética</span> — ASIME (2010)</li>
+        <li class="text-sm text-gray-400 leading-relaxed"><span class="text-white font-medium">Bacharelado em Medicina</span> — Universidade Luterana do Brasil (2007)</li>
+      </ul>
+    </div>
+
+    <div class="border-t border-white/5 my-6"></div>
+
+    <!-- Trajetória -->
+    <div class="mb-7">
+      <p class="text-xs font-bold text-orange-400/70 uppercase tracking-widest mb-4">Trajetória Profissional</p>
+      <div class="space-y-5">
+        <div><p class="text-sm font-semibold text-white">Criador | Arquitetura de Liberdade Familiar (ALF) <span class="text-gray-500 font-normal">· 2025–presente</span></p><p class="text-sm text-gray-400 leading-relaxed mt-1">Processo de diagnóstico, mapa e tratamento da vida patrimonial para famílias de alta renda. Score IAL com 10 pilares, plano de direcionamento e acompanhamento em 4 níveis. Abrange investimentos internacionais, criptoativos, estruturas offshore, planejamento tributário global e teoria das bandeiras.</p></div>
+        <div><p class="text-sm font-semibold text-white">Investidor Internacional <span class="text-gray-500 font-normal">· 2020–presente</span></p><p class="text-sm text-gray-400 leading-relaxed mt-1">Operação em múltiplas jurisdições. Investimentos via IBKR, criptoativos (BTC, ETH, PAXG), lending em dólar, operações automatizadas, autocustódia e estruturas internacionais. Base fiscal no Panamá.</p></div>
+        <div><p class="text-sm font-semibold text-white">Médico Dermatologista e Gestor | Docs Saúde <span class="text-gray-500 font-normal">· 2010–presente</span></p><p class="text-sm text-gray-400 leading-relaxed mt-1">Fundador da rede de clínicas médicas. Gestão operacional, planejamento estratégico e gestão financeira em múltiplas unidades. Primeira rede de franquias médicas do segmento no Brasil (2015). Destaque publicado na Folha de São Paulo, seção Mercado Aberto (agosto de 2014). Atualmente uma das clínicas movimenta mais de 5 mil pacientes por mês.</p></div>
+        <div><p class="text-sm font-semibold text-white">Médico do PSF | Prefeitura de Chapada do Norte/MG <span class="text-gray-500 font-normal">· 2013</span></p><p class="text-sm text-gray-400 leading-relaxed mt-1">Médico Coordenador do Ambulatório de Doenças de Pele. Gestão de casos crônicos, planejamento familiar e vigilância em saúde. Único centro de saúde atendendo duas cidades da região.</p></div>
+        <div><p class="text-sm font-semibold text-white">Médico Dermatologista | Clínicas Alpha, Pura e Simples <span class="text-gray-500 font-normal">· 2009–2012</span></p><p class="text-sm text-gray-400 leading-relaxed mt-1">Diagnóstico e tratamento dermatológico, procedimentos estéticos e gerenciamento de doenças crônicas de pele.</p></div>
+        <div><p class="text-sm font-semibold text-white">Médico do Trabalho | Betelseg <span class="text-gray-500 font-normal">· 2009–2014</span></p><p class="text-sm text-gray-400 leading-relaxed mt-1">Prevenção de doenças ocupacionais, avaliação de capacidade laboral, promoção de saúde no ambiente de trabalho.</p></div>
+        <div><p class="text-sm font-semibold text-white">Médico do PSF | Prefeitura de Braúnas/MG <span class="text-gray-500 font-normal">· 2008–2009</span></p><p class="text-sm text-gray-400 leading-relaxed mt-1">Médico Coordenador do Ambulatório de Doenças de Pele. Atendimento integral e coordenação de saúde em área rural.</p></div>
+      </div>
+    </div>
+
+    <div class="border-t border-white/5 my-6"></div>
+
+    <!-- Livros -->
+    <div class="mb-7">
+      <p class="text-xs font-bold text-orange-400/70 uppercase tracking-widest mb-4">Livros Publicados</p>
+      <p class="text-xs font-semibold text-white/50 uppercase tracking-widest mb-2">Ficção</p>
+      <ul class="space-y-2 mb-4">
+        <li class="text-sm text-gray-400 leading-relaxed"><span class="text-white font-medium">"O Primeiro Filho do Homem"</span> — Bestseller Top 1 Amazon Brasil (jul/2023, jan–mai/2024) · Bestseller EUA · Certificação Panorama da Escrita / SpyBooks (COPE N°278/2024)</li>
+        <li class="text-sm text-gray-400 leading-relaxed"><span class="text-white font-medium">"A Ilha de Loritch: Cidade Perdida"</span> — Bestseller Top 1 Amazon Brasil (abr–mai/2024), à frente de Jogos Vorazes · Finalista Concurso Talentos da Literatura Brasileira · 4.9/5.0 com 87 avaliações · Certificação COPE N°502/2024</li>
+      </ul>
+      <p class="text-xs font-semibold text-white/50 uppercase tracking-widest mb-2">Finanças</p>
+      <ul class="space-y-1 mb-4"><li class="text-sm text-gray-400">"A Tríade do Guerreiro" (em atualização)</li></ul>
+      <p class="text-xs font-semibold text-white/50 uppercase tracking-widest mb-2">Medicina / Dermatologia</p>
+      <ul class="space-y-1">
+        <li class="text-sm text-gray-400">"Melasma: O Guia Definitivo" — Bestseller Amazon Brasil</li>
+        <li class="text-sm text-gray-400">"Rosácea: O Guia Definitivo"</li>
+        <li class="text-sm text-gray-400">"Skincare 1: O Guia Definitivo"</li>
+        <li class="text-sm text-gray-400">"Pro-Aging Skincare 2"</li>
+        <li class="text-sm text-gray-400">"Caspa - Dermatite Seborreica"</li>
+        <li class="text-sm text-gray-400">"Acne: O Guia Definitivo"</li>
+        <li class="text-sm text-gray-400">"Dermatite Atópica: O Guia Definitivo"</li>
+        <li class="text-sm text-gray-400">"Psoríase: O Combate Definitivo das Placas Indesejadas"</li>
+      </ul>
+    </div>
+
+    <div class="border-t border-white/5 my-6"></div>
+
+    <!-- Publicações -->
+    <div class="mb-7">
+      <p class="text-xs font-bold text-orange-400/70 uppercase tracking-widest mb-4">Publicações Científicas</p>
+      <p class="text-sm text-gray-400 leading-relaxed mb-4">Participação em múltiplas publicações científicas durante a graduação, em parceria com o Hospital de Clínicas de Porto Alegre (UFRGS):</p>
+      <div class="space-y-3">
+        <p class="text-xs text-gray-500 leading-relaxed">SZOBOT, C.M.; ROHDE, L.A.; DIEMEN, L.V.; HESPANHOL, C.; ERCOLE, E.; WALCHER, M.G.; RUARO, P.; <strong class="text-gray-400">NUNES, P.</strong>; SCHAEFER, T.; PECHANSKY, F. — "A community-based study on the prevalence of abuse and dependence of illicit drugs among male adolescents of Southern Brazil." NIDA International Forum, Orlando, 2005.</p>
+        <p class="text-xs text-gray-500 leading-relaxed">SZOBOT, C.M.; PECHANSKY, F.; MARTINS, C.; WALCHER, M.G.; <strong class="text-gray-400">NUNES, P.</strong>; RUARO, P.; SCHAEFFER, T.; ROHDE, L.A. — "Is attention-deficit/hyperactive disorder associated with substance use disorder in adolescents? A community-based case-control study." NIDA International Forum, Scottsdale, 2006.</p>
+        <p class="text-xs text-gray-500 leading-relaxed">SCHAEFER, T.P.; WALCHER, M.G.; RUARO, P.; SILVEIRA, K.; ERCOLE, E.; <strong class="text-gray-400">NUNES, P.</strong>; PECHANSKY, F.; ROHDE, L.A.; SZOBOT, C.M. — "Álcool, nicotina e substâncias ilícitas: prevalência de uso na vida..." 24ª Semana Científica do HCPA, 2006. Revista do HCPA, v. 26.</p>
+        <p class="text-xs text-gray-500 leading-relaxed">SZOBOT, C.M.; ROHDE, L.A.; FOGAÇA, K.; WALCHER, M.; SCHAEFER, T.; RUARO, P.; <strong class="text-gray-400">NUNES, P.</strong>; ERCOLE, E.; PECHANSKY, F. — "Álcool, nicotina e substâncias ilícitas..." XXIV Congresso Brasileiro de Psiquiatria, Curitiba, 2006. Revista Brasileira de Psiquiatria, v. 28.</p>
+        <p class="text-xs text-gray-500 leading-relaxed">SZOBOT, C.M.; ROHDE, L.A.P.; WALCHER, M.; SCHAEFER, T.; RUARO, P.; <strong class="text-gray-400">NUNES, P.</strong>; ERCOLE, E.; PECHANSKY, F. — "Álcool, nicotina e substâncias ilícitas..." 19º Congresso da ABN-PIA, Porto Alegre, 2007.</p>
+        <p class="text-xs text-gray-500 leading-relaxed">RUARO, P.; SZOBOT, C.M.; ERCOLE, E.; FOGAÇA, K.; HESPANHOL, C.; <strong class="text-gray-400">NUNES, P.E.</strong>; SCHAEFER, T.; DIEMEN, L.V.; WALCHER, M.G.; ROHDE, L.A. — "Prevalência do uso de nicotina entre adolescentes do sexo masculino na Região Sul do Brasil." XVII Salão de IC, UFRGS, 2005.</p>
+        <p class="text-xs text-gray-500 leading-relaxed">WALCHER, M.G.; SZOBOT, C.M.; ERCOLE, E.; FOGAÇA, K.; HESPANHOL, C.; <strong class="text-gray-400">NUNES, P.</strong>; RUARO, P.; SCHAEFER, T.; DIEMEN, L.V.; ROHDE, L.A. — "Prevalência do uso de álcool em adolescentes do sexo masculino." XVII Salão de IC, UFRGS, 2005.</p>
+        <p class="text-xs text-gray-500 leading-relaxed">Pôsteres premiados na VIII Semana Acadêmica ULBRA (2005): "Prevalência do uso de álcool em adolescentes do sexo masculino do Sul do Brasil" · "Prevalência do uso de nicotina entre adolescentes masculinos na Região Sul do Brasil"</p>
+        <p class="text-xs text-gray-500 leading-relaxed">SZOBOT, C.M.; ERCOLE, E.; RUARO, P.; HESPANHOL, C.; <strong class="text-gray-400">NUNES, P.</strong>; SCHAEFER, T.; FOGAÇA, K.; WALCHER, M. — "Prevalência do uso de nicotina entre os adolescentes do sexo masculino na Região Sul do Brasil." XI Salão de IC, ULBRA, 2005.</p>
+        <p class="text-xs text-gray-500 leading-relaxed">Bolsista da Fundação Médica do Rio Grande do Sul (HCPA, 2004–2005). Projeto: "Transtornos de Déficit de Atenção e Hiperatividade." Contemplado com renovação.</p>
+      </div>
+    </div>
+
+    <div class="border-t border-white/5 my-6"></div>
+
+    <!-- Reconhecimentos -->
+    <div class="mb-7">
+      <p class="text-xs font-bold text-orange-400/70 uppercase tracking-widest mb-4">Reconhecimentos e Prêmios</p>
+      <ul class="space-y-2">
+        <li class="flex items-start gap-2 text-sm text-gray-300"><i data-lucide="check" class="w-3.5 h-3.5 text-orange-400 shrink-0 mt-0.5"></i>Aprovado no Green Card americano EB-2 NIW (National Interest Waiver) — Habilidades Excepcionais</li>
+        <li class="flex items-start gap-2 text-sm text-gray-300"><i data-lucide="check" class="w-3.5 h-3.5 text-orange-400 shrink-0 mt-0.5"></i>Destaque na Folha de São Paulo, seção Mercado Aberto (agosto de 2014)</li>
+        <li class="flex items-start gap-2 text-sm text-gray-300"><i data-lucide="check" class="w-3.5 h-3.5 text-orange-400 shrink-0 mt-0.5"></i>Escritor Bestseller da Amazon — Certificação oficial Panorama da Escrita / SpyBooks</li>
+        <li class="flex items-start gap-2 text-sm text-gray-300"><i data-lucide="check" class="w-3.5 h-3.5 text-orange-400 shrink-0 mt-0.5"></i>Bestseller Top 1 na Amazon Brasil, à frente de Jogos Vorazes (Suzanne Collins)</li>
+        <li class="flex items-start gap-2 text-sm text-gray-300"><i data-lucide="check" class="w-3.5 h-3.5 text-orange-400 shrink-0 mt-0.5"></i>Bestseller nos EUA (The First Son of Man)</li>
+        <li class="flex items-start gap-2 text-sm text-gray-300"><i data-lucide="check" class="w-3.5 h-3.5 text-orange-400 shrink-0 mt-0.5"></i>Finalista do Concurso Talentos da Literatura Brasileira — Editora Novo Século (1 dos 20 finalistas)</li>
+        <li class="flex items-start gap-2 text-sm text-gray-300"><i data-lucide="check" class="w-3.5 h-3.5 text-orange-400 shrink-0 mt-0.5"></i>Membro da British Fantasy Society (Reino Unido)</li>
+        <li class="flex items-start gap-2 text-sm text-gray-300"><i data-lucide="check" class="w-3.5 h-3.5 text-orange-400 shrink-0 mt-0.5"></i>Palestrante convidado pelo CRM da Paraíba — "Entre Consultas e Capítulos" (2024)</li>
+        <li class="flex items-start gap-2 text-sm text-gray-300"><i data-lucide="check" class="w-3.5 h-3.5 text-orange-400 shrink-0 mt-0.5"></i>Sócio Fundador da Fraternidade dos Escritores</li>
+        <li class="flex items-start gap-2 text-sm text-gray-300"><i data-lucide="check" class="w-3.5 h-3.5 text-orange-400 shrink-0 mt-0.5"></i>Membro da Associação Brasileira de Medicina Estética (ABME)</li>
+      </ul>
+    </div>
+
+    <div class="border-t border-white/5 my-6"></div>
+
+    <!-- Congressos -->
+    <div class="mb-8">
+      <p class="text-xs font-bold text-orange-400/70 uppercase tracking-widest mb-4">Congressos (destaques)</p>
+      <ul class="space-y-1">
+        <li class="text-sm text-gray-400">RADLA 2023 — Reunião Anual dos Dermatologistas da América Latina (Curitiba)</li>
+        <li class="text-sm text-gray-400">XXX RADLA Brasil (São Paulo, 2012)</li>
+        <li class="text-sm text-gray-400">Master Derma Ache (2023)</li>
+        <li class="text-sm text-gray-400">VIII Congresso Mundial de Medicina Estética da IAAM/ASIME (2011)</li>
+        <li class="text-sm text-gray-400">Congresso Brasileiro de Medicina e Emergência (UFRGS, 2007)</li>
+        <li class="text-sm text-gray-400">Múltiplas atualizações com Galderma, Abbvie, La Roche-Posay, Vichy, Bioderma, Eucerin, Isdin, entre outros</li>
+      </ul>
+    </div>
+
+  </div>
+  <!-- sticky bottom -->
+  <div class="sticky bottom-0 bg-gradient-to-t from-[#0C0C14] via-[#0C0C14] to-transparent px-8 pb-8 pt-14">
+    <button onclick="closeCurriculoModal()" class="group inline-flex overflow-hidden transition-all duration-300 hover:scale-[1.01] hover:shadow-[0_0_40px_-10px_rgba(249,115,22,0.5)] w-full h-[52px] rounded-full relative items-center justify-center" style="position:relative;">
+      <div class="absolute inset-0 -z-20 rounded-full overflow-hidden p-[1px]"><div class="absolute inset-[-100%] bg-[conic-gradient(from_0deg,transparent_0_300deg,#f97316_360deg)]" style="animation:beam-spin 3s linear infinite;"></div><div class="absolute inset-[1px] rounded-full bg-[#050505]"></div></div>
+      <div class="overflow-hidden bg-[#0A0A0A] rounded-full absolute top-[2px] right-[2px] bottom-[2px] left-[2px]"><div class="bg-gradient-to-b from-amber-900/20 to-transparent absolute top-0 right-0 bottom-0 left-0"></div></div>
+      <span class="text-sm font-medium text-white relative z-10">← Voltar</span>
+    </button>
+  </div>
+</div>
+</div>
+
 <!-- modal carrossel: trajetória em imagens -->
 <div id="carrosselModal" class="fixed inset-0 z-[99999] flex items-center justify-center p-4 md:p-8" style="opacity:0;pointer-events:none;transition:opacity .3s ease;">
   <div class="absolute inset-0 bg-black/90" onclick="closeCarrosselModal()"></div>
@@ -1676,7 +1829,7 @@ function closeCase() {
   panel.style.transform = 'translateY(40px)';
   setTimeout(() => { document.body.style.overflow = ''; }, 350);
 }
-document.addEventListener('keydown', e => { if (e.key === 'Escape') { closeCase(); closePrivacy(); closeTerms(); closeMobileMenu(); closeTrajetoriaModal(); } });
+document.addEventListener('keydown', e => { if (e.key === 'Escape') { closeCase(); closePrivacy(); closeTerms(); closeMobileMenu(); closeTrajetoriaModal(); closeCurriculoModal(); } });
 function openTrajetoriaModal() {
   const modal = document.getElementById('trajetoriaModal');
   const panel = document.getElementById('trajetoriaPanel');
@@ -1689,6 +1842,23 @@ function openTrajetoriaModal() {
 function closeTrajetoriaModal() {
   const modal = document.getElementById('trajetoriaModal');
   const panel = document.getElementById('trajetoriaPanel');
+  modal.style.opacity = '0';
+  modal.style.pointerEvents = 'none';
+  panel.style.transform = 'translateY(40px)';
+  document.body.style.overflow = '';
+}
+function openCurriculoModal() {
+  const modal = document.getElementById('curriculoModal');
+  const panel = document.getElementById('curriculoPanel');
+  modal.style.opacity = '1';
+  modal.style.pointerEvents = 'auto';
+  panel.style.transform = 'translateY(0)';
+  document.body.style.overflow = 'hidden';
+  lucide.createIcons();
+}
+function closeCurriculoModal() {
+  const modal = document.getElementById('curriculoModal');
+  const panel = document.getElementById('curriculoPanel');
   modal.style.opacity = '0';
   modal.style.pointerEvents = 'none';
   panel.style.transform = 'translateY(40px)';
