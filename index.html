@@ -19,6 +19,13 @@
 <link rel="stylesheet" href="assets/css/components.css"/>
 <!-- golden cursor trail (snake-style, dourado) — site-wide -->
 <link rel="stylesheet" href="assets/css/cursor-trail.css"/>
+<style>
+/* cursor normal dentro dos modais (cursor trail fica atrás do backdrop-filter) */
+#caseModal, #caseModal *,
+#trajetoriaModal, #trajetoriaModal * { cursor: auto !important; }
+#caseModal a, #caseModal button,
+#trajetoriaModal a, #trajetoriaModal button { cursor: pointer !important; }
+</style>
 <!-- head-only js -->
 <!-- Tailwind utility runtime — must stay in head to apply utility classes -->
 <script src="assets/resource_3fa48481346f.es"></script>
@@ -894,7 +901,7 @@ Assistir Masterclass Estratégica
 
 <!-- ── MODAL: CASO COMPLETO ──────────────────────────────────────── -->
 <div id="caseModal" class="fixed inset-0 z-[99997] flex items-end md:items-center justify-center md:p-6" style="opacity:0;pointer-events:none;transition:opacity .3s ease;">
-  <div class="absolute inset-0 bg-black/75 backdrop-blur-sm" onclick="closeCase()"></div>
+  <div class="absolute inset-0 bg-black/75" onclick="closeCase()"></div>
   <div id="caseModalPanel" class="relative w-full max-w-2xl max-h-[92vh] bg-[#0C0C14] border border-white/10 rounded-t-3xl md:rounded-3xl overflow-y-auto shadow-2xl" style="transform:translateY(40px);transition:transform .4s cubic-bezier(.22,1,.36,1);">
     <button onclick="closeCase()" class="absolute top-5 right-5 z-10 flex items-center justify-center w-8 h-8 rounded-full bg-white/5 hover:bg-white/10 text-gray-400 hover:text-white transition-colors text-base leading-none select-none">✕</button>
     <div id="caseModalContent"></div>
