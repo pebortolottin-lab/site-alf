@@ -791,12 +791,12 @@ Quero garantir minha vaga
   </div>
   <!-- sticky bottom -->
   <div class="sticky bottom-0 bg-gradient-to-t from-[#0C0C14] via-[#0C0C14] to-transparent px-8 pb-8 pt-14 flex flex-col gap-3">
-    <a href="#" target="_blank" class="group inline-flex overflow-hidden transition-all duration-300 hover:scale-[1.01] hover:shadow-[0_0_40px_-10px_rgba(249,115,22,0.5)] w-full h-[52px] rounded-full relative items-center justify-center gap-2" style="position:relative;">
+    <button onclick="openCarrosselModal()" class="group inline-flex overflow-hidden transition-all duration-300 hover:scale-[1.01] hover:shadow-[0_0_40px_-10px_rgba(249,115,22,0.5)] w-full h-[52px] rounded-full relative items-center justify-center gap-2" style="position:relative;">
       <div class="absolute inset-0 -z-20 rounded-full overflow-hidden p-[1px]"><div class="absolute inset-[-100%] bg-[conic-gradient(from_0deg,transparent_0_300deg,#f97316_360deg)]" style="animation:beam-spin 3s linear infinite;"></div><div class="absolute inset-[1px] rounded-full bg-[#050505]"></div></div>
       <div class="overflow-hidden bg-[#0A0A0A] rounded-full absolute top-[2px] right-[2px] bottom-[2px] left-[2px]"><div class="bg-gradient-to-b from-amber-900/20 to-transparent absolute top-0 right-0 bottom-0 left-0"></div></div>
       <i data-lucide="image" class="w-4 h-4 text-orange-400 relative z-10"></i>
       <span class="text-sm font-medium text-white relative z-10">Trajetória em Imagens</span>
-    </a>
+    </button>
     <a href="#" target="_blank" class="hover:bg-orange-500/10 hover:border-orange-400 hover:shadow-[0_0_35px_rgba(249,115,22,0.6),inset_0_0_20px_rgba(249,115,22,0.4)] hover:scale-[1.02] transition-all duration-300 flex text-sm font-semibold text-white bg-black/60 w-full border border-orange-500 rounded-full py-3.5 px-6 shadow-[0_0_20px_rgba(249,115,22,0.5),inset_0_0_10px_rgba(249,115,22,0.2)] items-center justify-center gap-2">
       <i data-lucide="file-text" class="w-4 h-4 text-orange-400"></i>
       Ver currículo completo
@@ -896,6 +896,57 @@ Assistir Masterclass Estratégica
 <script src="assets/js/scroll-reveal.js"></script>
 <!-- Accordion expand/collapse — case studies section -->
 <script src="assets/js/accordions.js"></script>
+<!-- modal carrossel: trajetória em imagens -->
+<div id="carrosselModal" class="fixed inset-0 z-[99999] flex items-center justify-center p-4 md:p-8" style="opacity:0;pointer-events:none;transition:opacity .3s ease;">
+  <div class="absolute inset-0 bg-black/90" onclick="closeCarrosselModal()"></div>
+  <div class="relative w-full max-w-3xl flex flex-col items-center gap-4" style="cursor:auto;">
+    <!-- fechar -->
+    <button onclick="closeCarrosselModal()" class="absolute -top-10 right-0 text-gray-400 hover:text-white text-2xl leading-none z-10" style="cursor:pointer;">✕</button>
+    <!-- contador -->
+    <p id="carrosselCounter" class="text-xs text-gray-500 uppercase tracking-widest z-10">1 / 4</p>
+    <!-- imagem -->
+    <div class="relative w-full flex items-center justify-center">
+      <button onclick="carrosselPrev()" class="absolute left-0 z-10 flex items-center justify-center w-10 h-10 rounded-full bg-black/60 border border-white/10 text-white hover:bg-white/10 transition-colors text-xl" style="cursor:pointer;">‹</button>
+      <img id="carrosselImg" src="assets/img/trajetoria/1.jpg" alt="Trajetória" class="max-h-[75vh] w-auto max-w-full rounded-2xl object-contain shadow-2xl" style="transition:opacity .25s ease;">
+      <button onclick="carrosselNext()" class="absolute right-0 z-10 flex items-center justify-center w-10 h-10 rounded-full bg-black/60 border border-white/10 text-white hover:bg-white/10 transition-colors text-xl" style="cursor:pointer;">›</button>
+    </div>
+    <!-- dots -->
+    <div class="flex gap-2">
+      <button onclick="carrosselGo(0)" id="dot-0" class="w-2 h-2 rounded-full bg-orange-400 transition-all" style="cursor:pointer;"></button>
+      <button onclick="carrosselGo(1)" id="dot-1" class="w-2 h-2 rounded-full bg-white/20 transition-all" style="cursor:pointer;"></button>
+      <button onclick="carrosselGo(2)" id="dot-2" class="w-2 h-2 rounded-full bg-white/20 transition-all" style="cursor:pointer;"></button>
+      <button onclick="carrosselGo(3)" id="dot-3" class="w-2 h-2 rounded-full bg-white/20 transition-all" style="cursor:pointer;"></button>
+    </div>
+  </div>
+</div>
+<script>
+const carrosselImages = [
+  'assets/img/trajetoria/1.jpg',
+  'assets/img/trajetoria/2.jpg',
+  'assets/img/trajetoria/3.jpg',
+  'assets/img/trajetoria/4.jpg'
+];
+let carrosselIndex = 0;
+function carrosselUpdate() {
+  const img = document.getElementById('carrosselImg');
+  img.style.opacity = '0';
+  setTimeout(() => {
+    img.src = carrosselImages[carrosselIndex];
+    img.style.opacity = '1';
+  }, 150);
+  document.getElementById('carrosselCounter').textContent = (carrosselIndex + 1) + ' / ' + carrosselImages.length;
+  carrosselImages.forEach((_, i) => {
+    const dot = document.getElementById('dot-' + i);
+    if (dot) dot.className = 'w-2 h-2 rounded-full transition-all ' + (i === carrosselIndex ? 'bg-orange-400 scale-125' : 'bg-white/20');
+  });
+}
+function carrosselNext() { carrosselIndex = (carrosselIndex + 1) % carrosselImages.length; carrosselUpdate(); }
+function carrosselPrev() { carrosselIndex = (carrosselIndex - 1 + carrosselImages.length) % carrosselImages.length; carrosselUpdate(); }
+function carrosselGo(i) { carrosselIndex = i; carrosselUpdate(); }
+function openCarrosselModal() { carrosselIndex = 0; carrosselUpdate(); const m = document.getElementById('carrosselModal'); m.style.opacity = '1'; m.style.pointerEvents = 'auto'; document.body.style.overflow = 'hidden'; }
+function closeCarrosselModal() { const m = document.getElementById('carrosselModal'); m.style.opacity = '0'; m.style.pointerEvents = 'none'; document.body.style.overflow = ''; }
+document.addEventListener('keydown', e => { if (!document.getElementById('carrosselModal') || document.getElementById('carrosselModal').style.opacity === '0') return; if (e.key === 'ArrowRight') carrosselNext(); if (e.key === 'ArrowLeft') carrosselPrev(); if (e.key === 'Escape') closeCarrosselModal(); });
+</script>
 <!-- Golden cursor trail: rastro dourado em cobra (18 segmentos) que segue o mouse -->
 <script src="assets/js/cursor-trail.js"></script>
 
