@@ -37,7 +37,6 @@
     box-shadow   .2s,
     transform    .06s,
     opacity      .2s;
-  backdrop-filter: blur(1px);
   opacity: 0.9;
 }
 
