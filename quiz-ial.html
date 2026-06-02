@@ -612,6 +612,88 @@
     transform: scale(1.02);
   }
 
+  /* ── LEAD CAPTURE ── */
+  .lead-screen { display: none; animation: fadeUp 0.5s ease; }
+  .lead-screen.active { display: block; }
+
+  .lead-header { text-align: center; margin-bottom: 36px; padding-top: 16px; }
+  .lead-trophy { font-size: 36px; margin-bottom: 20px; }
+  .lead-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(24px, 4vw, 34px);
+    font-weight: 700;
+    line-height: 1.2;
+    margin-bottom: 10px;
+    background: linear-gradient(135deg, #F0EDE8 30%, var(--gold-light));
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+  }
+  .lead-subtitle { color: var(--text-dim); font-size: 15px; line-height: 1.65; }
+
+  .lead-form-card {
+    background: var(--dark-2);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    padding: 32px;
+    margin-bottom: 16px;
+  }
+  .field-group { margin-bottom: 18px; }
+  .field-label {
+    display: block;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 8px;
+  }
+  .field-input {
+    width: 100%;
+    background: var(--dark-3);
+    border: 1px solid var(--dark-4);
+    border-radius: 12px;
+    padding: 14px 18px;
+    color: var(--text);
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;
+    outline: none;
+    transition: border-color 0.2s, box-shadow 0.2s;
+  }
+  .field-input::placeholder { color: var(--text-dim); opacity: 0.55; }
+  .field-input:focus { border-color: var(--gold); box-shadow: 0 0 0 3px rgba(201,168,76,0.12); }
+  .field-input.has-error { border-color: #f87171; }
+  .field-input.has-error:focus { box-shadow: 0 0 0 3px rgba(248,113,113,0.15); }
+  .field-error { font-size: 12px; color: #f87171; margin-top: 5px; min-height: 17px; }
+
+  .field-check-group { margin: 22px 0 26px; }
+  .field-check-label {
+    display: flex; align-items: flex-start; gap: 12px; cursor: pointer; user-select: none;
+  }
+  .field-checkbox {
+    width: 18px; height: 18px; flex-shrink: 0; margin-top: 2px;
+    accent-color: var(--gold); cursor: pointer; border-radius: 4px;
+  }
+  .field-check-label span { font-size: 13px; color: var(--text-dim); line-height: 1.6; }
+  .field-check-label a { color: var(--gold); text-decoration: none; }
+  .field-check-label a:hover { text-decoration: underline; }
+
+  .btn-lead-submit {
+    display: block; width: 100%;
+    background: linear-gradient(135deg, var(--gold), var(--gold-light));
+    color: var(--dark); font-family: 'Inter', sans-serif;
+    font-size: 15px; font-weight: 700; padding: 17px; border: none;
+    border-radius: 12px; cursor: pointer; letter-spacing: 0.5px;
+    transition: all 0.2s ease;
+  }
+  .btn-lead-submit:hover { opacity: 0.9; transform: translateY(-2px); box-shadow: 0 12px 32px rgba(201,168,76,0.35); }
+  .btn-lead-submit:disabled { opacity: 0.55; cursor: not-allowed; transform: none; box-shadow: none; }
+
+  .lead-back {
+    display: block; text-align: center; margin-top: 14px;
+    font-size: 13px; color: var(--text-dim); cursor: pointer;
+    transition: color 0.2s;
+  }
+  .lead-back:hover { color: var(--text); }
+
   /* ── HIDDEN ── */
   .quiz-content { display: block; }
   .quiz-content.hidden { display: none; }
@@ -664,6 +746,48 @@
       <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#fb923c" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polygon points="10 8 16 12 10 16 10 8" fill="#fb923c" stroke="none"/></svg>
       Escolha seu Nível da Arquitetura
     </a>
+  </div>
+
+  <!-- LEAD CAPTURE -->
+  <div class="lead-screen" id="leadScreen">
+    <div class="lead-header">
+      <div class="lead-trophy">🏆</div>
+      <h2 class="lead-title">Seu diagnóstico está pronto.</h2>
+      <p class="lead-subtitle">Preencha abaixo para receber seu resultado completo.</p>
+    </div>
+    <div class="lead-form-card">
+      <form id="leadForm" onsubmit="submitLead(event)" novalidate>
+        <div class="field-group">
+          <label class="field-label" for="fieldNome">Nome completo</label>
+          <input type="text" id="fieldNome" class="field-input" placeholder="Seu nome completo" autocomplete="name">
+          <div class="field-error" id="errNome"></div>
+        </div>
+        <div class="field-group">
+          <label class="field-label" for="fieldEmail">Email</label>
+          <input type="email" id="fieldEmail" class="field-input" placeholder="seu@email.com" autocomplete="email">
+          <div class="field-error" id="errEmail"></div>
+        </div>
+        <div class="field-group">
+          <label class="field-label" for="fieldEmailConf">Confirme seu email</label>
+          <input type="email" id="fieldEmailConf" class="field-input" placeholder="repita seu email" autocomplete="email">
+          <div class="field-error" id="errEmailConf"></div>
+        </div>
+        <div class="field-group">
+          <label class="field-label" for="fieldTel">Telefone com WhatsApp</label>
+          <input type="tel" id="fieldTel" class="field-input" placeholder="(11) 99999-9999" autocomplete="tel" maxlength="16">
+          <div class="field-error" id="errTel"></div>
+        </div>
+        <div class="field-check-group">
+          <label class="field-check-label">
+            <input type="checkbox" id="fieldPrivacy" class="field-checkbox">
+            <span>Li e concordo com a <a href="/politica-de-privacidade" target="_blank" rel="noopener">Política de Privacidade</a> e os <a href="/termos-de-uso" target="_blank" rel="noopener">Termos de Uso</a></span>
+          </label>
+          <div class="field-error" id="errPrivacy"></div>
+        </div>
+        <button type="submit" class="btn-lead-submit" id="btnLeadSubmit">Ver meu resultado →</button>
+      </form>
+    </div>
+    <span class="lead-back" onclick="backToQuiz()">← Voltar ao diagnóstico</span>
   </div>
 
   <!-- RESULTADO -->
@@ -720,6 +844,9 @@
 </div>
 
 <script>
+// ── URL do Google Apps Script — preencha após publicar o script ──
+const GOOGLE_SCRIPT_URL = '';
+
 const pillars = [
   {
     id: 1,
@@ -1050,7 +1177,7 @@ function goNext() {
     render();
     window.scrollTo({ top: 0, behavior: 'smooth' });
   } else {
-    showResult();
+    showLeadScreen();
   }
 }
 
@@ -1120,9 +1247,118 @@ function restart() {
   answers = new Array(pillars.length).fill(null);
   p7ChildrenAnswer = null;
   document.getElementById('resultScreen').classList.remove('active');
+  document.getElementById('leadScreen').classList.remove('active');
   document.getElementById('quizContent').classList.remove('hidden');
   render();
   window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+// ── LEAD CAPTURE ─────────────────────────────────────────────────────────────
+
+function showLeadScreen() {
+  document.getElementById('quizContent').classList.add('hidden');
+  document.getElementById('leadScreen').classList.add('active');
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function backToQuiz() {
+  document.getElementById('leadScreen').classList.remove('active');
+  document.getElementById('quizContent').classList.remove('hidden');
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+// Máscara simples de telefone: (11) 99999-9999
+document.addEventListener('DOMContentLoaded', () => {
+  const tel = document.getElementById('fieldTel');
+  if (tel) tel.addEventListener('input', () => {
+    let v = tel.value.replace(/\D/g, '').slice(0, 11);
+    if (v.length > 10) v = v.replace(/^(\d{2})(\d{5})(\d{4})$/, '($1) $2-$3');
+    else if (v.length > 6) v = v.replace(/^(\d{2})(\d{4})(\d*)$/, '($1) $2-$3');
+    else if (v.length > 2) v = v.replace(/^(\d{2})(\d*)$/, '($1) $2');
+    tel.value = v;
+  });
+});
+
+function submitLead(e) {
+  e.preventDefault();
+
+  const nome    = document.getElementById('fieldNome').value.trim();
+  const email   = document.getElementById('fieldEmail').value.trim().toLowerCase();
+  const emailC  = document.getElementById('fieldEmailConf').value.trim().toLowerCase();
+  const tel     = document.getElementById('fieldTel').value.trim();
+  const privacy = document.getElementById('fieldPrivacy').checked;
+
+  // Limpa erros anteriores
+  ['errNome','errEmail','errEmailConf','errTel','errPrivacy'].forEach(id =>
+    document.getElementById(id).textContent = '');
+  ['fieldNome','fieldEmail','fieldEmailConf','fieldTel'].forEach(id =>
+    document.getElementById(id).classList.remove('has-error'));
+
+  let ok = true;
+
+  if (!nome) {
+    document.getElementById('errNome').textContent = 'Nome obrigatório';
+    document.getElementById('fieldNome').classList.add('has-error');
+    ok = false;
+  }
+
+  const reEmail = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
+  if (!email) {
+    document.getElementById('errEmail').textContent = 'Email obrigatório';
+    document.getElementById('fieldEmail').classList.add('has-error');
+    ok = false;
+  } else if (!reEmail.test(email)) {
+    document.getElementById('errEmail').textContent = 'Formato de email inválido';
+    document.getElementById('fieldEmail').classList.add('has-error');
+    ok = false;
+  }
+
+  if (!emailC) {
+    document.getElementById('errEmailConf').textContent = 'Confirmação obrigatória';
+    document.getElementById('fieldEmailConf').classList.add('has-error');
+    ok = false;
+  } else if (email !== emailC) {
+    document.getElementById('errEmailConf').textContent = 'Os emails não coincidem';
+    document.getElementById('fieldEmailConf').classList.add('has-error');
+    ok = false;
+  }
+
+  if (!tel || tel.replace(/\D/g,'').length < 10) {
+    document.getElementById('errTel').textContent = 'Telefone obrigatório (mín. 10 dígitos)';
+    document.getElementById('fieldTel').classList.add('has-error');
+    ok = false;
+  }
+
+  if (!privacy) {
+    document.getElementById('errPrivacy').textContent = 'Aceite os termos para continuar';
+    ok = false;
+  }
+
+  if (!ok) return;
+
+  // Monta payload com score de cada pilar
+  const pillarScores = {};
+  pillars.forEach((p, i) => { pillarScores[p.name] = getScore(i, answers[i]); });
+  const total = pillars.reduce((sum, _, i) => sum + getScore(i, answers[i]), 0);
+
+  // Envio assíncrono — não bloqueia o resultado
+  if (GOOGLE_SCRIPT_URL) {
+    fetch(GOOGLE_SCRIPT_URL, {
+      method: 'POST',
+      mode: 'no-cors',
+      body: JSON.stringify({
+        timestamp : new Date().toISOString(),
+        nome, email,
+        telefone  : tel,
+        scoreTotal: total,
+        ...pillarScores
+      })
+    }).catch(() => {});
+  }
+
+  // Exibe resultado independente do fetch
+  document.getElementById('leadScreen').classList.remove('active');
+  showResult();
 }
 
 // Init
