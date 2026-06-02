@@ -20,7 +20,7 @@ const HEADERS = [
   'Nome',
   'Email',
   'Telefone',
-  'Score Total',
+  'Score IAL Total',
   'Liberdade Operacional',
   'Concentração Geográfica',
   'Diversificação Patrimonial',
