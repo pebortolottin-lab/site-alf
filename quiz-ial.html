@@ -780,7 +780,7 @@
         <div class="field-check-group">
           <label class="field-check-label">
             <input type="checkbox" id="fieldPrivacy" class="field-checkbox">
-            <span>Li e concordo com a <a href="#" onclick="openPrivacy();return false;">Política de Privacidade</a> e os <a href="#" onclick="openTerms();return false;">Termos de Uso</a></span>
+            <span>Li e concordo com a <a href="javascript:void(0)" onclick="openPrivacy()">Política de Privacidade</a> e os <a href="javascript:void(0)" onclick="openTerms()">Termos de Uso</a></span>
           </label>
           <div class="field-error" id="errPrivacy"></div>
         </div>
@@ -1397,109 +1397,110 @@ function closeTerms() {
 }
 document.addEventListener('keydown', e => { if (e.key === 'Escape') { closePrivacy(); closeTerms(); } });
 </script>
+<style>
+.qmodal{position:fixed;inset:0;z-index:99998;display:flex;align-items:flex-end;justify-content:center;opacity:0;pointer-events:none;transition:opacity .3s ease;}
+@media(min-width:768px){.qmodal{align-items:center;padding:24px;}}
+.qmodal-overlay{position:absolute;inset:0;background:rgba(0,0,0,0.8);cursor:pointer;}
+.qmodal-panel{position:relative;width:100%;max-width:768px;max-height:92vh;background:#0C0C14;border:1px solid rgba(255,255,255,0.1);border-radius:24px 24px 0 0;overflow-y:auto;box-shadow:0 25px 60px rgba(0,0,0,0.9);transform:translateY(40px);transition:transform .4s cubic-bezier(.22,1,.36,1);}
+@media(min-width:768px){.qmodal-panel{border-radius:24px;}}
+.qmodal-x{position:absolute;top:20px;right:20px;z-index:10;width:32px;height:32px;border-radius:50%;background:rgba(255,255,255,0.05);border:none;color:#9ca3af;font-size:16px;cursor:pointer;display:flex;align-items:center;justify-content:center;}
+.qmodal-x:hover{background:rgba(255,255,255,0.12);color:#fff;}
+.qmodal-head{padding:32px 32px 24px;border-bottom:1px solid rgba(255,255,255,0.06);}
+.qmodal-eyebrow{font-size:10px;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;color:rgba(251,146,60,0.6);margin:0 0 8px;}
+.qmodal-title{font-size:22px;font-weight:600;color:#fff;margin:0 0 8px;line-height:1.3;}
+.qmodal-date{font-size:12px;color:#4b5563;margin:0;}
+.qmodal-body{padding:32px;font-size:14px;color:#9ca3af;line-height:1.8;}
+.qmodal-body p{margin:0 0 12px;}
+.qmodal-section{margin-bottom:32px;}
+.qmodal-label{font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:rgba(251,146,60,0.7);display:block;margin:0 0 12px;}
+.qmodal-tags{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:16px;}
+.qmodal-tag{font-size:12px;color:#6b7280;background:rgba(255,255,255,0.05);padding:4px 10px;border-radius:8px;}
+.qmodal-foot{position:sticky;bottom:0;background:linear-gradient(to top,#0C0C14 60%,transparent);padding:48px 32px 32px;}
+.qmodal-btn{display:flex;align-items:center;justify-content:center;width:100%;height:52px;border-radius:9999px;background:#0A0A0A;border:1px solid #f97316;color:#fff;font-size:14px;font-weight:600;cursor:pointer;transition:all .3s;}
+.qmodal-btn:hover{background:rgba(249,115,22,0.1);box-shadow:0 0 30px rgba(249,115,22,0.5);}
+</style>
 <!-- MODAL: POLÍTICA DE PRIVACIDADE -->
-<div id="privacyModal" class="fixed inset-0 z-[99998] flex items-end md:items-center justify-center md:p-6" style="opacity:0;pointer-events:none;transition:opacity .3s ease;">
-  <div class="absolute inset-0 bg-black/75" onclick="closePrivacy()"></div>
-  <div id="privacyModalPanel" class="relative w-full max-w-3xl max-h-[92vh] bg-[#0C0C14] border border-white/10 rounded-t-3xl md:rounded-3xl overflow-y-auto shadow-2xl" style="transform:translateY(40px);transition:transform .4s cubic-bezier(.22,1,.36,1);">
-    <button onclick="closePrivacy()" class="absolute top-5 right-5 z-10 flex items-center justify-center w-8 h-8 rounded-full bg-white/5 hover:bg-white/10 text-gray-400 hover:text-white transition-colors text-base leading-none select-none">✕</button>
-    <div class="p-8 pb-6 border-b border-white/5">
-      <p class="text-[10px] font-bold tracking-[2.5px] uppercase text-orange-400/60 mb-2">ALF · Arquitetura de Liberdade Familiar</p>
-      <h2 class="text-2xl font-semibold text-white leading-snug">Política de Privacidade e Limitação de Responsabilidade</h2>
-      <p class="text-xs text-gray-600 mt-2">Última atualização: maio de 2026</p>
+<div id="privacyModal" class="qmodal">
+  <div class="qmodal-overlay" onclick="closePrivacy()"></div>
+  <div id="privacyModalPanel" class="qmodal-panel">
+    <button class="qmodal-x" onclick="closePrivacy()">✕</button>
+    <div class="qmodal-head">
+      <p class="qmodal-eyebrow">ALF · Arquitetura de Liberdade Familiar</p>
+      <h2 class="qmodal-title">Política de Privacidade e Limitação de Responsabilidade</h2>
+      <p class="qmodal-date">Última atualização: maio de 2026</p>
     </div>
-    <div class="p-8 space-y-8 text-sm text-gray-400 leading-relaxed">
-      <div class="space-y-3">
+    <div class="qmodal-body">
+      <div class="qmodal-section">
         <p>A ALF, Arquitetura de Liberdade Familiar, é uma metodologia de compartilhamento de experiências e visão estratégica, criada e mantida por Paulo Eduardo Bortolotti Nunes (P.E.N. Bortolotti), doravante denominado Responsável.</p>
-        <p>Ao acessar e utilizar este site, ALF Score, Masterclass, materiais, conteúdos, ferramentas, comunicações, estudos de caso e demais recursos vinculados à metodologia ALF, o usuário declara ter lido, compreendido e concordado integralmente com os termos desta Política de Privacidade e Limitação de Responsabilidade.</p>
-        <p>Esta Política tem como finalidade estabelecer os termos e condições relativos à coleta, tratamento, armazenamento e proteção das informações fornecidas pelo usuário, bem como os limites e extensão das responsabilidades do Responsável em relação aos conteúdos e ferramentas disponibilizados.</p>
-        <p>A utilização continuada de qualquer recurso da metodologia ALF, mesmo após alterações nesta Política, representa concordância expressa com as condições vigentes.</p>
+        <p>Ao acessar e utilizar este site, ALF Score, Masterclass, materiais, conteúdos, ferramentas, comunicações, estudos de caso e demais recursos vinculados à metodologia ALF, o usuário declara ter lido, compreendido e concordado integralmente com os termos desta Política.</p>
         <p>Esta Política é regida pelas leis vigentes na República Federativa do Brasil, incluindo a Lei Geral de Proteção de Dados Pessoais (LGPD — Lei 13.709/2018) e demais normas aplicáveis.</p>
-        <p>Em caso de conflito entre esta Política e qualquer comunicação informal (mensagens, e-mails, conversas), prevalecerão os termos desta Política.</p>
-        <p>Caso qualquer disposição desta Política seja considerada inválida ou inaplicável, as demais disposições permanecerão em plena vigência.</p>
       </div>
-      <div>
-        <p class="text-[10px] font-bold tracking-[2px] uppercase text-orange-400/70 mb-3">Dados coletados</p>
-        <p class="mb-3">As informações fornecidas pelo usuário, direta ou indiretamente, poderão incluir:</p>
-        <div class="flex flex-wrap gap-2 mb-4">
-          <span class="text-xs text-gray-500 bg-white/5 px-2.5 py-1 rounded-lg">nome completo</span>
-          <span class="text-xs text-gray-500 bg-white/5 px-2.5 py-1 rounded-lg">e-mail</span>
-          <span class="text-xs text-gray-500 bg-white/5 px-2.5 py-1 rounded-lg">telefone e WhatsApp</span>
-          <span class="text-xs text-gray-500 bg-white/5 px-2.5 py-1 rounded-lg">respostas do ALF Score e ferramentas diagnósticas</span>
-          <span class="text-xs text-gray-500 bg-white/5 px-2.5 py-1 rounded-lg">informações patrimoniais e financeiras aproximadas</span>
-          <span class="text-xs text-gray-500 bg-white/5 px-2.5 py-1 rounded-lg">estrutura familiar</span>
-          <span class="text-xs text-gray-500 bg-white/5 px-2.5 py-1 rounded-lg">dados profissionais e empresariais</span>
-          <span class="text-xs text-gray-500 bg-white/5 px-2.5 py-1 rounded-lg">informações fornecidas voluntariamente</span>
+      <div class="qmodal-section">
+        <span class="qmodal-label">Dados coletados</span>
+        <p>As informações fornecidas pelo usuário, direta ou indiretamente, poderão incluir:</p>
+        <div class="qmodal-tags">
+          <span class="qmodal-tag">nome completo</span><span class="qmodal-tag">e-mail</span><span class="qmodal-tag">telefone e WhatsApp</span><span class="qmodal-tag">respostas do ALF Score</span><span class="qmodal-tag">informações patrimoniais aproximadas</span><span class="qmodal-tag">estrutura familiar</span><span class="qmodal-tag">dados profissionais e empresariais</span>
         </div>
-        <p class="mb-3">Também poderão ser coletados automaticamente:</p>
-        <div class="flex flex-wrap gap-2 mb-4">
-          <span class="text-xs text-gray-500 bg-white/5 px-2.5 py-1 rounded-lg">endereço IP</span>
-          <span class="text-xs text-gray-500 bg-white/5 px-2.5 py-1 rounded-lg">tipo de dispositivo e sistema operacional</span>
-          <span class="text-xs text-gray-500 bg-white/5 px-2.5 py-1 rounded-lg">navegador utilizado</span>
-          <span class="text-xs text-gray-500 bg-white/5 px-2.5 py-1 rounded-lg">páginas acessadas e tempo de permanência</span>
-          <span class="text-xs text-gray-500 bg-white/5 px-2.5 py-1 rounded-lg">origem do acesso e comportamento de navegação</span>
-          <span class="text-xs text-gray-500 bg-white/5 px-2.5 py-1 rounded-lg">cookies, pixels e identificadores digitais</span>
-        </div>
+        <p>Também poderão ser coletados automaticamente: endereço IP, dispositivo, navegador, páginas acessadas, origem do acesso, cookies e identificadores digitais.</p>
       </div>
-      <div>
-        <p class="text-[10px] font-bold tracking-[2px] uppercase text-orange-400/70 mb-3">Limitação de responsabilidade</p>
-        <p class="mb-3">Nenhum conteúdo disponibilizado pela ALF constitui recomendação individual de investimentos, consultoria financeira, orientação tributária, aconselhamento jurídico ou promessa de resultados.</p>
-        <p class="mb-3">Toda decisão patrimonial, financeira, empresarial, familiar, jurídica ou estratégica permanece de responsabilidade exclusiva do usuário.</p>
-        <p>A ALF recomenda que decisões relevantes sejam sempre analisadas junto a profissionais especializados e habilitados, escolhidos pelo próprio usuário.</p>
+      <div class="qmodal-section">
+        <span class="qmodal-label">Limitação de responsabilidade</span>
+        <p>Nenhum conteúdo disponibilizado pela ALF constitui recomendação de investimentos, consultoria financeira, orientação tributária, aconselhamento jurídico ou promessa de resultados.</p>
+        <p>Toda decisão patrimonial, financeira, empresarial, familiar ou estratégica permanece de responsabilidade exclusiva do usuário.</p>
+        <p>A ALF recomenda que decisões relevantes sejam sempre analisadas junto a profissionais especializados e habilitados.</p>
       </div>
-      <div>
-        <p class="text-[10px] font-bold tracking-[2px] uppercase text-orange-400/70 mb-3">Contato</p>
-        <p>Dúvidas, solicitações ou exercício de direitos relacionados aos dados pessoais poderão ser realizados através dos canais oficiais disponibilizados no site.</p>
+      <div class="qmodal-section">
+        <span class="qmodal-label">Contato</span>
+        <p>Dúvidas ou solicitações relacionadas aos dados pessoais poderão ser realizadas através dos canais oficiais disponibilizados no site.</p>
       </div>
     </div>
-    <div class="sticky bottom-0 bg-gradient-to-t from-[#0C0C14] via-[#0C0C14] to-transparent px-8 pb-8 pt-14">
-      <button onclick="closePrivacy()" style="display:flex;align-items:center;justify-content:center;width:100%;height:52px;border-radius:9999px;background:#0A0A0A;border:1px solid #f97316;color:#fff;font-size:14px;font-weight:600;cursor:pointer;">Fechar</button>
+    <div class="qmodal-foot">
+      <button class="qmodal-btn" onclick="closePrivacy()">Fechar</button>
     </div>
   </div>
 </div>
 <!-- MODAL: TERMOS DE USO -->
-<div id="termsModal" class="fixed inset-0 z-[99997] flex items-end md:items-center justify-center md:p-6" style="opacity:0;pointer-events:none;transition:opacity .3s ease;">
-  <div class="absolute inset-0 bg-black/75" onclick="closeTerms()"></div>
-  <div id="termsModalPanel" class="relative w-full max-w-3xl max-h-[92vh] bg-[#0C0C14] border border-white/10 rounded-t-3xl md:rounded-3xl overflow-y-auto shadow-2xl" style="transform:translateY(40px);transition:transform .4s cubic-bezier(.22,1,.36,1);">
-    <button onclick="closeTerms()" class="absolute top-5 right-5 z-10 flex items-center justify-center w-8 h-8 rounded-full bg-white/5 hover:bg-white/10 text-gray-400 hover:text-white transition-colors text-base leading-none select-none">✕</button>
-    <div class="p-8 pb-6 border-b border-white/5">
-      <p class="text-[10px] font-bold tracking-[2.5px] uppercase text-orange-400/60 mb-2">ALF · Arquitetura de Liberdade Familiar</p>
-      <h2 class="text-2xl font-semibold text-white leading-snug">Termos de Uso</h2>
-      <p class="text-xs text-gray-600 mt-2">Vigência e última atualização: maio de 2026</p>
+<div id="termsModal" class="qmodal" style="z-index:99997;">
+  <div class="qmodal-overlay" onclick="closeTerms()"></div>
+  <div id="termsModalPanel" class="qmodal-panel">
+    <button class="qmodal-x" onclick="closeTerms()">✕</button>
+    <div class="qmodal-head">
+      <p class="qmodal-eyebrow">ALF · Arquitetura de Liberdade Familiar</p>
+      <h2 class="qmodal-title">Termos de Uso</h2>
+      <p class="qmodal-date">Vigência e última atualização: maio de 2026</p>
     </div>
-    <div class="p-8 space-y-8 text-sm text-gray-400 leading-relaxed">
-      <div class="space-y-3">
+    <div class="qmodal-body">
+      <div class="qmodal-section">
         <p>Ao acessar o site, utilizar o ALF Score, participar da Masterclass, responder avaliações, fornecer informações, criar cadastro, acessar a área privada, adquirir níveis, materiais, sessões ou utilizar quaisquer ferramentas relacionadas à ALF, o usuário declara ter lido, compreendido e concordado integralmente com estes Termos.</p>
         <p>Caso não concorde com qualquer disposição, recomenda-se não utilizar os serviços.</p>
       </div>
-      <div>
-        <p class="text-[10px] font-bold tracking-[2px] uppercase text-orange-400/70 mb-3">Sobre a ALF</p>
-        <p class="mb-3">ALF, Arquitetura de Liberdade Familiar, é uma metodologia privada de compartilhamento de experiências e visão estratégica, desenvolvida por Paulo Eduardo Bortolotti Nunes (P.E.N. Bortolotti), doravante denominado Responsável.</p>
-        <p class="mb-3">A ALF não é uma instituição de ensino, curso técnico, graduação, pós-graduação, EAD credenciado ou programa educacional formal. Trata-se de metodologia particular de compartilhamento de experiências, perspectivas e frameworks estratégicos, sem vínculo com órgãos reguladores de educação.</p>
-        <p>A experiência ALF poderá integrar: ALF Score, Masterclass, ferramentas de autoavaliação, anamnese estruturada, mapas patrimoniais, conteúdos, materiais, sessões individuais, área privada, ferramentas digitais, recursos tecnológicos, automações e integrações futuras.</p>
+      <div class="qmodal-section">
+        <span class="qmodal-label">Sobre a ALF</span>
+        <p>ALF, Arquitetura de Liberdade Familiar, é uma metodologia privada de compartilhamento de experiências e visão estratégica, desenvolvida por Paulo Eduardo Bortolotti Nunes (P.E.N. Bortolotti), doravante denominado Responsável.</p>
+        <p>A ALF não é uma instituição de ensino, curso técnico, graduação, pós-graduação ou programa educacional formal. Trata-se de metodologia particular de compartilhamento de experiências, perspectivas e frameworks estratégicos.</p>
       </div>
-      <div>
-        <p class="text-[10px] font-bold tracking-[2px] uppercase text-orange-400/70 mb-3">Sobre o ALF Score</p>
-        <p class="mb-3">O ALF Score é uma ferramenta gratuita de autoavaliação e reflexão, desenvolvida para estimular percepções sobre: patrimônio, vulnerabilidades, estrutura, família, mobilidade, planejamento estratégico e opcionalidade.</p>
-        <p class="mb-3">Pontuações, categorias, níveis e resultados não possuem validade técnica, não representam laudo, diagnóstico profissional, avaliação financeira, parecer individual e não garantem resultados.</p>
+      <div class="qmodal-section">
+        <span class="qmodal-label">Sobre o ALF Score</span>
+        <p>O ALF Score é uma ferramenta gratuita de autoavaliação e reflexão. Pontuações, categorias, níveis e resultados não possuem validade técnica, não representam laudo, diagnóstico profissional ou avaliação financeira, e não garantem resultados.</p>
         <p>O ALF Score reflete exclusivamente as respostas fornecidas pelo próprio usuário e possui finalidade de estímulo à reflexão.</p>
       </div>
-      <div>
-        <p class="text-[10px] font-bold tracking-[2px] uppercase text-orange-400/70 mb-3">Limitação de responsabilidade</p>
-        <p class="mb-3">A ALF não garante rentabilidade, renda passiva, independência financeira, crescimento patrimonial ou resultados específicos de qualquer natureza.</p>
-        <p class="mb-3">Resultados dependem de fatores individuais, familiares, econômicos, comportamentais, operacionais e externos imprevisíveis. Toda decisão permanece sob responsabilidade exclusiva do usuário.</p>
-        <p>Em qualquer hipótese, a responsabilidade do Responsável estará limitada ao valor efetivamente pago pelo usuário. Para ferramentas gratuitas (ALF Score, Masterclass e conteúdos gratuitos), não haverá responsabilidade patrimonial.</p>
+      <div class="qmodal-section">
+        <span class="qmodal-label">Limitação de responsabilidade</span>
+        <p>A ALF não garante rentabilidade, renda passiva, independência financeira, crescimento patrimonial ou resultados específicos de qualquer natureza.</p>
+        <p>Resultados dependem de fatores individuais, familiares, econômicos, comportamentais e externos imprevisíveis. Toda decisão permanece sob responsabilidade exclusiva do usuário.</p>
+        <p>Para ferramentas gratuitas (ALF Score, Masterclass e conteúdos gratuitos), não haverá responsabilidade patrimonial.</p>
       </div>
-      <div>
-        <p class="text-[10px] font-bold tracking-[2px] uppercase text-orange-400/70 mb-3">Propriedade intelectual</p>
-        <p>ALF, ALF Score, Arquitetura de Liberdade Familiar, metodologia, textos, gráficos, vídeos, documentos, estruturas, materiais e demais conteúdos relacionados encontram-se protegidos por direitos autorais e propriedade intelectual, pertencendo exclusivamente a P.E.N. Bortolotti ou a seus respectivos licenciadores.</p>
+      <div class="qmodal-section">
+        <span class="qmodal-label">Propriedade intelectual</span>
+        <p>ALF, ALF Score, Arquitetura de Liberdade Familiar, metodologia, textos, gráficos, vídeos, documentos, estruturas e materiais são protegidos por direitos autorais e pertencem exclusivamente a P.E.N. Bortolotti ou a seus respectivos licenciadores.</p>
       </div>
-      <div>
-        <p class="text-[10px] font-bold tracking-[2px] uppercase text-orange-400/70 mb-3">Aceite</p>
+      <div class="qmodal-section">
+        <span class="qmodal-label">Aceite</span>
         <p>Ao utilizar o site, responder o ALF Score, participar da Masterclass, acessar conteúdos, criar cadastro ou adquirir qualquer recurso relacionado à ALF, o usuário declara concordância integral com estes Termos.</p>
       </div>
     </div>
-    <div class="sticky bottom-0 bg-gradient-to-t from-[#0C0C14] via-[#0C0C14] to-transparent px-8 pb-8 pt-14">
-      <button onclick="closeTerms()" style="display:flex;align-items:center;justify-content:center;width:100%;height:52px;border-radius:9999px;background:#0A0A0A;border:1px solid #f97316;color:#fff;font-size:14px;font-weight:600;cursor:pointer;">Fechar</button>
+    <div class="qmodal-foot">
+      <button class="qmodal-btn" onclick="closeTerms()">Fechar</button>
     </div>
   </div>
 </div>
