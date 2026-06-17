@@ -1,6 +1,6 @@
-/* ── CURSOR TRAIL — ALF Site ──────────────────────────────────────────────────
+﻿/* ── CURSOR TRAIL — ALFA Site ──────────────────────────────────────────────────
    Snake-style cursor trail: anel + ponto central + cauda de 18 segmentos.
-   Cores: dourado ALF (gold / #fbbf24).
+   Cores: dourado ALFA (gold / #fbbf24).
    Sem dependências externas — JS puro.
 ─────────────────────────────────────────────────────────────────────────── */
 document.addEventListener('DOMContentLoaded', () => {

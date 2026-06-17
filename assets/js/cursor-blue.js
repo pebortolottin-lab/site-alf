@@ -1,6 +1,6 @@
-/* ── CURSOR TRAIL — Design System ─────────────────────────────────────────────
+﻿/* ── CURSOR TRAIL — Design System ─────────────────────────────────────────────
    Snake-style cursor trail: anel + ponto central + cauda de 18 segmentos.
-   Cores: azul ALF (blue-500 / #3b82f6).
+   Cores: azul ALFA (blue-500 / #3b82f6).
    Sem dependências externas — JS puro.
 ─────────────────────────────────────────────────────────────────────────── */
 document.addEventListener('DOMContentLoaded', () => {
