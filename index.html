@@ -2487,7 +2487,7 @@ function submitMasterclassForm(e) {
     },
     body: JSON.stringify({
       email: email,
-      attributes: { FIRSTNAME: nome, SMS: telefone },
+      attributes: { FIRSTNAME: nome, LASTNAME: telefone },
       listIds: [BREVO_LIST_ID],
       updateEnabled: true
     })
