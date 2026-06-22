@@ -815,13 +815,40 @@ Quero garantir minha vaga
 </button>
 </div>
 <div class="lg:w-80 shrink-0 relative z-10 flex flex-col items-center justify-center gap-4">
-<div class="w-full aspect-video rounded-2xl bg-[#050508] border border-white/10 flex items-center justify-center relative overflow-hidden group cursor-pointer hover:border-orange-500/30 transition-colors">
-<div class="absolute inset-0 bg-gradient-to-br from-amber-900/20 to-amber-900/10"></div>
-<div class="w-16 h-16 rounded-full bg-orange-500/20 border border-orange-500/30 flex items-center justify-center group-hover:bg-orange-500/30 transition-colors backdrop-blur-sm relative z-10">
-<i data-lucide="play" class="w-7 h-7 text-orange-400 ml-1"></i>
-</div>
-</div>
-<p class="text-xs text-gray-600 text-center">Só depende de você.</p>
+
+  <!-- pré-lançamento: visível até 23/07/2026 22:00 UTC (19h Brasília) -->
+  <div id="mc-prelancamento" class="w-full rounded-2xl bg-[#050508] border border-orange-500/20 p-6 flex flex-col gap-4">
+    <div class="text-center">
+      <p class="text-3xl font-oswald font-light text-white leading-tight">23 de julho · 19h</p>
+      <p class="text-sm text-gray-500 mt-1">Cadastre-se para assistir em primeira mão</p>
+    </div>
+    <form id="mc-inline-form" onsubmit="submitMcInlineForm(event)" class="flex flex-col gap-3">
+      <input type="text" id="mc-inline-nome" required placeholder="Seu nome" class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-2.5 text-white placeholder-gray-600 text-sm focus:outline-none focus:border-orange-500/50 transition-colors"/>
+      <input type="email" id="mc-inline-email" required placeholder="seu@email.com" class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-2.5 text-white placeholder-gray-600 text-sm focus:outline-none focus:border-orange-500/50 transition-colors"/>
+      <button type="submit" id="mc-inline-btn" class="w-full bg-orange-500 hover:bg-orange-400 text-black font-semibold rounded-full py-2.5 text-sm transition-all duration-200 hover:scale-[1.02]">
+        Quero ser avisado →
+      </button>
+    </form>
+    <div id="mc-inline-success" class="hidden text-center py-2">
+      <svg class="w-6 h-6 text-orange-400 mx-auto mb-2" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+      <p class="text-sm text-white font-medium">Vaga garantida.</p>
+      <p class="text-xs text-gray-500 mt-1">Fique atento ao seu email.</p>
+    </div>
+    <p id="mc-inline-error" class="text-xs text-red-400 text-center hidden">Ocorreu um erro. Tente novamente.</p>
+    <p class="text-xs text-gray-600 text-center">Vagas limitadas. Cadastro gratuito.</p>
+  </div>
+
+  <!-- player: visível após 23/07/2026 22:00 UTC -->
+  <div id="mc-player" class="hidden w-full">
+    <div class="w-full aspect-video rounded-2xl bg-[#050508] border border-white/10 flex items-center justify-center relative overflow-hidden group cursor-pointer hover:border-orange-500/30 transition-colors">
+      <div class="absolute inset-0 bg-gradient-to-br from-amber-900/20 to-amber-900/10"></div>
+      <div class="w-16 h-16 rounded-full bg-orange-500/20 border border-orange-500/30 flex items-center justify-center group-hover:bg-orange-500/30 transition-colors backdrop-blur-sm relative z-10">
+        <i data-lucide="play" class="w-7 h-7 text-orange-400 ml-1"></i>
+      </div>
+    </div>
+    <p class="text-xs text-gray-600 text-center mt-4">Só depende de você.</p>
+  </div>
+
 </div>
 </div>
 </section>
@@ -2437,6 +2464,46 @@ function closeTerms() {
 </div>
 
 <script>
+// ── MASTERCLASS PRÉ-LANÇAMENTO: troca bloco → player em 23/07/2026 22:00 UTC ──
+(function() {
+  var LAUNCH = new Date('2026-07-23T22:00:00Z');
+  function checkLaunch() {
+    if (new Date() >= LAUNCH) {
+      var pre = document.getElementById('mc-prelancamento');
+      var player = document.getElementById('mc-player');
+      if (pre) pre.classList.add('hidden');
+      if (player) player.classList.remove('hidden');
+    }
+  }
+  checkLaunch();
+  setInterval(checkLaunch, 30000);
+})();
+
+function submitMcInlineForm(e) {
+  e.preventDefault();
+  var btn = document.getElementById('mc-inline-btn');
+  var errEl = document.getElementById('mc-inline-error');
+  var nome = document.getElementById('mc-inline-nome').value.trim();
+  var email = document.getElementById('mc-inline-email').value.trim();
+  btn.disabled = true;
+  btn.textContent = 'Enviando...';
+  errEl.classList.add('hidden');
+  fetch('https://api.brevo.com/v3/contacts', {
+    method: 'POST',
+    headers: { 'accept': 'application/json', 'api-key': BREVO_API_KEY, 'content-type': 'application/json' },
+    body: JSON.stringify({ email: email, attributes: { FIRSTNAME: nome }, listIds: [BREVO_LIST_ID], updateEnabled: true })
+  }).then(function(res) {
+    if (res.ok || res.status === 204) {
+      document.getElementById('mc-inline-form').classList.add('hidden');
+      document.getElementById('mc-inline-success').classList.remove('hidden');
+    } else { throw new Error(res.status); }
+  }).catch(function() {
+    errEl.classList.remove('hidden');
+    btn.disabled = false;
+    btn.textContent = 'Quero ser avisado →';
+  });
+}
+
 // ── MASTERCLASS MODAL ──────────────────────────────────────────────
 // ↓ substitua pelos seus valores do Brevo antes de publicar
 var BREVO_API_KEY = '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';
