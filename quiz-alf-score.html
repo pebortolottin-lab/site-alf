@@ -1709,41 +1709,70 @@ document.addEventListener('keydown', e => { if (e.key === 'Escape') { closePriva
 <div id="cursor-ring"></div>
 <div id="cursor-dot"></div>
 
-<!-- modal masterclass -->
-<div id="masterclassModal" class="fixed inset-0 z-[99998] flex items-end md:items-center justify-center md:p-6" style="opacity:0;pointer-events:none;transition:opacity .3s ease;">
-  <div class="absolute inset-0 bg-black/80" onclick="closeMasterclassModal()"></div>
-  <div id="masterclassPanel" class="relative w-full max-w-md bg-[#0C0C14] border border-orange-500/20 rounded-t-3xl md:rounded-3xl shadow-2xl overflow-hidden" style="transform:translateY(40px);transition:transform .4s cubic-bezier(.22,1,.36,1);">
-    <button onclick="closeMasterclassModal()" class="absolute top-5 right-5 z-10 flex items-center justify-center w-8 h-8 rounded-full bg-white/5 hover:bg-white/10 text-gray-400 hover:text-white transition-colors text-base leading-none select-none">✕</button>
-    <div id="mc-form-step" class="p-8">
-      <p class="text-xs font-bold tracking-[2.5px] uppercase text-orange-400/60 mb-3">Masterclass Estratégica · Gratuita</p>
-      <h3 class="text-2xl font-oswald font-light text-white leading-tight mb-1">Garanta sua vaga</h3>
-      <p class="text-sm text-gray-500 mb-6">Preencha abaixo e receba o acesso no dia 23/07 às 19h.</p>
-      <form id="mc-form" onsubmit="submitMasterclassForm(event)" class="flex flex-col gap-4">
-        <div>
-          <label class="text-xs font-semibold uppercase tracking-widest text-gray-500 mb-1.5 block">Nome</label>
-          <input type="text" id="mc-nome" required placeholder="Seu nome completo" class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white placeholder-gray-600 text-sm focus:outline-none focus:border-orange-500/50 transition-colors"/>
+<style>
+.mcmodal{position:fixed;inset:0;z-index:99999;display:flex;align-items:flex-end;justify-content:center;opacity:0;pointer-events:none;transition:opacity .3s ease;}
+@media(min-width:640px){.mcmodal{align-items:center;padding:24px;}}
+.mcmodal-overlay{position:absolute;inset:0;background:rgba(0,0,0,0.85);cursor:pointer;}
+.mcmodal-panel{position:relative;width:100%;max-width:440px;background:#0C0C14;border:1px solid rgba(249,115,22,0.2);border-radius:24px 24px 0 0;overflow:hidden;box-shadow:0 25px 60px rgba(0,0,0,0.9);transform:translateY(40px);transition:transform .4s cubic-bezier(.22,1,.36,1);}
+@media(min-width:640px){.mcmodal-panel{border-radius:24px;}}
+.mcmodal-x{position:absolute;top:16px;right:16px;z-index:10;width:32px;height:32px;border-radius:50%;background:rgba(255,255,255,0.05);border:none;color:#9ca3af;font-size:16px;cursor:pointer;display:flex;align-items:center;justify-content:center;line-height:1;}
+.mcmodal-x:hover{background:rgba(255,255,255,0.12);color:#fff;}
+.mcmodal-body{padding:32px;}
+.mcmodal-eyebrow{font-size:10px;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;color:rgba(251,146,60,0.6);margin:0 0 10px;}
+.mcmodal-title{font-family:'Playfair Display',serif;font-size:24px;color:#fff;margin:0 0 6px;line-height:1.2;}
+.mcmodal-sub{font-size:13px;color:#6b7280;margin:0 0 24px;}
+.mc-field{margin-bottom:14px;}
+.mc-label{display:block;font-size:10px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;color:#6b7280;margin-bottom:6px;}
+.mc-input{width:100%;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);border-radius:12px;padding:12px 16px;color:#fff;font-size:14px;font-family:'Inter',sans-serif;outline:none;transition:border-color .2s;box-sizing:border-box;}
+.mc-input::placeholder{color:#4b5563;}
+.mc-input:focus{border-color:rgba(249,115,22,0.5);}
+.mc-btn{width:100%;margin-top:8px;padding:14px;background:linear-gradient(135deg,#f97316,#fb923c);color:#000;font-family:'Inter',sans-serif;font-size:14px;font-weight:700;border:none;border-radius:9999px;cursor:pointer;transition:all .2s;}
+.mc-btn:hover{opacity:.9;transform:translateY(-1px);}
+.mc-btn:disabled{opacity:.6;cursor:not-allowed;transform:none;}
+.mc-err{font-size:12px;color:#f87171;text-align:center;margin-top:10px;display:none;}
+.mc-success{padding:32px;text-align:center;}
+.mc-check{width:56px;height:56px;border-radius:50%;background:rgba(249,115,22,0.12);border:1px solid rgba(249,115,22,0.3);display:flex;align-items:center;justify-content:center;margin:0 auto 20px;}
+.mc-success-title{font-family:'Playfair Display',serif;font-size:22px;color:#fff;margin:0 0 8px;}
+.mc-success-sub{font-size:14px;color:#9ca3af;margin:0 0 20px;}
+.mc-close-btn{background:none;border:none;color:#6b7280;font-size:13px;cursor:pointer;padding:4px;}
+.mc-close-btn:hover{color:#9ca3af;}
+</style>
+
+<!-- MODAL MASTERCLASS -->
+<div id="mcModal" class="mcmodal">
+  <div class="mcmodal-overlay" onclick="closeMasterclassModal()"></div>
+  <div id="mcPanel" class="mcmodal-panel">
+    <button class="mcmodal-x" onclick="closeMasterclassModal()">✕</button>
+    <!-- formulário -->
+    <div id="mc-form-step" class="mcmodal-body">
+      <p class="mcmodal-eyebrow">Masterclass Estratégica · Gratuita</p>
+      <h3 class="mcmodal-title">Garanta sua vaga</h3>
+      <p class="mcmodal-sub">Preencha abaixo e receba o acesso no dia 23/07 às 19h.</p>
+      <form id="mc-form" onsubmit="submitMasterclassForm(event)">
+        <div class="mc-field">
+          <label class="mc-label">Nome</label>
+          <input type="text" id="mc-nome" class="mc-input" required placeholder="Seu nome completo"/>
         </div>
-        <div>
-          <label class="text-xs font-semibold uppercase tracking-widest text-gray-500 mb-1.5 block">E-mail</label>
-          <input type="email" id="mc-email" required placeholder="seu@email.com" class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white placeholder-gray-600 text-sm focus:outline-none focus:border-orange-500/50 transition-colors"/>
+        <div class="mc-field">
+          <label class="mc-label">E-mail</label>
+          <input type="email" id="mc-email" class="mc-input" required placeholder="seu@email.com"/>
         </div>
-        <div>
-          <label class="text-xs font-semibold uppercase tracking-widest text-gray-500 mb-1.5 block">Telefone / WhatsApp</label>
-          <input type="tel" id="mc-telefone" required placeholder="(00) 00000-0000" class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white placeholder-gray-600 text-sm focus:outline-none focus:border-orange-500/50 transition-colors"/>
+        <div class="mc-field">
+          <label class="mc-label">Telefone / WhatsApp</label>
+          <input type="tel" id="mc-telefone" class="mc-input" required placeholder="(00) 00000-0000"/>
         </div>
-        <button type="submit" id="mc-submit-btn" class="mt-2 w-full bg-orange-500 hover:bg-orange-400 text-black font-semibold rounded-full py-3.5 text-sm transition-all duration-200 hover:scale-[1.02]">
-          Garantir minha vaga →
-        </button>
-        <p id="mc-error" class="text-xs text-red-400 text-center hidden">Ocorreu um erro. Tente novamente.</p>
+        <button type="submit" id="mc-submit-btn" class="mc-btn">Garantir minha vaga →</button>
+        <p id="mc-error" class="mc-err">Ocorreu um erro. Tente novamente.</p>
       </form>
     </div>
-    <div id="mc-success-step" class="p-8 text-center hidden">
-      <div class="w-14 h-14 rounded-full bg-orange-500/15 border border-orange-500/30 flex items-center justify-center mx-auto mb-5">
-        <svg class="w-7 h-7 text-orange-400" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+    <!-- confirmação -->
+    <div id="mc-success-step" class="mc-success" style="display:none;">
+      <div class="mc-check">
+        <svg width="28" height="28" fill="none" stroke="#f97316" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
       </div>
-      <h3 class="text-2xl font-oswald font-light text-white mb-3">Vaga garantida.</h3>
-      <p class="text-gray-400 leading-relaxed">Fique atento ao seu email.</p>
-      <button onclick="closeMasterclassModal()" class="mt-6 text-sm text-gray-600 hover:text-gray-400 transition-colors">Fechar</button>
+      <p class="mc-success-title">Vaga garantida.</p>
+      <p class="mc-success-sub">Fique atento ao seu email.</p>
+      <button class="mc-close-btn" onclick="closeMasterclassModal()">Fechar</button>
     </div>
   </div>
 </div>
@@ -1753,12 +1782,12 @@ var BREVO_API_KEY = 'xkeysib-172120d81f8a29968914435e4565437d19520719cae3157d7bf
 var BREVO_LIST_ID = 7;
 
 function openMasterclassModal() {
-  var modal = document.getElementById('masterclassModal');
-  var panel = document.getElementById('masterclassPanel');
-  document.getElementById('mc-form-step').classList.remove('hidden');
-  document.getElementById('mc-success-step').classList.add('hidden');
+  var modal = document.getElementById('mcModal');
+  var panel = document.getElementById('mcPanel');
+  document.getElementById('mc-form-step').style.display = 'block';
+  document.getElementById('mc-success-step').style.display = 'none';
   document.getElementById('mc-form').reset();
-  document.getElementById('mc-error').classList.add('hidden');
+  document.getElementById('mc-error').style.display = 'none';
   document.getElementById('mc-submit-btn').disabled = false;
   document.getElementById('mc-submit-btn').textContent = 'Garantir minha vaga →';
   modal.style.opacity = '1';
@@ -1768,8 +1797,8 @@ function openMasterclassModal() {
 }
 
 function closeMasterclassModal() {
-  var modal = document.getElementById('masterclassModal');
-  var panel = document.getElementById('masterclassPanel');
+  var modal = document.getElementById('mcModal');
+  var panel = document.getElementById('mcPanel');
   modal.style.opacity = '0';
   modal.style.pointerEvents = 'none';
   panel.style.transform = 'translateY(40px)';
@@ -1785,22 +1814,24 @@ function submitMasterclassForm(e) {
   var telefone = document.getElementById('mc-telefone').value.trim();
   btn.disabled = true;
   btn.textContent = 'Enviando...';
-  errEl.classList.add('hidden');
+  errEl.style.display = 'none';
   fetch('https://api.brevo.com/v3/contacts', {
     method: 'POST',
     headers: { 'accept': 'application/json', 'api-key': BREVO_API_KEY, 'content-type': 'application/json' },
     body: JSON.stringify({ email: email, attributes: { FIRSTNAME: nome, LASTNAME: telefone }, listIds: [BREVO_LIST_ID], updateEnabled: true })
   }).then(function(res) {
     if (res.ok || res.status === 204) {
-      document.getElementById('mc-form-step').classList.add('hidden');
-      document.getElementById('mc-success-step').classList.remove('hidden');
+      document.getElementById('mc-form-step').style.display = 'none';
+      document.getElementById('mc-success-step').style.display = 'block';
     } else { throw new Error(res.status); }
   }).catch(function() {
-    errEl.classList.remove('hidden');
+    errEl.style.display = 'block';
     btn.disabled = false;
     btn.textContent = 'Garantir minha vaga →';
   });
 }
+
+document.addEventListener('keydown', function(e) { if (e.key === 'Escape') closeMasterclassModal(); });
 </script>
 </body>
 </html>
