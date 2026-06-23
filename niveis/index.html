@@ -1222,12 +1222,13 @@ function showPriceOverlays() {
 }
 
 (function() {
-  var diff = REVEAL_DATE - new Date();
-  if (diff <= 0) {
+  if (new Date() >= REVEAL_DATE) {
     injectPrices();
   } else {
     showPriceOverlays();
-    setTimeout(injectPrices, diff);
+    var _ri = setInterval(function() {
+      if (new Date() >= REVEAL_DATE) { clearInterval(_ri); injectPrices(); }
+    }, 30000);
   }
 })();
 
