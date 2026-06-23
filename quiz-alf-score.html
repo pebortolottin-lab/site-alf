@@ -852,10 +852,10 @@
 
     <div class="breakdown" id="breakdown"></div>
 
-    <div class="cta-box">
+    <div class="cta-box" id="ctaBox">
       <h3>Masterclass Estratégica Gratuita</h3>
       <p>Aprenda a construir R$1.000 a R$50.000 por mês sem precisar trabalhar.<br><br>Descubra por que ganhar mais pode não resolver e onde sua liberdade patrimonial está vazando.</p>
-      <a href="#" class="btn-cta" id="ctaBtn" onclick="openMasterclassModal();return false;">Quero garantir minha vaga</a>
+      <a href="#" class="btn-cta" id="ctaBtn" onclick="garantirVaga(this);return false;">Quero garantir minha vaga</a>
     </div>
 
     <a href="../niveis/" class="btn-niveis">
@@ -1709,129 +1709,38 @@ document.addEventListener('keydown', e => { if (e.key === 'Escape') { closePriva
 <div id="cursor-ring"></div>
 <div id="cursor-dot"></div>
 
-<style>
-.mcmodal{position:fixed;inset:0;z-index:99999;display:flex;align-items:flex-end;justify-content:center;opacity:0;pointer-events:none;transition:opacity .3s ease;}
-@media(min-width:640px){.mcmodal{align-items:center;padding:24px;}}
-.mcmodal-overlay{position:absolute;inset:0;background:rgba(0,0,0,0.85);cursor:pointer;}
-.mcmodal-panel{position:relative;width:100%;max-width:440px;background:#0C0C14;border:1px solid rgba(249,115,22,0.2);border-radius:24px 24px 0 0;overflow:hidden;box-shadow:0 25px 60px rgba(0,0,0,0.9);transform:translateY(40px);transition:transform .4s cubic-bezier(.22,1,.36,1);}
-@media(min-width:640px){.mcmodal-panel{border-radius:24px;}}
-.mcmodal-x{position:absolute;top:16px;right:16px;z-index:10;width:32px;height:32px;border-radius:50%;background:rgba(255,255,255,0.05);border:none;color:#9ca3af;font-size:16px;cursor:pointer;display:flex;align-items:center;justify-content:center;line-height:1;}
-.mcmodal-x:hover{background:rgba(255,255,255,0.12);color:#fff;}
-.mcmodal-body{padding:32px;}
-.mcmodal-eyebrow{font-size:10px;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;color:rgba(251,146,60,0.6);margin:0 0 10px;}
-.mcmodal-title{font-family:'Playfair Display',serif;font-size:24px;color:#fff;margin:0 0 6px;line-height:1.2;}
-.mcmodal-sub{font-size:13px;color:#6b7280;margin:0 0 24px;}
-.mc-field{margin-bottom:14px;}
-.mc-label{display:block;font-size:10px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;color:#6b7280;margin-bottom:6px;}
-.mc-input{width:100%;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);border-radius:12px;padding:12px 16px;color:#fff;font-size:14px;font-family:'Inter',sans-serif;outline:none;transition:border-color .2s;box-sizing:border-box;}
-.mc-input::placeholder{color:#4b5563;}
-.mc-input:focus{border-color:rgba(249,115,22,0.5);}
-.mc-btn{width:100%;margin-top:8px;padding:14px;background:linear-gradient(135deg,#f97316,#fb923c);color:#000;font-family:'Inter',sans-serif;font-size:14px;font-weight:700;border:none;border-radius:9999px;cursor:pointer;transition:all .2s;}
-.mc-btn:hover{opacity:.9;transform:translateY(-1px);}
-.mc-btn:disabled{opacity:.6;cursor:not-allowed;transform:none;}
-.mc-err{font-size:12px;color:#f87171;text-align:center;margin-top:10px;display:none;}
-.mc-success{padding:32px;text-align:center;}
-.mc-check{width:56px;height:56px;border-radius:50%;background:rgba(249,115,22,0.12);border:1px solid rgba(249,115,22,0.3);display:flex;align-items:center;justify-content:center;margin:0 auto 20px;}
-.mc-success-title{font-family:'Playfair Display',serif;font-size:22px;color:#fff;margin:0 0 8px;}
-.mc-success-sub{font-size:14px;color:#9ca3af;margin:0 0 20px;}
-.mc-close-btn{background:none;border:none;color:#6b7280;font-size:13px;cursor:pointer;padding:4px;}
-.mc-close-btn:hover{color:#9ca3af;}
-</style>
-
-<!-- MODAL MASTERCLASS -->
-<div id="mcModal" class="mcmodal">
-  <div class="mcmodal-overlay" onclick="closeMasterclassModal()"></div>
-  <div id="mcPanel" class="mcmodal-panel">
-    <button class="mcmodal-x" onclick="closeMasterclassModal()">✕</button>
-    <!-- formulário -->
-    <div id="mc-form-step" class="mcmodal-body">
-      <p class="mcmodal-eyebrow">Masterclass Estratégica · Gratuita</p>
-      <h3 class="mcmodal-title">Garanta sua vaga</h3>
-      <p class="mcmodal-sub">Preencha abaixo e receba o acesso no dia 23/07 às 19h.</p>
-      <form id="mc-form" onsubmit="submitMasterclassForm(event)">
-        <div class="mc-field">
-          <label class="mc-label">Nome</label>
-          <input type="text" id="mc-nome" class="mc-input" required placeholder="Seu nome completo"/>
-        </div>
-        <div class="mc-field">
-          <label class="mc-label">E-mail</label>
-          <input type="email" id="mc-email" class="mc-input" required placeholder="seu@email.com"/>
-        </div>
-        <div class="mc-field">
-          <label class="mc-label">Telefone / WhatsApp</label>
-          <input type="tel" id="mc-telefone" class="mc-input" required placeholder="(00) 00000-0000"/>
-        </div>
-        <button type="submit" id="mc-submit-btn" class="mc-btn">Garantir minha vaga →</button>
-        <p id="mc-error" class="mc-err">Ocorreu um erro. Tente novamente.</p>
-      </form>
-    </div>
-    <!-- confirmação -->
-    <div id="mc-success-step" class="mc-success" style="display:none;">
-      <div class="mc-check">
-        <svg width="28" height="28" fill="none" stroke="#f97316" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
-      </div>
-      <p class="mc-success-title">Vaga garantida.</p>
-      <p class="mc-success-sub">Fique atento ao seu email.</p>
-      <button class="mc-close-btn" onclick="closeMasterclassModal()">Fechar</button>
-    </div>
-  </div>
-</div>
-
 <script>
 var BREVO_API_KEY = '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';
 var BREVO_LIST_ID = 7;
 
-function openMasterclassModal() {
-  var modal = document.getElementById('mcModal');
-  var panel = document.getElementById('mcPanel');
-  document.getElementById('mc-form-step').style.display = 'block';
-  document.getElementById('mc-success-step').style.display = 'none';
-  document.getElementById('mc-form').reset();
-  document.getElementById('mc-error').style.display = 'none';
-  document.getElementById('mc-submit-btn').disabled = false;
-  document.getElementById('mc-submit-btn').textContent = 'Garantir minha vaga →';
-  modal.style.opacity = '1';
-  modal.style.pointerEvents = 'auto';
-  panel.style.transform = 'translateY(0)';
-  document.body.style.overflow = 'hidden';
-}
+function garantirVaga(btn) {
+  var nome     = (document.getElementById('fieldNome')  || {}).value || '';
+  var email    = (document.getElementById('fieldEmail') || {}).value || '';
+  var telefone = (document.getElementById('fieldTel')   || {}).value || '';
 
-function closeMasterclassModal() {
-  var modal = document.getElementById('mcModal');
-  var panel = document.getElementById('mcPanel');
-  modal.style.opacity = '0';
-  modal.style.pointerEvents = 'none';
-  panel.style.transform = 'translateY(40px)';
-  document.body.style.overflow = '';
-}
-
-function submitMasterclassForm(e) {
-  e.preventDefault();
-  var btn = document.getElementById('mc-submit-btn');
-  var errEl = document.getElementById('mc-error');
-  var nome = document.getElementById('mc-nome').value.trim();
-  var email = document.getElementById('mc-email').value.trim();
-  var telefone = document.getElementById('mc-telefone').value.trim();
-  btn.disabled = true;
   btn.textContent = 'Enviando...';
-  errEl.style.display = 'none';
+  btn.style.opacity = '0.6';
+  btn.style.pointerEvents = 'none';
+
   fetch('https://api.brevo.com/v3/contacts', {
     method: 'POST',
     headers: { 'accept': 'application/json', 'api-key': BREVO_API_KEY, 'content-type': 'application/json' },
-    body: JSON.stringify({ email: email, attributes: { FIRSTNAME: nome, LASTNAME: telefone }, listIds: [BREVO_LIST_ID], updateEnabled: true })
+    body: JSON.stringify({ email: email, attributes: { FIRSTNAME: nome.trim(), LASTNAME: telefone.trim() }, listIds: [BREVO_LIST_ID], updateEnabled: true })
   }).then(function(res) {
+    var box = document.getElementById('ctaBox');
     if (res.ok || res.status === 204) {
-      document.getElementById('mc-form-step').style.display = 'none';
-      document.getElementById('mc-success-step').style.display = 'block';
-    } else { throw new Error(res.status); }
+      box.innerHTML = '<p style="font-size:13px;color:rgba(201,168,76,0.7);letter-spacing:2px;text-transform:uppercase;margin:0 0 10px;">Masterclass Estratégica · Gratuita</p><p style="font-family:\'Playfair Display\',serif;font-size:22px;color:#fff;margin:0 0 8px;">Vaga garantida.</p><p style="font-size:14px;color:#9ca3af;margin:0;">Fique atento ao seu email.</p>';
+    } else {
+      btn.textContent = 'Erro — tente novamente';
+      btn.style.opacity = '1';
+      btn.style.pointerEvents = 'auto';
+    }
   }).catch(function() {
-    errEl.style.display = 'block';
-    btn.disabled = false;
-    btn.textContent = 'Garantir minha vaga →';
+    btn.textContent = 'Erro — tente novamente';
+    btn.style.opacity = '1';
+    btn.style.pointerEvents = 'auto';
   });
 }
-
-document.addEventListener('keydown', function(e) { if (e.key === 'Escape') closeMasterclassModal(); });
 </script>
 </body>
 </html>
